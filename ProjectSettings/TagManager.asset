@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ground
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Ground
+  - River
+  - RiverGround
+  - PlayerInvincible
+  - PlayerDrift
+  - RestartGround
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3913411037
+    locked: 0
+  - name: Ground
+    uniqueID: 2383339239
+    locked: 0
+  - name: Details
+    uniqueID: 3480950087
+    locked: 0
+  - name: Main
+    uniqueID: 255507325
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: River
+    uniqueID: 2049969965
+    locked: 0
+  - name: Foreground
+    uniqueID: 3696942063
+    locked: 0
