@@ -21,7 +21,7 @@ TagManager:
   - PlayerInvincible
   - PlayerDrift
   - RestartGround
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -45,7 +45,7 @@ TagManager:
   - name: Ground
     uniqueID: 2383339239
     locked: 0
-  - name: Details
+  - name: DetailsAndEnemy
     uniqueID: 3480950087
     locked: 0
   - name: Main
