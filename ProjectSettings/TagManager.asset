@@ -15,11 +15,11 @@ TagManager:
   - 
   - 
   - Player
+  - PlayerInvincible
+  - PlayerDrift
   - Ground
   - River
   - RiverGround
-  - PlayerInvincible
-  - PlayerDrift
   - RestartGround
   - Enemy
   - 

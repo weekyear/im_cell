@@ -647,6 +647,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4994140846309364104, guid: 1df7b97ecc4d1b7479d27e5649259b61,
+        type: 3}
+      propertyPath: _data._json
+      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":0.5,"$type":"System.Single"},"$version":"A"},{"name":"Jump","value":{"$content":15.0,"$type":"System.Single"},"$version":"A"},{"name":"BeganPos","value":{"x":0.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndedPos","value":{"x":0.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      objectReference: {fileID: 0}
     - target: {fileID: 5382366555344666028, guid: 1df7b97ecc4d1b7479d27e5649259b61,
         type: 3}
       propertyPath: m_LocalPosition.x
