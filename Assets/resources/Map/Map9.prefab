@@ -5800,7 +5800,7 @@ GameObject:
   - component: {fileID: 3245984245206489645}
   - component: {fileID: 1368013846497965331}
   m_Layer: 11
-  m_Name: Ground
+  m_Name: Cliff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

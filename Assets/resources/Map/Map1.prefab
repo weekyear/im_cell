@@ -914,8 +914,8 @@ GameObject:
   - component: {fileID: 1392537592193306806}
   - component: {fileID: 1392537592193306805}
   - component: {fileID: 1392537592193306804}
-  m_Layer: 11
-  m_Name: Ground
+  m_Layer: 14
+  m_Name: Bottom
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
