@@ -565,24 +565,25 @@ Tilemap:
   - m_RefCount: 0
     m_Data:
       e00: NaN
-      e01: 2.840157e-21
-      e02: -1.3629497e-22
+      e01: -6769744
+      e02: -4.737169e-38
       e03: NaN
       e10: NaN
-      e11: 4.5905e-41
-      e12: 8.97e-43
+      e11: 4.5904e-41
+      e12: 7.15e-43
       e13: NaN
-      e20: 2.840157e-21
+      e20: -6769744
       e21: 4.16e-43
-      e22: -9.3881307e+27
-      e23: -1.1842415e-22
-      e30: 4.5905e-41
-      e31: 8.97e-43
+      e22: -1.347904e+35
+      e23: -4.1234138e-36
+      e30: 4.5904e-41
+      e31: 7.15e-43
       e32: 4.5911e-41
-      e33: 8.97e-43
+      e33: 7.15e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 8.994973e+10, g: 8.994973e+10, b: 8.994973e+10, a: 8.994973e+10}
+    m_Data: {r: -0.0000000036162433, g: -0.0000000036162433, b: -0.0000000036162433,
+      a: -0.0000000036162433}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5367,7 +5368,7 @@ GameObject:
   - component: {fileID: 1392537592350265445}
   - component: {fileID: 5710081142060253939}
   m_Layer: 0
-  m_Name: Map5
+  m_Name: Map6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5403,7 +5404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"MapNum","value":{"$content":1,"$type":"System.Int32"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+    _json: '{"declarations":{"collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
 --- !u!1 &1529098181548125839
 GameObject:
@@ -6124,15 +6125,24 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
+  - first: {x: -7, y: 0, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 4d515e737fe1f964a99b765889506f56, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 034b38c420bd3314db94bb5428403fbd, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data:
       e00: 1
       e01: 0
@@ -6151,13 +6161,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: -2, z: 0}
-  m_Size: {x: 23, y: 4, z: 1}
+  m_Origin: {x: -7, y: -2, z: 0}
+  m_Size: {x: 30, y: 4, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -6217,7 +6227,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.14499998, y: 0.14499998, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
