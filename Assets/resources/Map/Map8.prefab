@@ -5871,7 +5871,7 @@ MonoBehaviour:
   _data:
     _json: '{"nest":{"source":"Embed","macro":null,"embed":{"variables":{"collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":0.0,"y":0.0},"zoom":1.0,"elements":[{"coroutine":true,"defaultValues":{},"position":{"x":-188.0,"y":-123.0},"guid":"eab3fda7-a97b-4832-b29b-6c84a29b56fd","$version":"A","$type":"Bolt.Start","$id":"10"},{"nest":{"source":"Macro","macro":0,"embed":null},"defaultValues":{},"position":{"x":-25.0,"y":-126.0},"guid":"55789447-2931-4441-8d7c-7af49d76eb93","$version":"A","$type":"Bolt.SuperUnit","$id":"12"},{"type":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]","value":{"$content":["
-      \ub108\uc5d0\uac8c \uc788\uc5b4\uc11c \uc5ec\ud589\uc774\ub780 \ub3c4\ub300\uccb4
+      \ub108\uc5d0\uac8c \uc788\uc5b4\uc11c \ubaa8\ud5d8\uc774\ub780 \ub3c4\ub300\uccb4
       \ubb50\ub2c8?"],"$type":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"defaultValues":{},"position":{"x":-51.0,"y":-13.0},"guid":"88ec1e0b-ab6e-42d0-99a8-7b2eaf3ba1c3","$version":"A","$type":"Bolt.Literal","$id":"15"},{"sourceUnit":{"$ref":"10"},"sourceKey":"trigger","destinationUnit":{"$ref":"12"},"destinationKey":" 
       ","guid":"8595a2ad-c703-47e8-8011-8e64089bec8e","$type":"Bolt.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"output","destinationUnit":{"$ref":"12"},"destinationKey":"stringList","guid":"7c0b0ea4-0686-4392-8e42-fe8d101818c0","$type":"Bolt.ValueConnection"}],"$version":"A"}}}'

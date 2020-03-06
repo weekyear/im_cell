@@ -5416,33 +5416,6 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: 5, y: -2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 10
-      m_TileSpriteIndex: 10
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 6, y: -2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 10
-      m_TileSpriteIndex: 10
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
-  - first: {x: 7, y: -2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 10
-      m_TileSpriteIndex: 10
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
   - first: {x: -19, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -5462,6 +5435,33 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
   - first: {x: -17, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: 5, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: 6, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 10
+      m_TileSpriteIndex: 10
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
+  - first: {x: 7, y: -1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 10
@@ -5823,6 +5823,22 @@ CompositeCollider2D:
         Y: 0
       - X: -51200000
         Y: 0
+    - - X: 102400108
+        Y: -12800041
+      - X: 102400108
+        Y: 41
+      - X: 102400049
+        Y: 100
+      - X: 63999955
+        Y: 100
+      - X: 63999896
+        Y: 41
+      - X: 63999896
+        Y: -12800041
+      - X: 63999955
+        Y: -12800100
+      - X: 102400049
+        Y: -12800100
     - - X: -230400016
         Y: 0
       - X: -243200000
@@ -5863,22 +5879,6 @@ CompositeCollider2D:
         Y: -25600000
       - X: -102399992
         Y: -25600000
-    - - X: 76799992
-        Y: -12800000
-      - X: 63999996
-        Y: -12800000
-      - X: 63999996
-        Y: -25600000
-      - X: 76799992
-        Y: -25600000
-    - - X: 102400008
-        Y: -12800000
-      - X: 76800000
-        Y: -12800000
-      - X: 76800000
-        Y: -25600000
-      - X: 102400008
-        Y: -25600000
     - - X: 51200000
         Y: -25600000
       - X: 12800000
@@ -5909,6 +5909,10 @@ CompositeCollider2D:
       - {x: -15.360027, y: 1.28}
       - {x: -19.199999, y: 1.2799708}
       - {x: -19.19997, y: 0}
+    - - {x: 10.239976, y: -1.28001}
+      - {x: 10.239976, y: 0.00001}
+      - {x: 6.3999896, y: -0.0000252}
+      - {x: 6.400025, y: -1.28001}
     - - {x: 19.19997, y: -1.28}
       - {x: 19.19997, y: 0}
       - {x: 15.360001, y: -0.000029300001}
@@ -5917,10 +5921,6 @@ CompositeCollider2D:
       - {x: -20.48003, y: 0}
       - {x: -24.32, y: -0.000029300001}
       - {x: -24.319971, y: -1.28}
-    - - {x: 10.239971, y: -2.56}
-      - {x: 10.239971, y: -1.28}
-      - {x: 6.3999996, y: -1.2800293}
-      - {x: 6.4000287, y: -2.56}
     - - {x: -10.240029, y: -2.56}
       - {x: -10.240029, y: -1.28}
       - {x: -14.08, y: -1.2800293}
@@ -6898,7 +6898,7 @@ PrefabInstance:
     - target: {fileID: 7773638282210441027, guid: 2585b4ccea274dd41a916debeff22a1b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.437
+      value: 14.71
       objectReference: {fileID: 0}
     - target: {fileID: 7773638282210441027, guid: 2585b4ccea274dd41a916debeff22a1b,
         type: 3}
@@ -7278,7 +7278,7 @@ PrefabInstance:
     - target: {fileID: 7773638282210441027, guid: 2585b4ccea274dd41a916debeff22a1b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.64
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 7773638282210441027, guid: 2585b4ccea274dd41a916debeff22a1b,
         type: 3}
