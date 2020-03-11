@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: ApplicationVariables
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"BgmAudio","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"EffectAudio","value":{"$content":1,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"ListTitle","value":{"$content":["<1
-      - 1>","<1 - 2>","<1 - 3>","<1 - 4>","<1 - 5>","<1 - 6>","<1 - 7>","<1 - 8>"],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"},{"name":"ListContent","value":{"$content":["
+    _json: '{"declarations":{"collection":{"$content":[{"name":"Player","value":null,"$version":"A"},{"name":"BgmAudio","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"EffectAudio","value":{"$content":1,"$type":"UnityEngine.Object"},"$version":"A"},{"name":"ListContent","value":{"$content":["
       \uc55e\uc73c\ub85c \ub3c4\uc57d\ud558\uae30 \uc704\ud574\uc120 \uadf8\uc5d0
       \ub530\ub978 \ubd84\uc5f4\uc774 \ud544\uc694\ud558\ub2e4. \uc870\uae08 \ub6f0\uba74
       \uc870\uae08 \ubd84\uc5f4\ud574\ub3c4 \ub420 \uac83\uc774\uace0 \uba40\ub9ac
@@ -38,7 +36,7 @@ MonoBehaviour:
       \uc0ac\uc2dc\uc0ac\ucca0 \uc544\ub984\ub2f5\uae30\ub9cc \ud560 \uac83 \uac19\uc740
       \uc774 \uacf3\uc740 \ud2b9\uc218\ud55c \uc0c1\ud669\uc5d0\uc11c\ub294 \ub530\ub73b\ud568\uc744
       \uc783\uace0 \uc300\uc300\ud574\uc9c0\uace4 \ud55c\ub2e4."],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"},{"name":"BgmVolume","value":{"$content":0.5,"$type":"System.Single"},"$version":"A"},{"name":"EffectVolume","value":{"$content":0.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 7714011668980633829, guid: a26f07138048ac940a77329c1134bcb2, type: 3}
     - {fileID: 7970216384088505349, guid: 1d88bd1da71944241a35f2e3474569b2, type: 3}
