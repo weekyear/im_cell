@@ -1,0 +1,147 @@
+[33mcommit 11ae8c5f72bc8e2dabe72649168135d4dda35039[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Tue Mar 3 14:04:43 2020 +0900
+
+    typing sound 추가
+
+[33mcommit 4ac9125de5c817efe3bc86b86f7740c96bcdfc14[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Mon Mar 2 22:35:11 2020 +0900
+
+    스토리 작업 초안, 가시 프리팹으로 전환해서 배치 후 난이도 1차 조정
+
+[33mcommit 1977117a3b255493845145cda32989f5860ff270[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Fri Feb 28 21:23:14 2020 +0900
+
+    조준하다가 가시에 맞거나 강에 떨어질 경우 조준 포인트 남아있는 현상 해소
+    PauseWindow와 GameoverWindow에 GameStage 표시
+
+[33mcommit e21396cb7c9a00a5a2513e079e7783bb65f68a91[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Thu Feb 27 19:06:38 2020 +0900
+
+    배경음악 변경, CineMachine 흔들리는 현상 고침, 메시지 내용 1 - 8까지 추가
+
+[33mcommit 190839002c0aad2766b6f7cdf074825a431842d0[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Wed Feb 26 18:55:47 2020 +0900
+
+    파티클 시스템 구현, 메시지 맵 4군데에 추가, UI위에 마우스 있으면 점프 비활성화
+
+[33mcommit d3e266ae0ef3cfa75257b9a4e8c1163f9a325ad0[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Mon Feb 24 21:59:33 2020 +0900
+
+    Map 밸런스 조정, 게임 종료 시 Timer 계속 작동되는 버그 수정
+
+[33mcommit fab19635ceeed1e38f2919216d9118585d1e6e50[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Sun Feb 23 23:32:04 2020 +0900
+
+    Map 24까지 제작
+
+[33mcommit 6a39f5dbfcd3108baec8a0f7a3739c71131d327e[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Sun Feb 23 18:24:19 2020 +0900
+
+    Map 17까지 추가
+
+[33mcommit c48b17456ef2d574d7dac44da4d7b35c883e0d18[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Sat Feb 22 00:32:07 2020 +0900
+
+    물 빠지는 소리, GameScene 배경음악 안 바뀌는 버그 개선, Cliff 끝에 고착되는 현상 개선
+
+[33mcommit e58b280dfdbec7a15a98f03ca5cbc4aa64394b51[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Fri Feb 21 22:52:14 2020 +0900
+
+    ShowAdButton 다시 구현
+
+[33mcommit 486f0da01fe462f2232ebc64ac88eb5d24cae41f[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Fri Feb 21 22:07:45 2020 +0900
+
+    Cell Tilemap에서 Sprite로 교체
+
+[33mcommit 360b565079c708199608761413765b839d14758e[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Fri Feb 21 21:25:59 2020 +0900
+
+    Audio DontDestroyOnLoad로 옮기기
+
+[33mcommit 29e055a8455406932dcb35d016dff6c205e0e0ab[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Thu Feb 20 15:59:17 2020 +0900
+
+    세포 체력 회복 아이템 구현
+
+[33mcommit 496efd51bf56e31f94674b5a394dda56dd19f6c2[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Wed Feb 19 23:57:03 2020 +0900
+
+    맵 밸런스 조정,
+    Player Health : HealthHolder, Bar 구현, 점프 시 대미지 반영, Enemy 피격 시 대미지 반영, Health 0이 될 시 게임 종료 구현(지금은 PauseBanner가 켜지게 해놨음. GameoverBanner를 구현해야 함.)
+
+[33mcommit 6ff848f3df4a612bfa6688d4335c22f742a9a35b[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Wed Feb 19 15:13:53 2020 +0900
+
+    Map 0 ~ 9 난이도 조정
+
+[33mcommit af11216af798a39e6181380bc55bb6e8d1def37d[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Wed Feb 19 00:23:12 2020 +0900
+
+    Map 0에서 9까지 제작
+
+[33mcommit b1ba02913e5d905de0d780cd569f59a8fc09eaf3[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Tue Feb 18 19:51:39 2020 +0900
+
+    맵 스테이지 0~4
+    Player Drift 동작 깔끔하게 바꿔줌
+
+[33mcommit e9dbd0330f18402ad41741610605c063275c4e9b[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Mon Feb 17 20:41:56 2020 +0900
+
+    Menu Scene과 Sample Scene에 배경음, 효과음 적용
+    HUD에 소리 설정 구현
+
+[33mcommit 44fbee6afaee40a2d7234f8e5150f97ac87aa069[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Mon Feb 17 12:30:02 2020 +0900
+
+    BGM, sound effect 적용
+
+[33mcommit 9d3bde9d304a565b6a85f2d7347d070796002434[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Sat Feb 15 21:11:04 2020 +0900
+
+    잡아 당길 때 날아가는 궤적 표시, 손가락 찍은 곳 표시
+
+[33mcommit 16ab2018113f84dce347b197c91678bfbfb2cd0b[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Fri Feb 14 16:50:59 2020 +0900
+
+    메인 메뉴 초안 구현
+
+[33mcommit f7dca70a3ba060a32d293299f02a8ca77e779ea9[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Thu Feb 13 15:13:04 2020 +0900
+
+    Mouse, Tocuh input 으로 캐릭터 움직이게 하는 초안
+
+[33mcommit 8e23a197b055fd24e472680b7502e671e107d9fe[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Wed Feb 12 17:47:56 2020 +0900
+
+    Enemy 구현
+
+[33mcommit 8a882d44d2326dd460ac421ae23546a5bbfb6fdc[m
+Author: JWeeKyear <jwnsgus@gmail.com>
+Date:   Tue Feb 11 18:48:29 2020 +0900
+
+    git init
