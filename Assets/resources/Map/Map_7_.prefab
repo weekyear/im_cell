@@ -61,9 +61,7 @@ GameObject:
   - component: {fileID: 1392537591297427470}
   - component: {fileID: 1392537591297427469}
   - component: {fileID: 1392537591297427468}
-  - component: {fileID: 1392537591297427459}
-  - component: {fileID: 1392537591297427458}
-  - component: {fileID: 3033618180556779497}
+  - component: {fileID: 2674040306761878805}
   m_Layer: 13
   m_Name: RiverGround
   m_TagString: Untagged
@@ -637,7 +635,7 @@ CompositeCollider2D:
       - {x: 2.5600252, y: -6.4000096}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &1392537591297427459
+--- !u!114 &2674040306761878805
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -646,124 +644,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392537591297427462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
+  m_Script: {fileID: 11500000, guid: 34fc9bd984339544ea5af710c953f3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &1392537591297427458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392537591297427462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 4c909502e9042244ba1ec0646485be62, type: 2}
---- !u!82 &3033618180556779497
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392537591297427462}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d9d2826b1713a734eb9822b33f695865, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1392537591792572137
 GameObject:
   m_ObjectHideFlags: 0
@@ -5735,7 +5618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1392537592350265445}
   - component: {fileID: 5710081142060253939}
-  - component: {fileID: 7338736070283229356}
+  - component: {fileID: 5920771945582014503}
   m_Layer: 0
   m_Name: Map_7_
   m_TagString: Untagged
@@ -5786,7 +5669,7 @@ MonoBehaviour:
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"},{"name":"EmoticonList","value":{"$content":[],"$type":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
---- !u!114 &7338736070283229356
+--- !u!114 &5920771945582014503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5795,13 +5678,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392537592350265444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
+  m_Script: {fileID: 11500000, guid: d5fc7d689c8b3854d9775d4a650addeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 99ea95a91503c6f4aa3f4f815f504cad, type: 2}
+  DialogList:
+  - "\uC140:(\uC774 \uC138\uC0C1\uC740 \uB0B4\uAC00 \uBAA8\uB974\uB294 \uAC83\uC73C\uB85C
+    \uAC00\uB4DD \uCC28\uC788\uB2E4. \uD558\uC9C0\uB9CC \uBAA8\uB974\uB294 \uAC83\uC744
+    \uBB3C\uC5B4\uBCFC \uC0C1\uB300\uAC00 \uC5C6\uAE30\uC5D0 \uBB50\uB4E0\uC9C0 \uBAB8\uC73C\uB85C
+    \uCCB4\uD5D8\uD574\uB098\uAC00\uACE0 \uC788\uB2E4. \uC544\uB2C8\uBA74 \uC774\uB300\uB85C
+    \uC0AC\uB77C\uC9C0\uB294 \uAC83\uB3C4 \uB098\uC058\uC9C0 \uC54A\uC744 \uAC83
+    \uAC19\uB2E4.)"
+  EmoticonList: []
 --- !u!1 &1504680955610322146
 GameObject:
   m_ObjectHideFlags: 0

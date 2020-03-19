@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2970836805342500474}
-  - component: {fileID: 7596820102900383965}
-  - component: {fileID: 9208147410216159327}
+  - component: {fileID: 2364497957115686475}
   m_Layer: 0
   m_Name: Saw
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7596820102900383965
+--- !u!114 &2364497957115686475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,28 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2188314753565794496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
+  m_Script: {fileID: 11500000, guid: 333dab35fbad83340bed9cd6d2015f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-21.8,"y":0.0,"z":2.0,"$type":"UnityEngine.Vector3"},"$version":"A"},{"name":"EndPos","value":{"x":-18.0,"y":0.0,"z":2.0,"$type":"UnityEngine.Vector3"},"$version":"A"},{"name":"Speed","value":{"$content":0.1,"$type":"System.Single"},"$version":"A"},{"name":"IsFlip","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &9208147410216159327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2188314753565794496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 3d41300fc4fbe68478206a5ad40a02ea, type: 2}
+  StartPos: {x: 0, y: 0}
+  EndPos: {x: 0, y: 0}
+  Speed: 0.1
 --- !u!1 &5910160168062331569
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,9 +57,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3370752864643983139}
   - component: {fileID: 3942599079245577691}
-  - component: {fileID: 167511800203740461}
-  - component: {fileID: 2401255712915808610}
   - component: {fileID: 5791770549973582848}
+  - component: {fileID: 4431395946553370557}
+  - component: {fileID: 7991630797081807524}
   m_Layer: 0
   m_Name: Saw_256
   m_TagString: Untagged
@@ -148,37 +131,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &167511800203740461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5910160168062331569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-18.0,"y":0.0,"z":0.0,"$type":"UnityEngine.Vector3"},"$version":"A"},{"name":"EndPos","value":{"x":-21.8,"y":0.0,"z":0.0,"$type":"UnityEngine.Vector3"},"$version":"A"},{"name":"Speed","value":{"$content":0.05,"$type":"System.Single"},"$version":"A"},{"name":"IsFlip","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &2401255712915808610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5910160168062331569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 430d488c636d6754897e5ad3eb2bd328, type: 2}
 --- !u!58 &5791770549973582848
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -195,3 +147,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.2
+--- !u!114 &4431395946553370557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910160168062331569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4068b76fb28ece940984b00c45245fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7991630797081807524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910160168062331569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445243d3cbdbfec4ea8bf2d5967dcbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

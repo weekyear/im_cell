@@ -3652,8 +3652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392537592350265445}
-  - component: {fileID: 5710081142060253939}
-  - component: {fileID: 4686377756788665225}
+  - component: {fileID: 7272720487323924875}
   m_Layer: 0
   m_Name: Map_2_
   m_TagString: Untagged
@@ -3679,7 +3678,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5710081142060253939
+--- !u!114 &7272720487323924875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3688,35 +3687,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392537592350265444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
+  m_Script: {fileID: 11500000, guid: d5fc7d689c8b3854d9775d4a650addeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"StringList","value":{"$content":["\uc140:(\uc55e\uc73c\ub85c
-      \ub098\uc544\uac00\ub824\uace0 \ud558\uba74 \uc0b4\uc810\uc774 \ub5a8\uc5b4\uc838
-      \ub098\uac04\ub2e4. \uc0b4\uc810\uc774 \ub2e4 \ub5a8\uc5b4\uc838\ub098\uac00\uba74
-      \ub0b4 \uc874\uc7ac\uac00 \uc0ac\ub77c\uc9c0\ub9ac\ub780 \uac78 \uccb4\uac10\uc801\uc73c\ub85c
-      \uc54c \uc218 \uc788\ub2e4.)"],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"},{"name":"EmoticonList","value":{"$content":["\uc140:( 
-      - -  ) "],"$type":"System.Collections.Generic.List`1[[System.String, mscorlib,
-      Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &4686377756788665225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392537592350265444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 99ea95a91503c6f4aa3f4f815f504cad, type: 2}
+  DialogList:
+  - "\uC140:(\uC55E\uC73C\uB85C \uB098\uC544\uAC00\uB824\uACE0 \uD558\uBA74 \uC0B4\uC810\uC774
+    \uB5A8\uC5B4\uC838 \uB098\uAC04\uB2E4. \uC0B4\uC810\uC774 \uB2E4 \uB5A8\uC5B4\uC838\uB098\uAC00\uBA74
+    \uB0B4 \uC874\uC7AC\uAC00 \uC0AC\uB77C\uC9C0\uB9AC\uB780 \uAC78 \uCCB4\uAC10\uC801\uC73C\uB85C
+    \uC54C \uC218 \uC788\uB2E4.)"
+  EmoticonList:
+  - "\uC140:(  - -  ) "
 --- !u!1 &2243979524039247507
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5382366555344666028}
+  - component: {fileID: 1770099620}
   - component: {fileID: 5877503685270040619}
   - component: {fileID: 5029912023258290149}
   - component: {fileID: -3727997335670373161}
-  - component: {fileID: 4994140846309364104}
-  - component: {fileID: 5757486409938461526}
-  - component: {fileID: 847319024}
   - component: {fileID: 6652999453067341588}
   - component: {fileID: 3059871582443607486}
   - component: {fileID: 2526948985228291897}
@@ -39,6 +37,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1770099620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5382366555344666029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3c518b68f676441a245cd63362c1f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  point: {fileID: 6184986920407682691, guid: d4bfecbfcc517304b9e6a960ca1ca24d, type: 3}
+  TrajectoryPt: {fileID: 6184986920407682691, guid: f5e0d23a6c93bf8438ef3a5aa6355ff7,
+    type: 3}
+  Speed: 0.03
 --- !u!212 &5877503685270040619
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130,54 +144,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4994140846309364104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5382366555344666029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":0.5,"$type":"System.Single"},"$version":"A"},{"name":"Jump","value":{"$content":15.0,"$type":"System.Single"},"$version":"A"},{"name":"BeganPos","value":{"x":0.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndedPos","value":{"x":0.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"trajectoryPts","value":{"$content":[],"$type":"System.Collections.Generic.List`1[[UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &5757486409938461526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5382366555344666029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 5ab74aa483df01f4d887e7c0a31a7354, type: 2}
---- !u!114 &847319024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5382366555344666029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1999370065, guid: dcd2196c4e9166f499793f2007fcda35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 93bc658d090e3eb4a8c3d066c4a0aa07, type: 2}
 --- !u!70 &6652999453067341588
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
