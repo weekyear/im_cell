@@ -9,7 +9,7 @@ public class MapLine : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GameManager.MapNum < 21)
+        if (ChangingMapNum < GameManager.EndedMapNum + 1)
         {
             if (IsPlayer(collision))
             {
@@ -34,8 +34,6 @@ public class MapLine : MonoBehaviour
         Instantiate(Resources.Load($"Map/Map_{ChangingMapNum}_"));
 
         GameObject.Find($"StageText").GetComponent<Text>().text = $"<Stage{ChangingMapNum}>";
-
-        if (GameManager.PassedMapNum < ChangingMapNum) GameManager.PassedMapNum = ChangingMapNum;
         GameManager.MapNum = ChangingMapNum;
     }
 

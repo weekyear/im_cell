@@ -4073,6 +4073,8 @@ GameObject:
   - component: {fileID: 1392537592193306806}
   - component: {fileID: 1392537592193306805}
   - component: {fileID: 1392537592193306804}
+  - component: {fileID: 8739557951650287040}
+  - component: {fileID: 5142940114136654470}
   m_Layer: 14
   m_Name: Bottom
   m_TagString: Untagged
@@ -5639,6 +5641,30 @@ CompositeCollider2D:
       - {x: -2.5600395, y: -5.120004}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &8739557951650287040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392537592193306824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b5b9cfb1762654e97bb5939dee9474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5142940114136654470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392537592193306824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b5b9cfb1762654e97bb5939dee9474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1392537592350265444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5648,8 +5674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392537592350265445}
-  - component: {fileID: 5710081142060253939}
-  - component: {fileID: 8322031559990760605}
+  - component: {fileID: 7476190854014957092}
   m_Layer: 0
   m_Name: Map_11_
   m_TagString: Untagged
@@ -5677,7 +5702,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5710081142060253939
+--- !u!114 &7476190854014957092
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5686,34 +5711,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392537592350265444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
+  m_Script: {fileID: 11500000, guid: d5fc7d689c8b3854d9775d4a650addeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"StringList","value":{"$content":["\ubcf8:\uc598\uc57c!
-      \uc774\uacf3\uc800\uacf3 \uc798 \uad6c\uacbd\ud558\uace0 \uc788\ub2c8?","\uc140:\ub124...","\ubcf8:\uc544\ub984\ub2e4\uc6b4
-      \uacf3\uc774\uc9c0?","\uc140:\ub124..","\ubcf8:\uc885\uc885 \uc704\ud5d8\ud55c
-      \uacf3\ub3c4 \uc788\uc9c0\ub9cc \uadf8\uac83\uae4c\uc9c0 \ud3ec\ud568\ud574\uc11c
-      \uc544\ub984\ub2e4\uc6b4 \uacf3\uc774 \ub9ce\ub2e8\ub2e4!!\u314e\u314e\u314e","\uc140:\ub124..","\ubcf8:\u314e\u314e\u314e"],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"},{"name":"EmoticonList","value":{"$content":[],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &8322031559990760605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392537592350265444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 99ea95a91503c6f4aa3f4f815f504cad, type: 2}
 --- !u!1 &1505835988678826801
 GameObject:
   m_ObjectHideFlags: 0

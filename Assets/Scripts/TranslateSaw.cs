@@ -24,6 +24,6 @@ public class TranslateSaw : MonoBehaviour
         }
 
         var speed = IsFlip ? Speed * 1 : Speed * -1;
-        transform.Translate(direction * speed);
+        transform.Translate(direction * speed * Time.deltaTime);
     }
 }

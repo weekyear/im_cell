@@ -1593,66 +1593,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &928361293
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 928361296}
-  - component: {fileID: 928361295}
-  - component: {fileID: 928361294}
-  m_Layer: 0
-  m_Name: Scene Variables
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &928361294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928361293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 995777834, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &928361295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928361293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"SettingMenu","value":{"$content":0,"$type":"UnityEngine.Object"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences:
-    - {fileID: 1245173580}
---- !u!4 &928361296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928361293}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &949401537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,8 +2025,6 @@ GameObject:
   - component: {fileID: 1245173577}
   - component: {fileID: 1245173576}
   - component: {fileID: 1245173575}
-  - component: {fileID: 1245173579}
-  - component: {fileID: 1245173578}
   - component: {fileID: 1245173580}
   m_Layer: 5
   m_Name: SettingMenu
@@ -2156,8 +2094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4676352303282648348, guid: f7f82fb46afaa1e49a090de141fca9e1,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3d4a4df821e19741af788ced3a8daf9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2175,40 +2112,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245173573}
   m_CullTransparentMesh: 0
---- !u!114 &1245173578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245173573}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Embed","macro":null,"embed":{"variables":{"collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":-320.0834,"y":103.0},"zoom":1.0,"elements":[{"argumentCount":0,"coroutine":false,"defaultValues":{"target":null,"name":{"$content":"OpenSettingMenu","$type":"System.String"}},"position":{"x":-455.0,"y":215.0},"guid":"02f8636e-0207-40ab-b80f-96d5164ae2b5","$version":"A","$type":"Bolt.CustomEvent","$id":"10"},{"coroutine":false,"defaultValues":{},"position":{"x":-443.0,"y":-79.0},"guid":"fb9dcca9-a5c8-4445-a773-8c085b276b51","$version":"A","$type":"Bolt.Start","$id":"12"},{"nest":{"source":"Macro","macro":0,"embed":null},"defaultValues":{},"position":{"x":-298.0,"y":-78.0},"guid":"374b44bf-1c7d-460f-b016-57031785e7cf","$version":"A","$type":"Bolt.SuperUnit","$id":"14"},{"defaultValues":{},"position":{"x":-294.0,"y":30.0},"guid":"cf2af21b-691c-4b74-a2b7-b45a061e2c47","$version":"A","$type":"Bolt.Self","$id":"17"},{"defaultValues":{},"position":{"x":-232.0,"y":328.0},"guid":"5b6578f5-5a7f-44a3-ba4f-c25f0c3c91c9","$version":"A","$type":"Bolt.Self","$id":"19"},{"nest":{"source":"Macro","macro":1,"embed":null},"defaultValues":{},"position":{"x":-236.0,"y":220.0},"guid":"a7b5c18c-b19b-42a7-b354-cd08967ef65d","$version":"A","$type":"Bolt.SuperUnit","$id":"21"},{"sourceUnit":{"$ref":"12"},"sourceKey":"trigger","destinationUnit":{"$ref":"14"},"destinationKey":" 
-      ","guid":"3f941a2e-57d1-4326-8271-bc37e382ffb5","$type":"Bolt.ControlConnection"},{"sourceUnit":{"$ref":"10"},"sourceKey":"trigger","destinationUnit":{"$ref":"21"},"destinationKey":" 
-      ","guid":"4d2ff9dc-1614-4706-b0c0-7f695831ec46","$type":"Bolt.ControlConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"self","destinationUnit":{"$ref":"14"},"destinationKey":"canvasgroup","guid":"64d29ebd-045a-42ae-988e-598caab7bc82","$type":"Bolt.ValueConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"self","destinationUnit":{"$ref":"21"},"destinationKey":"canvasgroup","guid":"4be37298-8a21-4958-afd9-522104eb9417","$type":"Bolt.ValueConnection"}],"$version":"A"}}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 43ea44392d8ffbe4e8691678c4e89825, type: 2}
-    - {fileID: 11400000, guid: 4a0abf8f7e5e39f41b8a81fb6925a315, type: 2}
---- !u!114 &1245173579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245173573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
 --- !u!225 &1245173580
 CanvasGroup:
   m_ObjectHideFlags: 0

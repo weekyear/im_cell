@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5382366555344666029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -29, y: 0, z: 0}
+  m_LocalScale: {x: -0.9717227, y: 0.9717227, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -49,10 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3c518b68f676441a245cd63362c1f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  point: {fileID: 6184986920407682691, guid: d4bfecbfcc517304b9e6a960ca1ca24d, type: 3}
   TrajectoryPt: {fileID: 6184986920407682691, guid: f5e0d23a6c93bf8438ef3a5aa6355ff7,
     type: 3}
-  Speed: 0.03
+  Point: {fileID: 0}
+  Speed: 0.035
 --- !u!212 &5877503685270040619
 SpriteRenderer:
   m_ObjectHideFlags: 0

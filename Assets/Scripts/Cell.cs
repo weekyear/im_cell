@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
-    private static int RecentHeal = 0;
     // Start is called before the first frame update
     void Start()
     {
-        if (GameManager.MapNum <= RecentHeal)
+        if (GameManager.MapNum <= GameManager.RecentHeal)
         {
             Destroy(gameObject);
         }
@@ -19,9 +18,9 @@ public class Cell : MonoBehaviour
         if (IsPlayer(collision))
         {
             Destroy(gameObject);
-            PlayerObserver.HealthChanged(40);
-            RecentHeal = GameManager.MapNum;
-            GameManager.EffectAudio.PlayEffectSound("item");
+            PlayerObserver.HealthChanged(50);
+            GameManager.RecentHeal = GameManager.MapNum;
+            GameManager.EffectAudio.PlayEffectSound("virus_killed");
         }
     }
 

@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 4426201282490232548}
   - component: {fileID: 8339506634963295436}
   - component: {fileID: 5012446438951315977}
-  - component: {fileID: 1919232896846578910}
-  - component: {fileID: 308813520600408498}
   - component: {fileID: 8663083570329997876}
   m_Layer: 0
   m_Name: Mace
@@ -111,37 +109,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2, y: 2.2}
   m_EdgeRadius: 0
---- !u!114 &1919232896846578910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2722043487164967767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-24.0,"y":2.2,"z":0.0,"$type":"UnityEngine.Vector3"},"$version":"A"},{"name":"EndPos","value":{"x":-24.0,"y":-1.3,"z":0.0,"$type":"UnityEngine.Vector3"},"$version":"A"},{"name":"Speed","value":{"$content":0.3,"$type":"System.Single"},"$version":"A"},{"name":"IsReady","value":{"$content":false,"$type":"System.Boolean"},"$version":"A"},{"name":"maceState","value":{"$content":0,"$type":"System.Int32"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &308813520600408498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2722043487164967767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1999370065, guid: dcd2196c4e9166f499793f2007fcda35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: eb2796426547fc8498f08f1539963267, type: 2}
 --- !u!114 &8663083570329997876
 MonoBehaviour:
   m_ObjectHideFlags: 0

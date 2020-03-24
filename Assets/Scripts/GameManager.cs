@@ -8,15 +8,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject MessageWindow;
-    public GameObject GameoverWindow;
-    public GameObject PauseWindow;
+    [SerializeField] private GameObject MessageWindow;
+    [SerializeField] private GameObject GameoverWindow;
+    [SerializeField] private GameObject PauseWindow;
 
-    public GameObject HealthBar;
-    public GameObject LossHealthBar;
+    [SerializeField] private GameObject HealthBar;
+    [SerializeField] private GameObject LossHealthBar;
 
     // StoryWindow
-    public GameObject StoryWindow;
+    [SerializeField] private GameObject StoryWindow;
 
     private GameObject BoneSpeech;
     private Text BoneEmoticon;
@@ -31,22 +31,33 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     private List<string> DialogList;
     private List<string> EmoticonList;
 
-    public GameObject Audio;
+    [SerializeField] private GameObject Audio;
     public static BgmAudio BgmAudio;
     public static EffectAudio EffectAudio;
 
     [SerializeField] private GameObject Player;
 
     public static float Health = 100;
+    public static int RecentHeal = 0;
+    public static int RecentVirus = 0;
 
     private float time;
 
     [SerializeField] private int StartMapNum = 1;
+    [SerializeField] private int EndMapNum;
+    public static int EndedMapNum;
     public static int MapNum;
     public static int PassedMapNum;
 
     private void Awake()
     {
+        Health = 100;
+        RecentHeal = 0;
+        RecentVirus = 0;
+        EndedMapNum = EndMapNum;
+        MapNum = StartMapNum;
+        PassedMapNum = StartMapNum - 1;
+
         if (GameObject.Find("Audio(Clone)") == null) DontDestroyOnLoad(Instantiate(Audio));
 
         PlayerObserver.OnHealthChanged += HealthBarChanged;
@@ -63,20 +74,27 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         CellSpeech = StoryWindow.transform.Find("CellSpeech").gameObject;
         CellEmoticon = CellSpeech.transform.Find("CellEmoticon").GetComponent<Text>();
         CellText = CellSpeech.transform.Find("CellText").GetComponent<TextMeshProUGUI>();
+
+        Instantiate(Resources.Load($"Map/Map_{MapNum}_"));
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        MapNum = StartMapNum;
-        PassedMapNum = StartMapNum - 1;
-
-        Instantiate(Resources.Load($"Map/Map_{MapNum}_"));
-
         BgmAudio = GameObject.Find("BgmAudio").GetComponent<BgmAudio>();
         EffectAudio = GameObject.Find("EffectAudio").GetComponent<EffectAudio>();
 
         BgmAudio.StartGameBgm();
+    }
+
+    private void OnDestroy()
+    {
+        PlayerObserver.OnHealthChanged -= HealthBarChanged;
+        PlayerObserver.OnLossHealthChanged -= LossHealthBarChanged;
+        PlayerObserver.OnChestOpened -= ChestOpened;
+        PlayerObserver.OnGameFinished -= GameOver;
+
+        MapManager.OnStoryShowed -= StoryWindowOpened;
     }
 
     // Update is called once per frame
@@ -84,42 +102,36 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     {
         time += Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.Escape)) GamePause();
+        if (Input.GetKey(KeyCode.P)) GamePause();
 
-        if (Time.timeScale != 0 && Health <= 0 && Player.GetComponent<Rigidbody2D>().velocity.magnitude <= 0) GameOver();
+        if (Time.timeScale != 0 && Health <= 0 && Player.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01) GameOver();
     }
 
     public void GamePause()
     {
         if (!MessageWindow.activeSelf && !GameoverWindow.activeSelf)
         {
-            ChangeTimeScale();
 
             if (PauseWindow.activeSelf)
             {
                 EffectAudio.PlayEffectSound("button_click_02");
                 PauseWindow.SetActive(false);
+                ChangeTimeScale(1);
             }
             else
             {
                 EffectAudio.PlayEffectSound("button_click_01");
                 PauseWindow.SetActive(true);
+                ChangeTimeScale(0);
             }
 
             PauseWindow.transform.Find("PauseTimerText").GetComponent<Text>().text = time.ToString("F");
         }
     }
 
-    private void ChangeTimeScale()
+    private void ChangeTimeScale(int _timeScale)
     {
-        if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-        }
-        else
-        {
-            Time.timeScale = 0;
-        }
+        Time.timeScale = _timeScale;
     }
 
     private void HealthBarChanged(float amount)
@@ -138,9 +150,9 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     private void LossHealthBarChanged(float amount)
     {
         var sizeOfBar = new Vector2(0, 60);
-        if (amount >= Health)
+        if (Mathf.Abs(amount) >= Health)
         {
-            sizeOfBar.x = Health * -7.25f;
+            sizeOfBar.x = Health * 7.25f;
         }
         else
         {
@@ -161,35 +173,40 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     {
         MessageWindow.SetActive(true);
         MessageWindow.transform.Find("Content").GetComponent<Text>().text = message;
-        ChangeTimeScale();
+        ChangeTimeScale(0);
     }
 
     private void GameOver()
     {
-        ChangeTimeScale();
+        ChangeTimeScale(0);
 
         GameoverWindow.SetActive(true);
 
-        PauseWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = time.ToString("F");
+        GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = time.ToString("F");
     }
 
     public void CloseMessageWindow()
     {
         EffectAudio.PlayEffectSound("button_click_02");
         MessageWindow.SetActive(false);
-        ChangeTimeScale();
+        ChangeTimeScale(1);
     }
 
     public void GameRestart()
     {
+        HealthBarChanged(200);
+
         EffectAudio.PlayEffectSound("button_click_01");
+
         SceneManager.LoadScene("GameScene");
+        ChangeTimeScale(1);
     }
     
     public void LoadMenuScene()
     {
         EffectAudio.PlayEffectSound("button_click_01");
         SceneManager.LoadScene("MenuScene");
+        ChangeTimeScale(1);
     }
 
     public void ShowAd()
@@ -198,7 +215,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
 
         EffectAudio.PlayEffectSound("button_click_01");
 
-        ChangeTimeScale();
+        ChangeTimeScale(1);
 
         GameoverWindow.SetActive(false);
     }
@@ -208,11 +225,11 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         DialogList = dialogList;
         EmoticonList = emoticonList;
 
-        ChangeTimeScale();
+        ChangeTimeScale(0);
 
         currentDialogIndex = 0;
 
-        ShowEmoticon();
+        //ShowEmoticon();
 
         ShowDialog();
 
@@ -260,7 +277,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         textMeshPro.text = string.Empty;
         foreach (char d in dialog)
         {
-            if (textMeshPro.text.Length != dialog.Length)
+            if (textMeshPro.text.Length != dialog.Length && StoryWindow.activeSelf)
             {
                 textMeshPro.text += d;
                 EffectAudio.PlayEffectSound("typing");
@@ -274,6 +291,12 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         switch (eventData.pointerCurrentRaycast.gameObject.name)
         {
             case "StoryWindow":
+            case "BoneSpeech":
+            case "BoneEmoticon":
+            case "BoneText":
+            case "CellSpeech":
+            case "CellEmoticon":
+            case "CellText":
                 if (currentPlayingTextMeshPro.text.Length == currentDialog.Substring(2).Length)
                 {
                     if (DialogList.Count != currentDialogIndex + 1)
@@ -288,7 +311,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
                         StoryWindow.SetActive(false);
                         currentDialog = string.Empty;
 
-                        ChangeTimeScale();
+                        ChangeTimeScale(1);
                     }
                 }
                 else
@@ -316,6 +339,6 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         CellText.text = string.Empty;
         StoryWindow.SetActive(false);
 
-        ChangeTimeScale();
+        ChangeTimeScale(1);
     }
 }

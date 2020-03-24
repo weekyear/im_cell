@@ -4054,6 +4054,7 @@ GameObject:
   - component: {fileID: 1392537592193306806}
   - component: {fileID: 1392537592193306805}
   - component: {fileID: 1392537592193306804}
+  - component: {fileID: 3276611272213164742}
   m_Layer: 14
   m_Name: Bottom
   m_TagString: Untagged
@@ -5767,6 +5768,18 @@ CompositeCollider2D:
       - {x: -34.55998, y: -7.680004}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &3276611272213164742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392537592193306824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b5b9cfb1762654e97bb5939dee9474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1392537592350265444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5815,11 +5828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fc7d689c8b3854d9775d4a650addeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogList:
-  - "\uC140:(\uC5EC\uAE30\uC800\uAE30 \uB3CC\uC544\uB2E4\uB140 \uBCF4\uC9C0\uB9CC
-    \uC774 \uACF3\uC5D0\uC11C \uB098 \uD63C\uC790\uB77C\uB294 \uC2E4\uAC10\uB9CC\uC744
-    \uB290\uB07C\uACE0 \uC788\uB2E4.)"
-  EmoticonList: []
 --- !u!1 &1895381570912472052
 GameObject:
   m_ObjectHideFlags: 0

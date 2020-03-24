@@ -9,9 +9,10 @@ public class Chest : MonoBehaviour
 
     [SerializeField] private int ChestIndex;
 
-    private void Awake()
+    private void Start()
     {
-        Contents = Lean.Localization.LeanLocalization.GetTranslationText($"ChestContent").Split('\n').ToList();
+        var content = Lean.Localization.LeanLocalization.GetTranslationText($"Chest");
+        Contents = content.Split('\n').ToList();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

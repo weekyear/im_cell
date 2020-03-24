@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
             particleSys.Clear();
             particleSys.Play();
 
-            StartCoroutine(PlayerObserver.Damaged());
+            PlayerObserver.Damaged();
             PlayerObserver.HealthChanged(-5);
         }
     }

@@ -6,33 +6,69 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] List<string> DialogList;
-    [SerializeField] List<string> EmoticonList;
     // Start is called before the first frame update
-    private static List<string> _dialogList;
-    private static List<string> _emoticonList;
+    private static List<string> DialogList;
+    private static List<string> EmoticonList;
     public static event Action<List<string>, List<string>> OnStoryShowed;
+    public static event Action OnVirusBeKilled;
+
     void Start()
     {
+        OnVirusBeKilled += RemoveMaceWall;
+
         if (IsShownStoryAlways || !IsShownStoryAlways && PlayerPrefs.GetInt("ShownMapNum", 0) < GameManager.MapNum)
         {
-            _dialogList = DialogList;
-            _emoticonList = EmoticonList;
+            var dialog = Lean.Localization.LeanLocalization.GetTranslationText($"Story{GameManager.MapNum}");
+            DialogList = dialog.Split('\n').ToList();
+            //EmoticonList = Lean.Localization.LeanLocalization.GetTranslationText($"emoticon{GameManager.MapNum}").Split('\n').ToList();
 
             StoryShowed();
 
+            if (GameManager.PassedMapNum < GameManager.MapNum) GameManager.PassedMapNum = GameManager.MapNum;
             PlayerPrefs.SetInt("ShownMapNum", GameManager.MapNum);
         }
     }
 
-
     public static void StoryShowed()
     {
-        OnStoryShowed?.Invoke(_dialogList, _emoticonList);
+        OnStoryShowed?.Invoke(DialogList, EmoticonList);
+    }
+    
+    public static void VirusBeKilled()
+    {
+        OnVirusBeKilled?.Invoke();
+    }
+
+    private void RemoveMaceWall()
+    {
+        if (!IsExistVirus)
+        {
+            var maceWall = gameObject.transform.Find("MaceWall");
+            Destroy(maceWall.gameObject);
+            GameManager.RecentVirus = GameManager.MapNum;
+        }
     }
 
     private bool IsShownStoryAlways
     {
         get { return PlayerPrefs.GetInt("IsShownStoryAlways", 0) == 1; }
+    }
+
+    private bool IsExistVirus
+    {
+        get
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                if (gameObject.transform.Find($"Virus ({i})")?.Find("Virus_Sprite").gameObject.activeSelf == true) return true;
+            }
+
+            return false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        OnVirusBeKilled -= RemoveMaceWall;
     }
 }

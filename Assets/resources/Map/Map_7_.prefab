@@ -3975,6 +3975,7 @@ GameObject:
   - component: {fileID: 1392537592193306806}
   - component: {fileID: 1392537592193306805}
   - component: {fileID: 1392537592193306804}
+  - component: {fileID: 3590478160915423248}
   m_Layer: 14
   m_Name: Bottom
   m_TagString: Untagged
@@ -5608,6 +5609,18 @@ CompositeCollider2D:
       - {x: -34.55997, y: -7.68001}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &3590478160915423248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392537592193306824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b5b9cfb1762654e97bb5939dee9474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1392537592350265444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5617,7 +5630,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392537592350265445}
-  - component: {fileID: 5710081142060253939}
   - component: {fileID: 5920771945582014503}
   m_Layer: 0
   m_Name: Map_7_
@@ -5646,29 +5658,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5710081142060253939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392537592350265444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"StringList","value":{"$content":["\uc140:(\uc774
-      \uc138\uc0c1\uc740 \ub0b4\uac00 \ubaa8\ub974\ub294 \uac83\uc73c\ub85c \uac00\ub4dd
-      \ucc28\uc788\ub2e4. \ud558\uc9c0\ub9cc \ubaa8\ub974\ub294 \uac83\uc744 \ubb3c\uc5b4\ubcfc
-      \uc0c1\ub300\uac00 \uc5c6\uae30\uc5d0 \ubb50\ub4e0\uc9c0 \ubab8\uc73c\ub85c
-      \uccb4\ud5d8\ud574\ub098\uac00\uace0 \uc788\ub2e4. \uc544\ub2c8\uba74 \uc774\ub300\ub85c
-      \uc0ac\ub77c\uc9c0\ub294 \uac83\ub3c4 \ub098\uc058\uc9c0 \uc54a\uc744 \uac83
-      \uac19\ub2e4.)"],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"},{"name":"EmoticonList","value":{"$content":[],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
 --- !u!114 &5920771945582014503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5681,14 +5670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5fc7d689c8b3854d9775d4a650addeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogList:
-  - "\uC140:(\uC774 \uC138\uC0C1\uC740 \uB0B4\uAC00 \uBAA8\uB974\uB294 \uAC83\uC73C\uB85C
-    \uAC00\uB4DD \uCC28\uC788\uB2E4. \uD558\uC9C0\uB9CC \uBAA8\uB974\uB294 \uAC83\uC744
-    \uBB3C\uC5B4\uBCFC \uC0C1\uB300\uAC00 \uC5C6\uAE30\uC5D0 \uBB50\uB4E0\uC9C0 \uBAB8\uC73C\uB85C
-    \uCCB4\uD5D8\uD574\uB098\uAC00\uACE0 \uC788\uB2E4. \uC544\uB2C8\uBA74 \uC774\uB300\uB85C
-    \uC0AC\uB77C\uC9C0\uB294 \uAC83\uB3C4 \uB098\uC058\uC9C0 \uC54A\uC744 \uAC83
-    \uAC19\uB2E4.)"
-  EmoticonList: []
 --- !u!1 &1504680955610322146
 GameObject:
   m_ObjectHideFlags: 0

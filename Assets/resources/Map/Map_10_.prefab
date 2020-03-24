@@ -4020,6 +4020,7 @@ GameObject:
   - component: {fileID: 1392537592193306806}
   - component: {fileID: 1392537592193306805}
   - component: {fileID: 1392537592193306804}
+  - component: {fileID: 8526984579305140586}
   m_Layer: 14
   m_Name: Bottom
   m_TagString: Untagged
@@ -5650,6 +5651,18 @@ CompositeCollider2D:
       - {x: -34.559967, y: -7.6800003}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &8526984579305140586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392537592193306824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77b5b9cfb1762654e97bb5939dee9474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1392537592350265444
 GameObject:
   m_ObjectHideFlags: 0
@@ -5659,8 +5672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392537592350265445}
-  - component: {fileID: 5710081142060253939}
-  - component: {fileID: 7162153452344713653}
+  - component: {fileID: 7222664246126203493}
   m_Layer: 0
   m_Name: Map_10_
   m_TagString: Untagged
@@ -5689,7 +5701,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5710081142060253939
+--- !u!114 &7222664246126203493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5698,39 +5710,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392537592350265444}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1465209106, guid: c8d0ad23af520fe46aabe2b1fecf6462, type: 3}
+  m_Script: {fileID: 11500000, guid: d5fc7d689c8b3854d9775d4a650addeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"collection":{"$content":[{"name":"StringList","value":{"$content":["\uc140:\ub2f9\uc2e0\uc740
-      \ub204\uad70\uac00\uc694? \uadf8\ub9ac\uace0 \uc800\ub294 \ub204\uad6c\uc8e0?","\ubcf8:\ub09c
-      ''\ubcf8 \ub9e4\ub85c\uc6b0''\ub77c\uace0 \ud55c\ub2e8\ub2e4. \ubcf8\uc774\ub77c\uace0
-      \ubd80\ub974\ub834.","\ubcf8:\ub108\ub294 \ub0b4\uac00 \ub9cc\ub4e0 \uc544\uc774\ub780\ub2e4.","\ubcf8:\ub098\ub791
-      \uc598\uae30 \ud560 \uc218 \uc788\ub294 \uc544\uc774\ub294 \ub108\uac00 \ucc98\uc74c\uc774\uc5ec\uc11c
-      \ub108\ubb34 \uc2e0\uae30\ud558\ub2e4! \ub9cc\ub098\uc11c \ubc18\uac00\uc6cc!","\uc140:(\ubcf8\uc774
-      \ub098\uc5d0\uac8c \uadf8\ub807\ub4ef \ub098\ub3c4 \ubcf8\uc5d0\uac8c \ud638\uae30\uc2ec\uc744
-      \ub290\uaf08\ub2e4.)","\uc140:(\ud558\uc9c0\ub9cc \ucc98\uc74c \ub9cc\ub09c
-      \ub098\uc5d0\uac8c \ubcf4\ub0b4\ub294 \ubb34\uc870\uac74\uc801\uc778 \ud638\uc758\uc5d0\ub294
-      \uc758\uad6c\uc2ec\uc774 \ub4e4\uc5c8\ub2e4.)"],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"},{"name":"EmoticonList","value":{"$content":[],"$type":"System.Collections.Generic.List`1[[System.String,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &7162153452344713653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392537592350265444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -57143145, guid: a040fb66244a7f54289914d98ea4ef7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
-    _objectReferences:
-    - {fileID: 11400000, guid: 99ea95a91503c6f4aa3f4f815f504cad, type: 2}
 --- !u!1 &1394002370258376987
 GameObject:
   m_ObjectHideFlags: 0

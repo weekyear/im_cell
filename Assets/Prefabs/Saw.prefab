@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartPos: {x: 0, y: 0}
   EndPos: {x: 0, y: 0}
-  Speed: 0.1
+  Speed: 3
 --- !u!1 &5910160168062331569
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4068b76fb28ece940984b00c45245fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RotateSpeed: 100
 --- !u!114 &7991630797081807524
 MonoBehaviour:
   m_ObjectHideFlags: 0

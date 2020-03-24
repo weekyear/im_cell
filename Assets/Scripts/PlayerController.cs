@@ -1,13 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject point;
     [SerializeField] private GameObject TrajectoryPt;
 
+    public GameObject Point;
     private List<GameObject> TrajectoryPts = new List<GameObject>();
     private Vector2 BeganPos;
     private bool IsTouchDown;
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         PlayerObserver.OnDamaged += Damaged;
+        PlayerObserver.OnPlayerActivated += ChangePlayerState;
     }
     
     // Start is called before the first frame update
@@ -28,6 +30,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        PlayerObserver.OnDamaged -= Damaged;
+        PlayerObserver.OnPlayerActivated -= ChangePlayerState;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -35,44 +43,50 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.G))
             {
-                StartCoroutine(PlayerObserver.Damaged());
+                PlayerObserver.Damaged();
             }
 
             if (gameObject.layer == LayerMask.NameToLayer("Player"))
             {
-                if (IsGrounded && GameManager.Health > 0)
+                if (GameManager.Health > 0)
                 {
-                    // Input
+                    if (IsGrounded)
+                    {
+                        // Input
 #if UNITY_STANDALONE || UNITY_EDITOR
-                    if (IsPointerOverGameObject)
-                    {
-                        HandleTouchingDown(Input.mousePosition);
-                    }
-                    else
-                    {
-                        if (Input.GetMouseButtonDown(0))
+                        if (IsPointerOverGameObject)
                         {
-                            //Mouse Button Down
-                            BeganPos = Input.mousePosition;
-                            point.transform.position = BeganPos;
-                            point.gameObject.SetActive(true);
-                            IsTouchDown = true;
+                            HandleTouchingDown(Input.mousePosition);
                         }
                         else
                         {
-                            HandleTouchingDown(Input.mousePosition);
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                //Mouse Button Down
+                                BeganPos = Input.mousePosition;
+                                Point.transform.position = BeganPos;
+                                Point.gameObject.SetActive(true);
+                                IsTouchDown = true;
+                            }
+                            else
+                            {
+                                HandleTouchingDown(Input.mousePosition);
 
-                            if (Input.GetMouseButtonUp(0)) HandleTouchingUp(Input.mousePosition);
+                                if (Input.GetMouseButtonUp(0)) HandleTouchingUp(Input.mousePosition);
+                            }
                         }
-                    }
 #elif UNITY_ANDROID
                     if (!IsPointerOverGameObject && Input.touchCount > 0)
                     {
+                        Debug.Log("PlayerController_0");
                         var getTocuh = Input.GetTouch(0);
+                        Debug.Log("PlayerController_1");
                         var fingerPos = getTocuh.position;
+                        Debug.Log("PlayerController_2");
                         switch (getTocuh.phase)
                         {
                             case TouchPhase.Began:
+                                Debug.Log("PlayerController_3");
                                 BeganPos = fingerPos;
                                 Point.transform.position = BeganPos;
                                 Point.gameObject.SetActive(true);
@@ -81,27 +95,35 @@ public class PlayerController : MonoBehaviour
                             case TouchPhase.Moved:
                             case TouchPhase.Stationary:
                                 {
+                                    Debug.Log("PlayerController_4");
                                     HandleTouchingDown(fingerPos);
                                     break;
                                 }
                             case TouchPhase.Ended:
+                                Debug.Log("PlayerController_5");
                                 HandleTouchingUp(fingerPos);
                                 break;
                             case TouchPhase.Canceled:
+                                Debug.Log("PlayerController_6");
                                 break;
                         }
                     }
 #endif
-                }
-                else
-                {
-                    // Handling when caught at the end of a cliff
-                    var rigid2D = gameObject.GetComponent<Rigidbody2D>();
-                    if (rigid2D.velocity.magnitude == 0)
+                    }
+                    else
                     {
-                        rigid2D.velocity = gameObject.transform.localScale * Vector2.left * 2;
+                        // Handling when caught at the end of a cliff
+                        var rigid2D = gameObject.GetComponent<Rigidbody2D>();
+                        if (rigid2D.velocity.magnitude == 0)
+                        {
+                            rigid2D.velocity = gameObject.transform.localScale * Vector2.left * 2;
+                        }
                     }
                 }
+            }
+            else
+            {
+                InactivateTouchDown();
             }
 
             // Flip
@@ -157,10 +179,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             HandleTouchingUp(touchingPos);
-        }
 #endif
+        }
     }
-    private void HandleTouchingUp(Vector2 touchingPos)
+
+    public void HandleTouchingUp(Vector2 touchingPos)
     {
         if (IsTouchDown && (BeganPos - touchingPos).magnitude > 50f)
         {
@@ -179,11 +202,11 @@ public class PlayerController : MonoBehaviour
     public void InactivateTouchDown()
     {
         IsTouchDown = false;
-        point.SetActive(false);
+        Point.SetActive(false);
         HideTrajectoryPoints();
     }
 
-    private void HideTrajectoryPoints()
+    public void HideTrajectoryPoints()
     {
         PlayerObserver.LossHealthChanged(0);
         HandleTrajectoryPoint(Vector2.zero);
@@ -217,6 +240,7 @@ public class PlayerController : MonoBehaviour
 
                     if (isPointerOver) return true;
                 }
+                return false;
             }
             else
             {
@@ -266,15 +290,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator Damaged()
+    private void Damaged()
     {
         var reactVelocity = new Vector2(-7 * Mathf.Sign(transform.localScale.x), 7 * Mathf.Sign(transform.localScale.y));
-        gameObject.GetComponent<Rigidbody2D>().AddForce(reactVelocity, ForceMode2D.Impulse);
+        //gameObject.GetComponent<Rigidbody2D>().AddForce(reactVelocity, ForceMode2D.Impulse);
+        gameObject.GetComponent<Rigidbody2D>().velocity = reactVelocity;
         ChangeInvincibleState();
-
-        yield return new WaitForSeconds(1.25f);
-
-        ChangePlayerState();
     }
 
     private void ChangeInvincibleState()
@@ -283,14 +304,13 @@ public class PlayerController : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("PlayerInvincible");
         IsTouchDown = false;
     }
-    
-    private void ChangePlayerState()
+
+    private IEnumerator ChangePlayerState()
     {
+        yield return new WaitForSeconds(0.25f);
+
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 
-        if (gameObject.layer == LayerMask.NameToLayer("PlayerInvincible"))
-        {
-            gameObject.layer = LayerMask.NameToLayer("Player");
-        }
+        if (gameObject.layer == LayerMask.NameToLayer("PlayerInvincible")) gameObject.layer = LayerMask.NameToLayer("Player");
     }
 }
