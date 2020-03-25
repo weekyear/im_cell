@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
         BgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
         EffectSlider.value = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
 
-        if (PlayerPrefs.GetInt("IsShownStoryAlways") == 1)
+        if (PlayerPrefs.GetInt("IsShownStoryAlways", 0) == 1)
         {
             ShowStoryToggle.isOn = true;
         }

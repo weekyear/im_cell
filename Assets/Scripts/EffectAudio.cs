@@ -16,7 +16,7 @@ public class EffectAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetEffectVolume(PlayerPrefs.GetFloat("EffectVolume"));
+        SetEffectVolume(PlayerPrefs.GetFloat("EffectVolume", 0.5f));
     }
 
     public void SetEffectVolume(float value)

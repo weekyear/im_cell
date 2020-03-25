@@ -76,38 +76,46 @@ public class PlayerController : MonoBehaviour
                             }
                         }
 #elif UNITY_ANDROID
-                    if (!IsPointerOverGameObject && Input.touchCount > 0)
-                    {
-                        Debug.Log("PlayerController_0");
-                        var getTocuh = Input.GetTouch(0);
-                        Debug.Log("PlayerController_1");
-                        var fingerPos = getTocuh.position;
-                        Debug.Log("PlayerController_2");
-                        switch (getTocuh.phase)
+                        if (Input.touchCount > 0)
                         {
-                            case TouchPhase.Began:
-                                Debug.Log("PlayerController_3");
-                                BeganPos = fingerPos;
-                                Point.transform.position = BeganPos;
-                                Point.gameObject.SetActive(true);
-                                IsTouchDown = true;
-                                break;
-                            case TouchPhase.Moved:
-                            case TouchPhase.Stationary:
+                            if (!IsPointerOverGameObject)
+                            {
+                                Debug.Log("PlayerController_0");
+                                var getTocuh = Input.GetTouch(0);
+                                Debug.Log("PlayerController_1");
+                                var fingerPos = getTocuh.position;
+                                Debug.Log("PlayerController_2");
+                                switch (getTocuh.phase)
                                 {
-                                    Debug.Log("PlayerController_4");
-                                    HandleTouchingDown(fingerPos);
-                                    break;
+                                    case TouchPhase.Began:
+                                        Debug.Log("PlayerController_3");
+                                        BeganPos = fingerPos;
+                                        Point.transform.position = BeganPos;
+                                        Point.gameObject.SetActive(true);
+                                        IsTouchDown = true;
+                                        break;
+                                    case TouchPhase.Moved:
+                                    case TouchPhase.Stationary:
+                                        {
+                                            Debug.Log("PlayerController_4");
+                                            HandleTouchingDown(fingerPos);
+                                            break;
+                                        }
+                                    case TouchPhase.Ended:
+                                        Debug.Log("PlayerController_5");
+                                        HandleTouchingUp(fingerPos);
+                                        break;
+                                    case TouchPhase.Canceled:
+                                        Debug.Log("PlayerController_6");
+                                        break;
                                 }
-                            case TouchPhase.Ended:
-                                Debug.Log("PlayerController_5");
-                                HandleTouchingUp(fingerPos);
-                                break;
-                            case TouchPhase.Canceled:
-                                Debug.Log("PlayerController_6");
-                                break;
+                            }
+                            else
+                            {
+                                Debug.Log("PlayerController_10");
+                                HideTrajectoryPoints();
+                            }
                         }
-                    }
 #endif
                     }
                     else
@@ -155,7 +163,7 @@ public class PlayerController : MonoBehaviour
         // Is Touching Down MouseButton
         if (IsTouchDown)
         {
-            if ((BeganPos - touchingPos).magnitude > 50f)
+            if ((BeganPos - touchingPos).magnitude > 60f && !IsPointerOverGameObject)
             {
                 // Calculate Velocity
                 var velocity = CalculateVelocity(BeganPos, touchingPos);
@@ -229,23 +237,37 @@ public class PlayerController : MonoBehaviour
 #if UNITY_STANDALONE || UNITY_EDITOR
             return EventSystem.current.IsPointerOverGameObject();
 #elif UNITY_ANDROID
-            
+
+
             if (Input.touchCount > 0)
             {
-                for (int i = 0; i < Input.touchCount; i++)
-                {
-                    var getTocuh = Input.GetTouch(i);
-                    
-                    var isPointerOver = getTocuh.phase == TouchPhase.Began && EventSystem.current.IsPointerOverGameObject(getTocuh.fingerId);
+                Console.WriteLine($"IsPointerOverGameObject : {EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId)}");
+                if (EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
+                    return true;
+            }
 
-                    if (isPointerOver) return true;
-                }
-                return false;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
+
+            //if (Input.touchCount > 0)
+            //{
+            //    for (int i = 0; i < Input.touchCount; i++)
+            //    {
+            //        var getTocuh = Input.GetTouch(i);
+                    
+            //        var isPointerOver = getTocuh.phase == TouchPhase.Began && EventSystem.current.IsPointerOverGameObject(getTocuh.fingerId);
+
+            //        if (isPointerOver) 
+            //        {
+
+            //            return true;
+            //        }
+            //    }
+            //    return false;
+            //}
+            //else
+            //{
+            //    return false;
+            //}
 #endif
         }
     }

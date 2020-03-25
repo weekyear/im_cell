@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject Player;
 
     public static float Health = 100;
-    public static int RecentHeal = 0;
+    public static float RecentHeal = 0;
     public static int RecentVirus = 0;
 
     private float time;

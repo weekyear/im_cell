@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
+    [SerializeField] private bool IsLastCell;
     // Start is called before the first frame update
     void Start()
     {
-        if (GameManager.MapNum <= GameManager.RecentHeal)
+        if (IsLastCell)
         {
-            Destroy(gameObject);
+            if (GameManager.MapNum <= GameManager.RecentHeal) Destroy(gameObject);
+        }
+        else
+        {
+            if (GameManager.MapNum - 0.5f <= GameManager.RecentHeal) Destroy(gameObject);
         }
     }
 
@@ -19,8 +24,9 @@ public class Cell : MonoBehaviour
         {
             Destroy(gameObject);
             PlayerObserver.HealthChanged(50);
-            GameManager.RecentHeal = GameManager.MapNum;
-            GameManager.EffectAudio.PlayEffectSound("virus_killed");
+
+            GameManager.RecentHeal = IsLastCell ? GameManager.MapNum : GameManager.MapNum - 0.5f;
+            GameManager.EffectAudio.PlayEffectSound("item");
         }
     }
 
