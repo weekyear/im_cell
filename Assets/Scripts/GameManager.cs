@@ -48,12 +48,14 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     public static int EndedMapNum;
     public static int MapNum;
     public static int PassedMapNum;
+    private int RevivalNum;
 
     private void Awake()
     {
         Health = 100;
         RecentHeal = 0;
         RecentVirus = 0;
+        RevivalNum = 0;
         EndedMapNum = EndMapNum;
         MapNum = StartMapNum;
         PassedMapNum = StartMapNum - 1;
@@ -125,7 +127,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
                 ChangeTimeScale(0);
             }
 
-            PauseWindow.transform.Find("PauseTimerText").GetComponent<Text>().text = time.ToString("F");
+            PauseWindow.transform.Find("PauseTimerText").GetComponent<Text>().text = $"{time.ToString("F")} | {RevivalNum}회 부활";
         }
     }
 
@@ -182,7 +184,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
 
         GameoverWindow.SetActive(true);
 
-        GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = time.ToString("F");
+        GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{time.ToString("F")} | {RevivalNum}회 부활";
     }
 
     public void CloseMessageWindow()
@@ -212,6 +214,8 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     public void ShowAd()
     {
         HealthBarChanged(200);
+
+        RevivalNum += 1;
 
         EffectAudio.PlayEffectSound("button_click_01");
 
