@@ -4387,7 +4387,7 @@ GameObject:
   - component: {fileID: 1392537592193306804}
   - component: {fileID: 1208000548732711409}
   m_Layer: 14
-  m_Name: Bottom
+  m_Name: Bottom_Autumn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15862,7 +15862,7 @@ GameObject:
   - component: {fileID: 3245984245206489645}
   - component: {fileID: 1368013846497965331}
   m_Layer: 11
-  m_Name: Cliff
+  m_Name: Cliff_Autumn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

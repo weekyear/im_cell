@@ -11,7 +11,7 @@ public class MapLine : MonoBehaviour
     {
         if (ChangingMapNum < GameManager.EndedMapNum + 1)
         {
-            if (IsPlayer(collision))
+            if (IsPlayer(collision) || IsPlayerInvincible(collision))
             {
                 SwitchMap(collision.gameObject);
             }
@@ -25,6 +25,11 @@ public class MapLine : MonoBehaviour
     private bool IsPlayer(Collider2D collision)
     {
         return collision.CompareTag("Player");
+    }
+    
+    private bool IsPlayerInvincible(Collider2D collision)
+    {
+        return collision.CompareTag("PlayerInvincible");
     }
 
     private void SwitchMap(GameObject player)
