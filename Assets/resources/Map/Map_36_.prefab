@@ -25938,7 +25938,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-10.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-10.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":4.0,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-10.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-10.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":4.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
@@ -26243,7 +26243,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":1.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":1.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":8.0,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":1.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":1.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":8.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
@@ -26558,7 +26558,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-4.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-4.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":7.0,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-4.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-4.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":7.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
@@ -26888,7 +26888,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-12.5,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-10.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":4.0,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-12.5,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-10.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":4.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
@@ -27053,7 +27053,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":1.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":1.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":8.0,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":1.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":1.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":8.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
@@ -27133,7 +27133,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-4.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-4.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":7.0,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-4.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-4.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":7.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
@@ -27213,7 +27213,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-4.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-4.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":7.0,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"StartPos","value":{"x":-4.0,"y":4.5,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"EndPos","value":{"x":-4.0,"y":0.0,"$type":"UnityEngine.Vector2"},"$version":"A"},{"name":"Speed","value":{"$content":7.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}

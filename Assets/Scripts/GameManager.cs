@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject MessageWindow;
     [SerializeField] private GameObject GameoverWindow;
     [SerializeField] private GameObject PauseWindow;
+    [SerializeField] private GameObject GameFinishedWindow;
+
+    [SerializeField] private Slider BgmSlider;
+    [SerializeField] private Slider EffectSlider;
+    [SerializeField] private Toggle ShowStoryToggle;
+    [SerializeField] private Text ShowStoryDescription;
 
     [SerializeField] private GameObject HealthBar;
     [SerializeField] private GameObject LossHealthBar;
@@ -87,6 +93,18 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         EffectAudio = GameObject.Find("EffectAudio").GetComponent<EffectAudio>();
 
         BgmAudio.StartGameBgm();
+
+        BgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
+        EffectSlider.value = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
+
+        if (PlayerPrefs.GetInt("IsShownStoryAlways", 0) == 1)
+        {
+            ShowStoryToggle.isOn = true;
+        }
+        else
+        {
+            ShowStoryToggle.isOn = false;
+        }
     }
 
     private void OnDestroy()
@@ -105,6 +123,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         time += Time.deltaTime;
 
         if (Input.GetKey(KeyCode.P)) GamePause();
+        if (Input.GetKey(KeyCode.C)) Player.transform.position = new Vector3(30, 0, 0);
 
         if (Time.timeScale != 0 && Health <= 0 && Player.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01) GameOver();
     }
@@ -194,19 +213,84 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         ChangeTimeScale(1);
     }
 
-    public void GameRestart()
+    public void OnBgmSliderValueChanged()
+    {
+        PlayerPrefs.SetFloat("BgmVolume", BgmSlider.value);
+        BgmAudio.SetBgmVolume(BgmSlider.value);
+    }
+
+    public void OnEffectSliderValueChanged()
+    {
+        PlayerPrefs.SetFloat("EffectVolume", EffectSlider.value);
+        EffectAudio.SetEffectVolume(EffectSlider.value);
+
+        if (PauseWindow.activeSelf) EffectAudio.PlayEffectSound("jump_06");
+    }
+
+    public void OnStoryToggleValueChanged()
+    {
+        if (ShowStoryToggle.isOn)
+        {
+            PlayerPrefs.SetInt("IsShownStoryAlways", 1);
+            ShowStoryDescription.text = "해당 맵의 스토리를 항상 표시합니다.";
+            if (PauseWindow.activeSelf) EffectAudio.PlayEffectSound("button_click_01");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("IsShownStoryAlways", 0);
+            ShowStoryDescription.text = "한 번 본 스토리는 다시 표시하지 않습니다.";
+            if (PauseWindow.activeSelf) EffectAudio.PlayEffectSound("button_click_02");
+        }
+    }
+
+    public void ClickRestartBtn()
+    {
+        SetGameFinishedWindow(true);
+        EffectAudio.PlayEffectSound("button_click_01");
+    }
+
+    public void ClickMenuBtn()
+    {
+        SetGameFinishedWindow(false);
+        EffectAudio.PlayEffectSound("button_click_01");
+    }
+
+    private void SetGameFinishedWindow(bool isRestartBtn)
+    {
+        GameFinishedWindow.SetActive(true);
+
+        var confirmBtn = GameFinishedWindow.transform.Find("Buttons").Find("ConfirmButton").GetComponent<Button>();
+        confirmBtn.onClick.RemoveAllListeners();
+
+        var content = GameFinishedWindow.transform.Find("Content").GetComponent<Text>();
+        if (isRestartBtn)
+        {
+            confirmBtn.onClick.AddListener(GameRestart);
+            content.text = "처음으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n첫 스테이지로 돌아갈까요?";
+        }
+        else
+        {
+            confirmBtn.onClick.AddListener(LoadMenuScene);
+            content.text = "홈화면으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n홈 화면으로 돌아갈까요?";
+        }
+    }
+
+    public void CloseGameFinishedWindow()
+    {
+        GameFinishedWindow.SetActive(false);
+        EffectAudio.PlayEffectSound("button_click_02");
+    }
+
+    private void GameRestart()
     {
         HealthBarChanged(200);
-
-        EffectAudio.PlayEffectSound("button_click_01");
 
         SceneManager.LoadScene("GameScene");
         ChangeTimeScale(1);
     }
     
-    public void LoadMenuScene()
+    private void LoadMenuScene()
     {
-        EffectAudio.PlayEffectSound("button_click_01");
         SceneManager.LoadScene("MenuScene");
         ChangeTimeScale(1);
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2970836805342500474}
   - component: {fileID: 2364497957115686475}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Saw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 5791770549973582848}
   - component: {fileID: 4431395946553370557}
   - component: {fileID: 7991630797081807524}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Saw_256
   m_TagString: Untagged
   m_Icon: {fileID: 0}
