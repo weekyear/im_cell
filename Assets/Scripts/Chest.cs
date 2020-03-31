@@ -7,6 +7,8 @@ public class Chest : MonoBehaviour
 {
     private static List<string> Contents;
 
+    public static List<bool> IsOpenChestList = new List<bool>();
+
     [SerializeField] private int ChestIndex;
 
     private void Start()
@@ -34,6 +36,18 @@ public class Chest : MonoBehaviour
         GameManager.EffectAudio.PlayEffectSound("openchest");
         yield return new WaitForSeconds(1.25f);
 
-        PlayerObserver.ChestOpened(Contents[ChestIndex]);
+        if (ChestIndex != -1)
+        {
+            PlayerObserver.ChestOpened(Contents[ChestIndex]);
+            IsOpenChestList[ChestIndex] = true;
+        }
+        else
+        {
+            var lastMessage = "XXX은 제자리에 가만 있지 못 한다. 본래 해야할 일을 인식하지 못 하고 이곳 저곳에 돌아다니면서 세상을 흰색으로 물들인다.\n" +
+                "이윽고 빠르게 세상의 온기를 빼앗으며 더더욱 증식속도를 높인다.\n" +
+                "마침내 이 세상을 모두 하얗게 뒤덮는 순간 자신을 위장하던 색을 버리고 이 세상을 물들여버린 흰색으로 그 모습을 물들인다.";
+            PlayerObserver.ChestOpened(lastMessage);
+            GameManager.BgmAudio.StopBgm();
+        }
     }
 }

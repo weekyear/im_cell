@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject MessageWindow;
     [SerializeField] private GameObject GameoverWindow;
     [SerializeField] private GameObject PauseWindow;
+    [SerializeField] private GameObject GameEndingWindow;
     [SerializeField] private GameObject GameFinishedWindow;
 
     [SerializeField] private Slider BgmSlider;
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     public static int MapNum;
     public static int PassedMapNum;
     private int RevivalNum;
+    public static bool IsEndingCredit;
+    private bool IsEndedCredit;
 
     private void Awake()
     {
@@ -65,6 +68,12 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         EndedMapNum = EndMapNum;
         MapNum = StartMapNum;
         PassedMapNum = StartMapNum - 1;
+
+        Chest.IsOpenChestList.Clear();
+        for (int i = 0; i < 10; i++)
+        {
+            Chest.IsOpenChestList.Add(false);
+        }
 
         if (GameObject.Find("Audio(Clone)") == null) DontDestroyOnLoad(Instantiate(Audio));
 
@@ -92,7 +101,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         BgmAudio = GameObject.Find("BgmAudio").GetComponent<BgmAudio>();
         EffectAudio = GameObject.Find("EffectAudio").GetComponent<EffectAudio>();
 
-        BgmAudio.StartGameBgm();
+        BgmAudio.StartGameBgm_1();
 
         BgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
         EffectSlider.value = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
@@ -124,8 +133,37 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
 
         if (Input.GetKey(KeyCode.P)) GamePause();
         if (Input.GetKey(KeyCode.C)) Player.transform.position = new Vector3(30, 0, 0);
+        if (Input.GetKey(KeyCode.O))
+        {
+            for (int i = 0; i < Chest.IsOpenChestList.Count; i++)
+            {
+                Chest.IsOpenChestList[i] = true;
+            }
+        }
 
         if (Time.timeScale != 0 && Health <= 0 && Player.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01) GameOver();
+
+        // IsEndingCredit
+
+        if (IsEndingCredit)
+        {
+            var creditSpeed = 1f;
+            if (Input.touchCount > 0 || Input.GetMouseButton(0))
+            {
+                creditSpeed = 10f;
+            }
+
+            var endingImage = GameEndingWindow.GetComponent<Image>();
+            if (endingImage.color.a < 0.53f) endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.2f * creditSpeed * Time.deltaTime);
+            var endingTransform = GameEndingWindow.transform;
+            endingTransform.position = new Vector3(endingTransform.position.x, endingTransform.position.y + 50f * creditSpeed * Time.deltaTime, endingTransform.position.z);
+
+            if (endingTransform.position.y > 3500f)
+            {
+                endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.1f * creditSpeed * Time.deltaTime);
+                if (endingImage.color.a > 0.98f && !IsEndedCredit) StartCoroutine(WaitAndLoadMenuScene());
+            }
+        }
     }
 
     public void GamePause()
@@ -193,8 +231,39 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     private void ChestOpened(string message)
     {
         MessageWindow.SetActive(true);
+        EffectAudio.PlayEffectSound("booksori");
         MessageWindow.transform.Find("Content").GetComponent<Text>().text = message;
         ChangeTimeScale(0);
+
+        if (MapNum == 51)
+        {
+            MessageWindow.transform.Find("QuitButton").GetComponent<Button>().onClick.AddListener(GameTrueEnding);
+        }
+    }
+
+    private void GameTrueEnding()
+    {
+        BgmAudio.StartGameBgm_4();
+
+        var endingText = GameEndingWindow.transform.Find("EndingText").gameObject;
+        var endingTitle = endingText.transform.Find("EndingTitle").GetComponent<Text>();
+        var endingContent = endingText.transform.Find("EndingContent").GetComponent<Text>();
+
+        endingTitle.text = "True Ending";
+        endingContent.text = "<새하얀 진실이 때론 더 잔혹한 법>";
+        ShowEndingCredit();
+    }
+
+    private void ShowEndingCredit()
+    {
+        gameObject.transform.Find("StageText").gameObject.SetActive(false);
+        gameObject.transform.Find("HealthHolder").gameObject.SetActive(false);
+        gameObject.transform.Find("PauseButton").gameObject.SetActive(false);
+
+        GameEndingWindow.SetActive(true);
+
+        IsEndingCredit = true;
+        IsEndedCredit = false;
     }
 
     private void GameOver()
@@ -320,7 +389,6 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         //ShowEmoticon();
 
         ShowDialog();
-
     }
 
     private void ShowEmoticon()
@@ -394,12 +462,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
                     }
                     else
                     {
-                        CellSpeech.SetActive(false);
-                        BoneSpeech.SetActive(false);
-                        StoryWindow.SetActive(false);
-                        currentDialog = string.Empty;
-
-                        ChangeTimeScale(1);
+                        SkipStory();
                     }
                 }
                 else
@@ -426,7 +489,21 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         BoneText.text = string.Empty;
         CellText.text = string.Empty;
         StoryWindow.SetActive(false);
-
+        currentDialog = string.Empty;
         ChangeTimeScale(1);
+
+        if (MapNum > 50 && Chest.IsOpenChestList.Contains(false))
+        {
+            ShowEndingCredit();
+        }
     }
+
+    private IEnumerator WaitAndLoadMenuScene()
+    {
+        IsEndedCredit = true;
+        IsEndingCredit = false;
+        yield return new WaitForSeconds(3f);
+        LoadMenuScene();
+    }
+
 }

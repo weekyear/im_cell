@@ -149,6 +149,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9d2826b1713a734eb9822b33f695865, type: 3}
   - {fileID: 8300000, guid: 55839f76ee6c8444db59cf4efcd55762, type: 3}
   - {fileID: 8300000, guid: ace05132020a57b4c96880ebdab7380f, type: 3}
+  - {fileID: 8300000, guid: b5d4ab078c17d1946931081f6d7392f2, type: 3}
 --- !u!1 &5383470605211458241
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,10 +291,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuBgmClip: {fileID: 8300000, guid: 53a63efa5844eac48952eb3279d439d3, type: 3}
-  GameBgmClips:
+  GameBgmClips_1:
   - {fileID: 8300000, guid: 660149d497cdbbe4b9268fcc620b20cf, type: 3}
   - {fileID: 8300000, guid: d971df3a1fc65c64fa53fdb7cc5976b9, type: 3}
   - {fileID: 8300000, guid: 38027a975b7fa9e4cb95356bb3ee4b2a, type: 3}
+  GameBgmClip_2: {fileID: 8300000, guid: 59dfb79c06fd68443b0c5c54d76a2f99, type: 3}
+  GameBgmClip_3: {fileID: 8300000, guid: 66d1c261f75e6a7428869434c5d9b2f8, type: 3}
+  GameBgmClip_4: {fileID: 8300000, guid: c7cf21b3429c2b842843bade3ffdd512, type: 3}
 --- !u!1 &5628045493737855527
 GameObject:
   m_ObjectHideFlags: 0

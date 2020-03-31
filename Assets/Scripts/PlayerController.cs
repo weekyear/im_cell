@@ -41,15 +41,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
+
             if (Input.GetKeyDown(KeyCode.G))
             {
                 PlayerObserver.Damaged();
             }
 
-            if (gameObject.layer == LayerMask.NameToLayer("Player"))
+            if (gameObject.layer == LayerMask.NameToLayer("Player") && GameManager.Health > 0 && !GameManager.IsEndingCredit)
             {
-                if (GameManager.Health > 0)
-                {
                     if (IsGrounded)
                     {
                         // Input
@@ -126,8 +125,9 @@ public class PlayerController : MonoBehaviour
                         {
                             rigid2D.velocity = gameObject.transform.localScale * Vector2.left * 2;
                         }
+
+                        HideTrajectoryPoints();
                     }
-                }
             }
             else
             {

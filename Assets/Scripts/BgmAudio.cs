@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class BgmAudio : MonoBehaviour
 {
-    public AudioClip MenuBgmClip;
-    public List<AudioClip> GameBgmClips;
+    [SerializeField] private AudioClip MenuBgmClip;
+    [SerializeField] private List<AudioClip> GameBgmClips_1;
+    [SerializeField] private AudioClip GameBgmClip_2;
+    [SerializeField] private AudioClip GameBgmClip_3;
+    [SerializeField] private AudioClip GameBgmClip_4;
+
+    private int currentBgmClipsNum;
 
     private AudioSource audioSource;
 
@@ -14,6 +19,7 @@ public class BgmAudio : MonoBehaviour
 
     private void Awake()
     {
+        currentBgmClipsNum = 0;
         audioSource = GetComponent<AudioSource>();
     }
     void Start()
@@ -30,7 +36,7 @@ public class BgmAudio : MonoBehaviour
 
             if (currentBgmIndex > 2) currentBgmIndex = 0;
 
-            PlayBgm(GameBgmClips[currentBgmIndex]);
+            PlayBgm(GameBgmClips_1[currentBgmIndex]);
         }
     }
 
@@ -43,13 +49,47 @@ public class BgmAudio : MonoBehaviour
         IsGamePlaying = false;
     }
 
-    public void StartGameBgm()
+    public void StartGameBgm_1()
     {
-        if (!IsGamePlaying)
+        if (!IsGamePlaying && currentBgmClipsNum != 1)
         {
+            currentBgmClipsNum = 1;
             audioSource.loop = false;
             currentBgmIndex = 0;
-            PlayBgm(GameBgmClips[currentBgmIndex]);
+            PlayBgm(GameBgmClips_1[currentBgmIndex]);
+            IsGamePlaying = true;
+        }
+    }
+
+    public void StartGameBgm_2()
+    {
+        if (currentBgmClipsNum != 2)
+        {
+            currentBgmClipsNum = 2;
+            audioSource.loop = true;
+            PlayBgm(GameBgmClip_2);
+            IsGamePlaying = true;
+        }
+    }
+
+    public void StartGameBgm_3()
+    {
+        if (currentBgmClipsNum != 3)
+        {
+            currentBgmClipsNum = 3;
+            audioSource.loop = true;
+            PlayBgm(GameBgmClip_3);
+            IsGamePlaying = true;
+        }
+    }
+    
+    public void StartGameBgm_4()
+    {
+        if (currentBgmClipsNum != 4)
+        {
+            currentBgmClipsNum = 4;
+            audioSource.loop = true;
+            PlayBgm(GameBgmClip_4);
             IsGamePlaying = true;
         }
     }
@@ -63,5 +103,11 @@ public class BgmAudio : MonoBehaviour
     {
         audioSource.clip = audioClip;
         audioSource.Play();
+    }
+
+    public void StopBgm()
+    {
+        audioSource.Stop();
+        IsGamePlaying = false;
     }
 }

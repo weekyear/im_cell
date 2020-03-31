@@ -16,6 +16,24 @@ public class MapManager : MonoBehaviour
     {
         OnVirusBeKilled += RemoveMaceWall;
 
+        if (GameManager.MapNum > 45)
+        {
+            GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = new Color(0.5f, 0.75f, 0.75f, 0.56f);
+        }
+
+        if (GameManager.MapNum > 50)
+        {
+            GameManager.BgmAudio.StartGameBgm_3();
+        }
+        else if (GameManager.MapNum == 50)
+        {
+            GameManager.BgmAudio.StopBgm();
+        }
+        else if (GameManager.MapNum > 45)
+        {
+            GameManager.BgmAudio.StartGameBgm_2();
+        }
+
         if (IsShownStoryAlways || !IsShownStoryAlways && PlayerPrefs.GetInt("ShownMapNum", 0) < GameManager.MapNum)
         {
             var dialog = Lean.Localization.LeanLocalization.GetTranslationText($"Story{GameManager.MapNum}");
