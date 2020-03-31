@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -237,12 +238,15 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
 
         if (MapNum == 51)
         {
+            Player.GetComponent<Animator>().SetBool("IsWhite", true);
             MessageWindow.transform.Find("QuitButton").GetComponent<Button>().onClick.AddListener(GameTrueEnding);
+            ChangeTimeScale(1);
         }
     }
 
     private void GameTrueEnding()
     {
+        GameObject.Find("CM vcam").GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 3.5f;
         BgmAudio.StartGameBgm_4();
 
         var endingText = GameEndingWindow.transform.Find("EndingText").gameObject;
@@ -250,17 +254,19 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         var endingContent = endingText.transform.Find("EndingContent").GetComponent<Text>();
 
         endingTitle.text = "True Ending";
-        endingContent.text = "<새하얀 진실이 때론 더 잔혹한 법>";
-        ShowEndingCredit();
+        endingContent.text = "<잔혹한 새하얀 진실>";
+        StartCoroutine(ShowEndingCredit());
     }
 
-    private void ShowEndingCredit()
+    private IEnumerator ShowEndingCredit()
     {
         gameObject.transform.Find("StageText").gameObject.SetActive(false);
         gameObject.transform.Find("HealthHolder").gameObject.SetActive(false);
         gameObject.transform.Find("PauseButton").gameObject.SetActive(false);
 
         GameEndingWindow.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
 
         IsEndingCredit = true;
         IsEndedCredit = false;
@@ -494,7 +500,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
 
         if (MapNum > 50 && Chest.IsOpenChestList.Contains(false))
         {
-            ShowEndingCredit();
+            StartCoroutine(ShowEndingCredit());
         }
     }
 
