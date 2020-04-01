@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrajectoryPt: {fileID: 6184986920407682691, guid: f5e0d23a6c93bf8438ef3a5aa6355ff7,
     type: 3}
+  CantJumpTrajectoryPt: {fileID: 6184986920407682691, guid: 54c9c398723ee5c4f87bcfa864a5d586,
+    type: 3}
   Point: {fileID: 0}
   Speed: 0.035
 --- !u!212 &5877503685270040619

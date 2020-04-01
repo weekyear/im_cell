@@ -7,9 +7,11 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject TrajectoryPt;
+    [SerializeField] private GameObject CantJumpTrajectoryPt;
 
     public GameObject Point;
     private List<GameObject> TrajectoryPts = new List<GameObject>();
+    private List<GameObject> CantJumpTrajectoryPts = new List<GameObject>();
     private Vector2 BeganPos;
     private bool IsTouchDown;
     [SerializeField] private float Speed = 0.03f;
@@ -27,6 +29,8 @@ public class PlayerController : MonoBehaviour
         {
             var obj = Instantiate(TrajectoryPt);
             TrajectoryPts.Add(obj);
+            var obj_2 = Instantiate(CantJumpTrajectoryPt);
+            CantJumpTrajectoryPts.Add(obj_2);
         }
     }
 
@@ -43,8 +47,6 @@ public class PlayerController : MonoBehaviour
         {
             if (gameObject.layer == LayerMask.NameToLayer("Player") && GameManager.Health > 0 && !StoryManager.IsEndingCredit)
             {
-                    if (IsGrounded)
-                    {
                         // Input
 #if UNITY_STANDALONE || UNITY_EDITOR
                         if (IsPointerOverGameObject)
@@ -73,15 +75,11 @@ public class PlayerController : MonoBehaviour
                         {
                             if (!IsPointerOverGameObject)
                             {
-                                Debug.Log("PlayerController_0");
                                 var getTocuh = Input.GetTouch(0);
-                                Debug.Log("PlayerController_1");
                                 var fingerPos = getTocuh.position;
-                                Debug.Log("PlayerController_2");
                                 switch (getTocuh.phase)
                                 {
                                     case TouchPhase.Began:
-                                        Debug.Log("PlayerController_3");
                                         BeganPos = fingerPos;
                                         Point.transform.position = BeganPos;
                                         Point.gameObject.SetActive(true);
@@ -90,38 +88,31 @@ public class PlayerController : MonoBehaviour
                                     case TouchPhase.Moved:
                                     case TouchPhase.Stationary:
                                         {
-                                            Debug.Log("PlayerController_4");
                                             HandleTouchingDown(fingerPos);
                                             break;
                                         }
                                     case TouchPhase.Ended:
-                                        Debug.Log("PlayerController_5");
                                         HandleTouchingUp(fingerPos);
                                         break;
                                     case TouchPhase.Canceled:
-                                        Debug.Log("PlayerController_6");
                                         break;
                                 }
                             }
                             else
                             {
-                                Debug.Log("PlayerController_10");
                                 HideTrajectoryPoints();
                             }
                         }
 #endif
-                    }
-                    else
+                if (!IsGrounded)
+                {
+                    // Handling when caught at the end of a cliff
+                    var rigid2D = gameObject.GetComponent<Rigidbody2D>();
+                    if (rigid2D.velocity.magnitude == 0)
                     {
-                        // Handling when caught at the end of a cliff
-                        var rigid2D = gameObject.GetComponent<Rigidbody2D>();
-                        if (rigid2D.velocity.magnitude == 0)
-                        {
-                            rigid2D.velocity = gameObject.transform.localScale * Vector2.left * 2;
-                        }
-
-                        HideTrajectoryPoints();
+                        rigid2D.velocity = gameObject.transform.localScale * Vector2.left * 2;
                     }
+                }
             }
             else
             {
@@ -187,7 +178,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleTouchingUp(Vector2 touchingPos)
     {
-        if (IsTouchDown && (BeganPos - touchingPos).magnitude > 60f)
+        if (IsTouchDown && (BeganPos - touchingPos).magnitude > 60f && IsGrounded)
         {
             AudioManager.EffectAudio.PlayEffectSound("jump_06");
             var velocity = CalculateVelocity(BeganPos, Input.mousePosition);
@@ -272,8 +263,18 @@ public class PlayerController : MonoBehaviour
                 moveStep += gravityAccel;
                 moveStep *= drag;
                 position += moveStep;
-                TrajectoryPts[i].transform.position = position;
-                TrajectoryPts[i].SetActive(true);
+                if (IsGrounded)
+                {
+                    TrajectoryPts[i].transform.position = position;
+                    TrajectoryPts[i].SetActive(true);
+                    CantJumpTrajectoryPts[i].SetActive(false);
+                }
+                else
+                {
+                    CantJumpTrajectoryPts[i].transform.position = position;
+                    CantJumpTrajectoryPts[i].SetActive(true);
+                    TrajectoryPts[i].SetActive(false);
+                }
             }
         }
         else
@@ -281,6 +282,7 @@ public class PlayerController : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 TrajectoryPts[i].SetActive(false);
+                CantJumpTrajectoryPts[i].SetActive(false);
             }
         }
     }
