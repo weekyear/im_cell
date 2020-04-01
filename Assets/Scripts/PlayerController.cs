@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
                 PlayerObserver.Damaged();
             }
 
-            if (gameObject.layer == LayerMask.NameToLayer("Player") && GameManager.Health > 0 && !GameManager.IsEndingCredit)
+            if (gameObject.layer == LayerMask.NameToLayer("Player") && GameManager.Health > 0 && !StoryManager.IsEndingCredit)
             {
                     if (IsGrounded)
                     {
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsTouchDown && (BeganPos - touchingPos).magnitude > 50f)
         {
-            GameManager.EffectAudio.PlayEffectSound("jump_06");
+            AudioManager.EffectAudio.PlayEffectSound("jump_06");
             var velocity = CalculateVelocity(BeganPos, Input.mousePosition);
             PlayerObserver.HealthChanged(CalculateDamageByJump(velocity));
 

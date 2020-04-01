@@ -5,16 +5,17 @@ using UnityEngine;
 public class BgmAudio : MonoBehaviour
 {
     [SerializeField] private AudioClip MenuBgmClip;
-    [SerializeField] private List<AudioClip> GameBgmClips_1;
-    [SerializeField] private AudioClip GameBgmClip_2;
-    [SerializeField] private AudioClip GameBgmClip_3;
-    [SerializeField] private AudioClip GameBgmClip_4;
+    [SerializeField] private List<AudioClip> GameBgmClips_Spring;
+    [SerializeField] private List<AudioClip> GameBgmClips_Autumn;
+    [SerializeField] private List<AudioClip> GameBgmClips_Winter;
+    [SerializeField] private AudioClip GameBgmClip_Final;
+    [SerializeField] private AudioClip GameBgmClip_NormalEnding;
+    [SerializeField] private AudioClip GameBgmClip_TrueEnding;
 
     private int currentBgmClipsNum;
 
     private AudioSource audioSource;
 
-    private bool IsGamePlaying;
     private int currentBgmIndex = 0;
 
     private void Awake()
@@ -30,68 +31,119 @@ public class BgmAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsGamePlaying && !audioSource.isPlaying)
+        if (!audioSource.isPlaying)
         {
             currentBgmIndex += 1;
 
-            if (currentBgmIndex > 2) currentBgmIndex = 0;
+            if (currentBgmIndex > 1) currentBgmIndex = 0;
 
-            PlayBgm(GameBgmClips_1[currentBgmIndex]);
+            switch (currentBgmClipsNum)
+            {
+                case 1:
+                    PlayBgm(GameBgmClips_Spring[currentBgmIndex]);
+                    break;
+                case 2:
+                    PlayBgm(GameBgmClips_Autumn[currentBgmIndex]);
+                    break;
+                case 3:
+                    PlayBgm(GameBgmClips_Winter[currentBgmIndex]);
+                    break;
+            }
+        }
+    }
+
+    public void StartBgm_GameScene()
+    {
+        if (GameManager.MapNum < 21)
+        {
+            StartGameBgm_Spring();
+        }
+        else if (GameManager.MapNum < 37)
+        {
+            StartGameBgm_Autumn();
+        }
+        else if (GameManager.MapNum < 46)
+        {
+            StartGameBgm_Winter();
+        }
+        else if (GameManager.MapNum < 50)
+        {
+            StartGameBgm_Final();
+        }
+        else if (GameManager.MapNum < 51)
+        {
+            StopBgm();
+        }
+        else
+        {
+            StartGameBgm_NormalEnding();
         }
     }
 
     public void StartMenuBgm()
     {
-        audioSource.loop = true;
+        if (currentBgmClipsNum != 0)
+        {
+            currentBgmClipsNum = 0;
+            audioSource.loop = true;
 
-        PlayBgm(MenuBgmClip);
-
-        IsGamePlaying = false;
+            PlayBgm(MenuBgmClip);
+        }
     }
 
-    public void StartGameBgm_1()
+    private void StartGameBgm_Spring()
     {
-        if (!IsGamePlaying && currentBgmClipsNum != 1)
+        if (currentBgmClipsNum < 1)
         {
             currentBgmClipsNum = 1;
-            audioSource.loop = false;
             currentBgmIndex = 0;
-            PlayBgm(GameBgmClips_1[currentBgmIndex]);
-            IsGamePlaying = true;
+            audioSource.loop = false;
+            PlayBgm(GameBgmClips_Spring[currentBgmIndex]);
         }
     }
 
-    public void StartGameBgm_2()
+    private void StartGameBgm_Autumn()
     {
-        if (currentBgmClipsNum != 2)
+        if (currentBgmClipsNum < 2)
         {
             currentBgmClipsNum = 2;
-            audioSource.loop = true;
-            PlayBgm(GameBgmClip_2);
-            IsGamePlaying = true;
+            currentBgmIndex = 0;
+            audioSource.loop = false;
+            PlayBgm(GameBgmClips_Autumn[currentBgmIndex]);
         }
     }
 
-    public void StartGameBgm_3()
+    private void StartGameBgm_Winter()
     {
-        if (currentBgmClipsNum != 3)
+        if (currentBgmClipsNum < 3)
         {
             currentBgmClipsNum = 3;
-            audioSource.loop = true;
-            PlayBgm(GameBgmClip_3);
-            IsGamePlaying = true;
+            currentBgmIndex = 0;
+            audioSource.loop = false;
+            PlayBgm(GameBgmClips_Winter[currentBgmIndex]);
         }
     }
-    
-    public void StartGameBgm_4()
+
+    private void StartGameBgm_Final()
     {
-        if (currentBgmClipsNum != 4)
+        if (currentBgmClipsNum < 4)
         {
             currentBgmClipsNum = 4;
             audioSource.loop = true;
-            PlayBgm(GameBgmClip_4);
-            IsGamePlaying = true;
+            PlayBgm(GameBgmClip_Final);
         }
+    }
+
+    private void StartGameBgm_NormalEnding()
+    {
+        audioSource.loop = true;
+        PlayBgm(GameBgmClip_NormalEnding);
+    }
+
+    public void StartGameBgm_TrueEnding()
+    {
+        audioSource.loop = true;
+        PlayBgm(GameBgmClip_TrueEnding);
     }
 
     public void SetBgmVolume(float value)
@@ -108,6 +160,5 @@ public class BgmAudio : MonoBehaviour
     public void StopBgm()
     {
         audioSource.Stop();
-        IsGamePlaying = false;
     }
 }

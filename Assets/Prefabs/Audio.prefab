@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5383470605211458243}
   - component: {fileID: 5383470605211458242}
-  - component: {fileID: 4050175300167426027}
+  - component: {fileID: 4062282381087546655}
   m_Layer: 0
   m_Name: BgmAudio
   m_TagString: Untagged
@@ -278,7 +278,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4050175300167426027
+--- !u!114 &4062282381087546655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -291,13 +291,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuBgmClip: {fileID: 8300000, guid: 53a63efa5844eac48952eb3279d439d3, type: 3}
-  GameBgmClips_1:
+  GameBgmClips_Spring:
   - {fileID: 8300000, guid: 660149d497cdbbe4b9268fcc620b20cf, type: 3}
-  - {fileID: 8300000, guid: d971df3a1fc65c64fa53fdb7cc5976b9, type: 3}
   - {fileID: 8300000, guid: 38027a975b7fa9e4cb95356bb3ee4b2a, type: 3}
-  GameBgmClip_2: {fileID: 8300000, guid: 59dfb79c06fd68443b0c5c54d76a2f99, type: 3}
-  GameBgmClip_3: {fileID: 8300000, guid: 66d1c261f75e6a7428869434c5d9b2f8, type: 3}
-  GameBgmClip_4: {fileID: 8300000, guid: c7cf21b3429c2b842843bade3ffdd512, type: 3}
+  GameBgmClips_Autumn:
+  - {fileID: 8300000, guid: 357036366c8b18b4b9b28509a1486117, type: 3}
+  - {fileID: 8300000, guid: 02eafe156b2b46640aee8c5ed17f3a08, type: 3}
+  GameBgmClips_Winter:
+  - {fileID: 8300000, guid: 2fed6ad131891204c8566acdbac51b76, type: 3}
+  - {fileID: 8300000, guid: 541809c4880b67048b2228cbde0a9dc2, type: 3}
+  GameBgmClip_Final: {fileID: 8300000, guid: 59dfb79c06fd68443b0c5c54d76a2f99, type: 3}
+  GameBgmClip_NormalEnding: {fileID: 8300000, guid: 66d1c261f75e6a7428869434c5d9b2f8,
+    type: 3}
+  GameBgmClip_TrueEnding: {fileID: 8300000, guid: c7cf21b3429c2b842843bade3ffdd512,
+    type: 3}
 --- !u!1 &5628045493737855527
 GameObject:
   m_ObjectHideFlags: 0

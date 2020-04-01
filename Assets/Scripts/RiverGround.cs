@@ -6,7 +6,7 @@ public class RiverGround : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GameManager.EffectAudio.PlayEffectSound("splash");
+        AudioManager.EffectAudio.PlayEffectSound("splash");
         collision.collider.gameObject.layer = LayerMask.NameToLayer("PlayerInvincible");
     }
 

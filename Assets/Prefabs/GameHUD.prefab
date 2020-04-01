@@ -219,7 +219,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8237601703766154018}
+      - m_Target: {fileID: 8467853945752456942}
         m_MethodName: OnBgmSliderValueChanged
         m_Mode: 1
         m_Arguments:
@@ -1158,6 +1158,8 @@ GameObject:
   - component: {fileID: 1236448810291523440}
   - component: {fileID: 1236448810291523441}
   - component: {fileID: 8237601703766154018}
+  - component: {fileID: 6693350332429652823}
+  - component: {fileID: 8467853945752456942}
   m_Layer: 5
   m_Name: GameHUD
   m_TagString: Untagged
@@ -1270,19 +1272,47 @@ MonoBehaviour:
   MessageWindow: {fileID: 1398881672819521066}
   GameoverWindow: {fileID: 5760482547262438275}
   PauseWindow: {fileID: 1236448809108733525}
-  GameEndingWindow: {fileID: 3769430936281856816}
   GameFinishedWindow: {fileID: 8532640418516635505}
+  HealthBar: {fileID: 6630531016364178548}
+  LossHealthBar: {fileID: 950654134412848051}
+  Audio: {fileID: 5628045493737855527, guid: 6872f02e691fd2744a3cbab306012120, type: 3}
+  Player: {fileID: 0}
+  StartMapNum: 1
+  EndMapNum: 0
+--- !u!114 &6693350332429652823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236448810291523452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95c5b44d956be84f84f689544ece83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameEndingWindow: {fileID: 3769430936281856816}
+  MessageWindow: {fileID: 1398881672819521066}
+  StoryWindow: {fileID: 8007990036626040578}
+  Player: {fileID: 0}
+--- !u!114 &8467853945752456942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236448810291523452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be249327a297bab4fa07ef817ce380f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SettingMenu: {fileID: 1236448809108733525}
   BgmSlider: {fileID: 6507579284108476831}
   EffectSlider: {fileID: 8233238746726589438}
   ShowStoryToggle: {fileID: 2806238149609583355}
   ShowStoryDescription: {fileID: 1562794719863039231}
-  HealthBar: {fileID: 6630531016364178548}
-  LossHealthBar: {fileID: 950654134412848051}
-  StoryWindow: {fileID: 8007990036626040578}
   Audio: {fileID: 5628045493737855527, guid: 6872f02e691fd2744a3cbab306012120, type: 3}
-  Player: {fileID: 5382366555344666029, guid: 1df7b97ecc4d1b7479d27e5649259b61, type: 3}
-  StartMapNum: 1
-  EndMapNum: 0
 --- !u!1 &1236448810926392496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,7 +1562,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8237601703766154018}
+      - m_Target: {fileID: 6693350332429652823}
         m_MethodName: CloseMessageWindow
         m_Mode: 1
         m_Arguments:
@@ -2193,7 +2223,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8237601703766154018}
+      - m_Target: {fileID: 8467853945752456942}
         m_MethodName: OnEffectSliderValueChanged
         m_Mode: 1
         m_Arguments:
@@ -2916,7 +2946,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8237601703766154018}
+      - m_Target: {fileID: 6693350332429652823}
         m_MethodName: SkipStory
         m_Mode: 1
         m_Arguments:
@@ -5699,7 +5729,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8237601703766154018}
+      - m_Target: {fileID: 8467853945752456942}
         m_MethodName: OnStoryToggleValueChanged
         m_Mode: 1
         m_Arguments:

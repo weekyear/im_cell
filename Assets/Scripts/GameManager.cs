@@ -7,41 +7,41 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour, IPointerClickHandler
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject MessageWindow;
     [SerializeField] private GameObject GameoverWindow;
     [SerializeField] private GameObject PauseWindow;
-    [SerializeField] private GameObject GameEndingWindow;
+    //[SerializeField] private GameObject GameEndingWindow;
     [SerializeField] private GameObject GameFinishedWindow;
 
-    [SerializeField] private Slider BgmSlider;
-    [SerializeField] private Slider EffectSlider;
-    [SerializeField] private Toggle ShowStoryToggle;
-    [SerializeField] private Text ShowStoryDescription;
+    //[SerializeField] private Slider BgmSlider;
+    //[SerializeField] private Slider EffectSlider;
+    //[SerializeField] private Toggle ShowStoryToggle;
+    //[SerializeField] private Text ShowStoryDescription;
 
     [SerializeField] private GameObject HealthBar;
     [SerializeField] private GameObject LossHealthBar;
 
-    // StoryWindow
-    [SerializeField] private GameObject StoryWindow;
+    //// StoryWindow
+    //[SerializeField] private GameObject StoryWindow;
 
-    private GameObject BoneSpeech;
-    private Text BoneEmoticon;
-    private TextMeshProUGUI BoneText;
-    private GameObject CellSpeech;
-    private Text CellEmoticon;
-    private TextMeshProUGUI CellText;
+    //private GameObject BoneSpeech;
+    //private Text BoneEmoticon;
+    //private TextMeshProUGUI BoneText;
+    //private GameObject CellSpeech;
+    //private Text CellEmoticon;
+    //private TextMeshProUGUI CellText;
 
-    private int currentDialogIndex;
-    private string currentDialog;
-    private TextMeshProUGUI currentPlayingTextMeshPro;
-    private List<string> DialogList;
-    private List<string> EmoticonList;
+    //private int currentDialogIndex;
+    //private string currentDialog;
+    //private TextMeshProUGUI currentPlayingTextMeshPro;
+    //private List<string> DialogList;
+    //private List<string> EmoticonList;
 
-    [SerializeField] private GameObject Audio;
-    public static BgmAudio BgmAudio;
-    public static EffectAudio EffectAudio;
+    //[SerializeField] private GameObject Audio;
+    //public static BgmAudio BgmAudio;
+    //public static EffectAudio EffectAudio;
 
     [SerializeField] private GameObject Player;
 
@@ -57,8 +57,6 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     public static int MapNum;
     public static int PassedMapNum;
     private int RevivalNum;
-    public static bool IsEndingCredit;
-    private bool IsEndedCredit;
 
     private void Awake()
     {
@@ -76,55 +74,19 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
             Chest.IsOpenChestList.Add(false);
         }
 
-        if (GameObject.Find("Audio(Clone)") == null) DontDestroyOnLoad(Instantiate(Audio));
-
         PlayerObserver.OnHealthChanged += HealthBarChanged;
         PlayerObserver.OnLossHealthChanged += LossHealthBarChanged;
-        PlayerObserver.OnChestOpened += ChestOpened;
         PlayerObserver.OnGameFinished += GameOver;
 
-        MapManager.OnStoryShowed += StoryWindowOpened;
-
-        // Get GameObject of StoryWindow
-        BoneSpeech = StoryWindow.transform.Find("BoneSpeech").gameObject;
-        BoneEmoticon = BoneSpeech.transform.Find("BoneEmoticon").GetComponent<Text>();
-        BoneText = BoneSpeech.transform.Find("BoneText").GetComponent<TextMeshProUGUI>();
-        CellSpeech = StoryWindow.transform.Find("CellSpeech").gameObject;
-        CellEmoticon = CellSpeech.transform.Find("CellEmoticon").GetComponent<Text>();
-        CellText = CellSpeech.transform.Find("CellText").GetComponent<TextMeshProUGUI>();
-
         Instantiate(Resources.Load($"Map/Map_{MapNum}_"));
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        BgmAudio = GameObject.Find("BgmAudio").GetComponent<BgmAudio>();
-        EffectAudio = GameObject.Find("EffectAudio").GetComponent<EffectAudio>();
-
-        BgmAudio.StartGameBgm_1();
-
-        BgmSlider.value = PlayerPrefs.GetFloat("BgmVolume", 0.5f);
-        EffectSlider.value = PlayerPrefs.GetFloat("EffectVolume", 0.5f);
-
-        if (PlayerPrefs.GetInt("IsShownStoryAlways", 0) == 1)
-        {
-            ShowStoryToggle.isOn = true;
-        }
-        else
-        {
-            ShowStoryToggle.isOn = false;
-        }
     }
 
     private void OnDestroy()
     {
         PlayerObserver.OnHealthChanged -= HealthBarChanged;
         PlayerObserver.OnLossHealthChanged -= LossHealthBarChanged;
-        PlayerObserver.OnChestOpened -= ChestOpened;
         PlayerObserver.OnGameFinished -= GameOver;
 
-        MapManager.OnStoryShowed -= StoryWindowOpened;
     }
 
     // Update is called once per frame
@@ -144,43 +106,21 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
 
         if (Time.timeScale != 0 && Health <= 0 && Player.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01) GameOver();
 
-        // IsEndingCredit
-
-        if (IsEndingCredit)
-        {
-            var creditSpeed = 1f;
-            if (Input.touchCount > 0 || Input.GetMouseButton(0))
-            {
-                creditSpeed = 10f;
-            }
-
-            var endingImage = GameEndingWindow.GetComponent<Image>();
-            if (endingImage.color.a < 0.53f) endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.2f * creditSpeed * Time.deltaTime);
-            var endingTransform = GameEndingWindow.transform;
-            endingTransform.position = new Vector3(endingTransform.position.x, endingTransform.position.y + 50f * creditSpeed * Time.deltaTime, endingTransform.position.z);
-
-            if (endingTransform.position.y > 3500f)
-            {
-                endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.1f * creditSpeed * Time.deltaTime);
-                if (endingImage.color.a > 0.98f && !IsEndedCredit) StartCoroutine(WaitAndLoadMenuScene());
-            }
-        }
     }
 
     public void GamePause()
     {
         if (!MessageWindow.activeSelf && !GameoverWindow.activeSelf)
         {
-
             if (PauseWindow.activeSelf)
             {
-                EffectAudio.PlayEffectSound("button_click_02");
+                AudioManager.EffectAudio.PlayEffectSound("button_click_02");
                 PauseWindow.SetActive(false);
                 ChangeTimeScale(1);
             }
             else
             {
-                EffectAudio.PlayEffectSound("button_click_01");
+                AudioManager.EffectAudio.PlayEffectSound("button_click_01");
                 PauseWindow.SetActive(true);
                 ChangeTimeScale(0);
             }
@@ -189,7 +129,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    private void ChangeTimeScale(int _timeScale)
+    public static void ChangeTimeScale(int _timeScale)
     {
         Time.timeScale = _timeScale;
     }
@@ -229,49 +169,6 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         Player.transform.localScale = new Vector3(Mathf.Sign(Player.transform.position.x) * playerScale, playerScale);
     }
 
-    private void ChestOpened(string message)
-    {
-        MessageWindow.SetActive(true);
-        EffectAudio.PlayEffectSound("booksori");
-        MessageWindow.transform.Find("Content").GetComponent<Text>().text = message;
-        ChangeTimeScale(0);
-
-        if (MapNum == 51)
-        {
-            Player.GetComponent<Animator>().SetBool("IsWhite", true);
-            MessageWindow.transform.Find("QuitButton").GetComponent<Button>().onClick.AddListener(GameTrueEnding);
-            ChangeTimeScale(1);
-        }
-    }
-
-    private void GameTrueEnding()
-    {
-        GameObject.Find("CM vcam").GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 3.5f;
-        BgmAudio.StartGameBgm_4();
-
-        var endingText = GameEndingWindow.transform.Find("EndingText").gameObject;
-        var endingTitle = endingText.transform.Find("EndingTitle").GetComponent<Text>();
-        var endingContent = endingText.transform.Find("EndingContent").GetComponent<Text>();
-
-        endingTitle.text = "True Ending";
-        endingContent.text = "<잔혹한 새하얀 진실>";
-        StartCoroutine(ShowEndingCredit());
-    }
-
-    private IEnumerator ShowEndingCredit()
-    {
-        gameObject.transform.Find("StageText").gameObject.SetActive(false);
-        gameObject.transform.Find("HealthHolder").gameObject.SetActive(false);
-        gameObject.transform.Find("PauseButton").gameObject.SetActive(false);
-
-        GameEndingWindow.SetActive(true);
-
-        yield return new WaitForSeconds(2f);
-
-        IsEndingCredit = true;
-        IsEndedCredit = false;
-    }
-
     private void GameOver()
     {
         ChangeTimeScale(0);
@@ -281,53 +178,16 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
         GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{time.ToString("F")} | {RevivalNum}회 부활";
     }
 
-    public void CloseMessageWindow()
-    {
-        EffectAudio.PlayEffectSound("button_click_02");
-        MessageWindow.SetActive(false);
-        ChangeTimeScale(1);
-    }
-
-    public void OnBgmSliderValueChanged()
-    {
-        PlayerPrefs.SetFloat("BgmVolume", BgmSlider.value);
-        BgmAudio.SetBgmVolume(BgmSlider.value);
-    }
-
-    public void OnEffectSliderValueChanged()
-    {
-        PlayerPrefs.SetFloat("EffectVolume", EffectSlider.value);
-        EffectAudio.SetEffectVolume(EffectSlider.value);
-
-        if (PauseWindow.activeSelf) EffectAudio.PlayEffectSound("jump_06");
-    }
-
-    public void OnStoryToggleValueChanged()
-    {
-        if (ShowStoryToggle.isOn)
-        {
-            PlayerPrefs.SetInt("IsShownStoryAlways", 1);
-            ShowStoryDescription.text = "해당 맵의 스토리를 항상 표시합니다.";
-            if (PauseWindow.activeSelf) EffectAudio.PlayEffectSound("button_click_01");
-        }
-        else
-        {
-            PlayerPrefs.SetInt("IsShownStoryAlways", 0);
-            ShowStoryDescription.text = "한 번 본 스토리는 다시 표시하지 않습니다.";
-            if (PauseWindow.activeSelf) EffectAudio.PlayEffectSound("button_click_02");
-        }
-    }
-
     public void ClickRestartBtn()
     {
         SetGameFinishedWindow(true);
-        EffectAudio.PlayEffectSound("button_click_01");
+        AudioManager.EffectAudio.PlayEffectSound("button_click_01");
     }
 
     public void ClickMenuBtn()
     {
         SetGameFinishedWindow(false);
-        EffectAudio.PlayEffectSound("button_click_01");
+        AudioManager.EffectAudio.PlayEffectSound("button_click_01");
     }
 
     private void SetGameFinishedWindow(bool isRestartBtn)
@@ -353,7 +213,7 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
     public void CloseGameFinishedWindow()
     {
         GameFinishedWindow.SetActive(false);
-        EffectAudio.PlayEffectSound("button_click_02");
+        AudioManager.EffectAudio.PlayEffectSound("button_click_02");
     }
 
     private void GameRestart()
@@ -376,140 +236,10 @@ public class GameManager : MonoBehaviour, IPointerClickHandler
 
         RevivalNum += 1;
 
-        EffectAudio.PlayEffectSound("button_click_01");
+        AudioManager.EffectAudio.PlayEffectSound("button_click_01");
 
         ChangeTimeScale(1);
 
         GameoverWindow.SetActive(false);
     }
-
-    public void ShowStory(List<string> dialogList, List<string> emoticonList)
-    {
-        DialogList = dialogList;
-        EmoticonList = emoticonList;
-
-        ChangeTimeScale(0);
-
-        currentDialogIndex = 0;
-
-        //ShowEmoticon();
-
-        ShowDialog();
-    }
-
-    private void ShowEmoticon()
-    {
-        if (EmoticonList.Count > 0)
-        {
-            var currentEmoticon = EmoticonList[currentDialogIndex];
-
-            switch (currentEmoticon.Substring(0, 2))
-            {
-                case "셀:":
-                    CellEmoticon.text = currentEmoticon.Substring(2);
-                    break;
-                case "본:":
-                    BoneEmoticon.text = currentEmoticon.Substring(2);
-                    break;
-            }
-        }
-    }
-
-    private void ShowDialog()
-    {
-        currentDialog = DialogList[currentDialogIndex];
-
-        switch (currentDialog.Substring(0, 2))
-        {
-            case "셀:":
-                CellSpeech.SetActive(true);
-                currentPlayingTextMeshPro = CellText;
-                StartCoroutine(ShowText(CellText, currentDialog.Substring(2)));
-                break;
-            case "본:":
-                BoneSpeech.SetActive(true);
-                currentPlayingTextMeshPro = BoneText;
-                StartCoroutine(ShowText(BoneText, currentDialog.Substring(2)));
-                break;
-        }
-    }
-
-    private IEnumerator ShowText(TextMeshProUGUI textMeshPro, string dialog)
-    {
-        textMeshPro.text = string.Empty;
-        foreach (char d in dialog)
-        {
-            if (textMeshPro.text.Length != dialog.Length && StoryWindow.activeSelf)
-            {
-                textMeshPro.text += d;
-                EffectAudio.PlayEffectSound("typing");
-                yield return new WaitForSecondsRealtime(0.1f);
-            }
-        }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        switch (eventData.pointerCurrentRaycast.gameObject.name)
-        {
-            case "StoryWindow":
-            case "BoneSpeech":
-            case "BoneEmoticon":
-            case "BoneText":
-            case "CellSpeech":
-            case "CellEmoticon":
-            case "CellText":
-                if (currentPlayingTextMeshPro.text.Length == currentDialog.Substring(2).Length)
-                {
-                    if (DialogList.Count != currentDialogIndex + 1)
-                    {
-                        currentDialogIndex += 1;
-                        ShowDialog();
-                    }
-                    else
-                    {
-                        SkipStory();
-                    }
-                }
-                else
-                {
-                    currentPlayingTextMeshPro.text = currentDialog.Substring(2);
-                }
-                break;
-        }
-    }
-
-    private void StoryWindowOpened(List<string> dialogList, List<string> emoticonList)
-    {
-        if (MapNum > PassedMapNum)
-        {
-            StoryWindow.SetActive(true);
-            ShowStory(dialogList, emoticonList);
-        }
-    }
-
-    public void SkipStory()
-    {
-        CellSpeech.SetActive(false);
-        BoneSpeech.SetActive(false);
-        BoneText.text = string.Empty;
-        CellText.text = string.Empty;
-        StoryWindow.SetActive(false);
-        currentDialog = string.Empty;
-        ChangeTimeScale(1);
-
-        if (MapNum > 50 && Chest.IsOpenChestList.Contains(false))
-        {
-            StartCoroutine(ShowEndingCredit());
-        }
-    }
-
-    private IEnumerator WaitAndLoadMenuScene()
-    {
-        IsEndedCredit = true;
-        IsEndingCredit = false;
-        yield return new WaitForSeconds(3f);
-        LoadMenuScene();
-    }
-
 }
