@@ -41,12 +41,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                PlayerObserver.Damaged();
-            }
-
             if (gameObject.layer == LayerMask.NameToLayer("Player") && GameManager.Health > 0 && !StoryManager.IsEndingCredit)
             {
                     if (IsGrounded)
@@ -193,7 +187,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleTouchingUp(Vector2 touchingPos)
     {
-        if (IsTouchDown && (BeganPos - touchingPos).magnitude > 50f)
+        if (IsTouchDown && (BeganPos - touchingPos).magnitude > 60f)
         {
             AudioManager.EffectAudio.PlayEffectSound("jump_06");
             var velocity = CalculateVelocity(BeganPos, Input.mousePosition);
@@ -247,27 +241,6 @@ public class PlayerController : MonoBehaviour
             }
 
             return false;
-
-            //if (Input.touchCount > 0)
-            //{
-            //    for (int i = 0; i < Input.touchCount; i++)
-            //    {
-            //        var getTocuh = Input.GetTouch(i);
-                    
-            //        var isPointerOver = getTocuh.phase == TouchPhase.Began && EventSystem.current.IsPointerOverGameObject(getTocuh.fingerId);
-
-            //        if (isPointerOver) 
-            //        {
-
-            //            return true;
-            //        }
-            //    }
-            //    return false;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
 #endif
         }
     }

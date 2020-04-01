@@ -3051,7 +3051,7 @@ PrefabInstance:
     - target: {fileID: 8237601703766154018, guid: edce0599eebba144db191ce2c6da2980,
         type: 3}
       propertyPath: StartMapNum
-      value: 1
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 8237601703766154018, guid: edce0599eebba144db191ce2c6da2980,
         type: 3}
