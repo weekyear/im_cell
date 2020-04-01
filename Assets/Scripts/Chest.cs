@@ -13,6 +13,7 @@ public class Chest : MonoBehaviour
 
     private void Start()
     {
+        gameObject.GetComponent<Animator>().SetBool("IsOpen", IsOpenChestList[ChestIndex]);
         var content = Lean.Localization.LeanLocalization.GetTranslationText($"Chest");
         Contents = content.Split('\n').ToList();
     }
