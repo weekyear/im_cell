@@ -33,8 +33,9 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
     private bool IsEndedCredit;
     private void Awake()
     {
-        MapManager.OnStoryShowed += StoryWindowOpened;
         PlayerObserver.OnChestOpened += ChestOpened;
+        PlayerObserver.OnGameEndingShowed += GameNormalEnding;
+        MapManager.OnStoryShowed += StoryWindowOpened;
 
         // Get GameObject of StoryWindow
         BoneSpeech = StoryWindow.transform.Find("BoneSpeech").gameObject;
@@ -79,6 +80,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
     private void OnDestroy()
     {
         PlayerObserver.OnChestOpened -= ChestOpened;
+        PlayerObserver.OnGameEndingShowed -= GameNormalEnding;
         MapManager.OnStoryShowed -= StoryWindowOpened;
     }
 
@@ -110,6 +112,14 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
         IsEndedCredit = false;
     }
 
+    private void GameNormalEnding()
+    {
+        if (GameManager.MapNum > 50 && Chest.IsOpenChestList.Contains(false))
+        {
+            StartCoroutine(ShowEndingCredit());
+        }
+    }
+
     private void ChestOpened(string message)
     {
         MessageWindow.SetActive(true);
@@ -119,9 +129,10 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
 
         if (GameManager.MapNum == 51)
         {
-            Player.GetComponent<Animator>().SetBool("IsWhite", true);
-            MessageWindow.transform.Find("QuitButton").GetComponent<Button>().onClick.AddListener(GameTrueEnding);
             GameManager.ChangeTimeScale(1);
+            Player.GetComponent<Animator>().SetBool("IsWhite", true);
+            Player.gameObject.layer = LayerMask.NameToLayer("PlayerInvincible");
+            MessageWindow.transform.Find("QuitButton").GetComponent<Button>().onClick.AddListener(GameTrueEnding);
         }
     }
 
@@ -256,9 +267,6 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
         currentDialog = string.Empty;
         GameManager.ChangeTimeScale(1);
 
-        if (GameManager.MapNum > 50 && Chest.IsOpenChestList.Contains(false))
-        {
-            StartCoroutine(ShowEndingCredit());
-        }
+        GameNormalEnding();
     }
 }

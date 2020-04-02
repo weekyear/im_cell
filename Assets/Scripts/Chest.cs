@@ -13,9 +13,12 @@ public class Chest : MonoBehaviour
 
     private void Start()
     {
-        gameObject.GetComponent<Animator>().SetBool("IsOpen", IsOpenChestList[ChestIndex]);
-        var content = Lean.Localization.LeanLocalization.GetTranslationText($"Chest");
-        Contents = content.Split('\n').ToList();
+        if (ChestIndex != -1)
+        {
+            gameObject.GetComponent<Animator>().SetBool("IsOpen", IsOpenChestList[ChestIndex]);
+            var content = Lean.Localization.LeanLocalization.GetTranslationText($"Chest");
+            Contents = content.Split('\n').ToList();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

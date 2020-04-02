@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     private List<GameObject> TrajectoryPts = new List<GameObject>();
     private List<GameObject> CantJumpTrajectoryPts = new List<GameObject>();
     private Vector2 BeganPos;
-    private bool IsTouchDown;
     [SerializeField] private float Speed = 0.03f;
 
     private void Awake()
@@ -119,6 +118,12 @@ public class PlayerController : MonoBehaviour
                 InactivateTouchDown();
             }
 
+            if (IsTouchDown && touchDownTime < 0.25f)
+            {
+                touchDownTime += Time.deltaTime;
+                Debug.Log($"{touchDownTime}");
+            }
+
             // Flip
             var velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
             if (velocity.x != 0.1)
@@ -128,10 +133,17 @@ public class PlayerController : MonoBehaviour
                     var directionX = 1;
                     if (velocity.x < 0.1) directionX = -1;
 
-                    var localScale = gameObject.transform.localScale;
-
-                    gameObject.transform.localScale = new Vector3(Mathf.Abs(localScale.x) * directionX, localScale.y, 1);
+                    SetIsFlipToLocalScale(directionX);
                 }
+            }
+
+            if (IsAiming)
+            {
+                bool IsLeft = BeganPos.x - Input.mousePosition.x < 0;
+                var directionX = 1;
+                if (IsLeft) directionX = -1;
+
+                SetIsFlipToLocalScale(directionX);
             }
 
             // Animator
@@ -139,7 +151,15 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Speed", Mathf.Abs(velocity.x));
             animator.SetFloat("JumpSpeed", velocity.y);
             animator.SetBool("Grounded", IsGrounded);
+            animator.SetBool("IsDead", IsDead);
+            animator.SetBool("IsAiming", IsAiming);
         }
+    }
+
+    private void SetIsFlipToLocalScale(int directionX)
+    {
+        var localScale = gameObject.transform.localScale;
+        gameObject.transform.localScale = new Vector3(Mathf.Abs(localScale.x) * directionX, localScale.y, 1);
     }
 
 
@@ -215,6 +235,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool IsDead
+    {
+        get
+        {
+            return Time.timeScale != 0 && GameManager.Health <= 0 && gameObject.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01;
+        }
+    }
+
     private bool IsPointerOverGameObject
     {
         get
@@ -222,8 +250,6 @@ public class PlayerController : MonoBehaviour
 #if UNITY_STANDALONE || UNITY_EDITOR
             return EventSystem.current.IsPointerOverGameObject();
 #elif UNITY_ANDROID
-
-
             if (Input.touchCount > 0)
             {
                 Console.WriteLine($"IsPointerOverGameObject : {EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId)}");
@@ -233,6 +259,28 @@ public class PlayerController : MonoBehaviour
 
             return false;
 #endif
+        }
+    }
+
+    private bool IsAiming
+    {
+        get { return IsGrounded && IsTouchDown && touchDownTime > 0.25f; }
+    }
+
+    private float touchDownTime;
+
+    private bool isTouchDown;
+    private bool IsTouchDown
+    {
+        get { return isTouchDown; }
+        set
+        {
+            if (isTouchDown == value) return;
+            if (!value)
+            {
+                touchDownTime = 0;
+            }
+            isTouchDown = value;
         }
     }
 

@@ -21,6 +21,8 @@ public class MapManager : MonoBehaviour
             GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = new Color(0.5f, 0.75f, 0.75f, 0.56f);
         }
 
+        if (GameManager.MapNum > 50 && !IsShownStoryAlways && PlayerPrefs.GetInt("ShownMapNum", 0) >= GameManager.MapNum) PlayerObserver.GameEndingShowed();
+
         AudioManager.BgmAudio.StartBgm_GameScene();
 
         if (IsShownStoryAlways || !IsShownStoryAlways && PlayerPrefs.GetInt("ShownMapNum", 0) < GameManager.MapNum)

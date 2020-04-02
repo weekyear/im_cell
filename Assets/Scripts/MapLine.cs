@@ -18,7 +18,7 @@ public class MapLine : MonoBehaviour
         }
         else
         {
-            PlayerObserver.GameFinished();
+            //PlayerObserver.GameFinished();
         }
     }
 

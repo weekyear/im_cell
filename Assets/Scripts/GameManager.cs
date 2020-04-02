@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     public static int MapNum;
     public static int PassedMapNum;
     private int RevivalNum;
+    private bool IsAnimatingDead;
 
     private void Awake()
     {
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
 
         PlayerObserver.OnHealthChanged += HealthBarChanged;
         PlayerObserver.OnLossHealthChanged += LossHealthBarChanged;
-        PlayerObserver.OnGameFinished += GameOver;
+        //PlayerObserver.OnGameFinished += GameOver;
 
         Instantiate(Resources.Load($"Map/Map_{MapNum}_"));
     }
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
     {
         PlayerObserver.OnHealthChanged -= HealthBarChanged;
         PlayerObserver.OnLossHealthChanged -= LossHealthBarChanged;
-        PlayerObserver.OnGameFinished -= GameOver;
+        //PlayerObserver.OnGameFinished -= GameOver;
 
     }
 
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Time.timeScale != 0 && Health <= 0 && Player.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01) GameOver();
+        if (IsDead && !IsAnimatingDead) StartCoroutine(GameOver());
 
     }
 
@@ -164,18 +165,23 @@ public class GameManager : MonoBehaviour
 
     private void SetPlayerScaleByHealth()
     {
-        var playerScale = 0.8f + 0.002f * Health;
+        var playerScale = (0.8f + 0.002f * Health) * 0.6f;
 
         Player.transform.localScale = new Vector3(Mathf.Sign(Player.transform.position.x) * playerScale, playerScale);
     }
 
-    private void GameOver()
+    private IEnumerator GameOver()
     {
+        IsAnimatingDead = true;
+
+        yield return new WaitForSeconds(1.75f);
+
         ChangeTimeScale(0);
 
+        GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{time.ToString("F")} | {RevivalNum}회 부활";
         GameoverWindow.SetActive(true);
 
-        GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{time.ToString("F")} | {RevivalNum}회 부활";
+        IsAnimatingDead = false;
     }
 
     public void ClickRestartBtn()
@@ -241,5 +247,13 @@ public class GameManager : MonoBehaviour
         ChangeTimeScale(1);
 
         GameoverWindow.SetActive(false);
+    }
+
+    private bool IsDead
+    {
+        get
+        {
+            return Time.timeScale != 0 && Health <= 0 && Player.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01;
+        }
     }
 }
