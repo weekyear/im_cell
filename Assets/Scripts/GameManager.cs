@@ -12,36 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject MessageWindow;
     [SerializeField] private GameObject GameoverWindow;
     [SerializeField] private GameObject PauseWindow;
-    //[SerializeField] private GameObject GameEndingWindow;
     [SerializeField] private GameObject GameFinishedWindow;
-
-    //[SerializeField] private Slider BgmSlider;
-    //[SerializeField] private Slider EffectSlider;
-    //[SerializeField] private Toggle ShowStoryToggle;
-    //[SerializeField] private Text ShowStoryDescription;
 
     [SerializeField] private GameObject HealthBar;
     [SerializeField] private GameObject LossHealthBar;
-
-    //// StoryWindow
-    //[SerializeField] private GameObject StoryWindow;
-
-    //private GameObject BoneSpeech;
-    //private Text BoneEmoticon;
-    //private TextMeshProUGUI BoneText;
-    //private GameObject CellSpeech;
-    //private Text CellEmoticon;
-    //private TextMeshProUGUI CellText;
-
-    //private int currentDialogIndex;
-    //private string currentDialog;
-    //private TextMeshProUGUI currentPlayingTextMeshPro;
-    //private List<string> DialogList;
-    //private List<string> EmoticonList;
-
-    //[SerializeField] private GameObject Audio;
-    //public static BgmAudio BgmAudio;
-    //public static EffectAudio EffectAudio;
 
     [SerializeField] private GameObject Player;
 
@@ -70,14 +44,13 @@ public class GameManager : MonoBehaviour
         PassedMapNum = StartMapNum - 1;
 
         Chest.IsOpenChestList.Clear();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 11; i++)
         {
             Chest.IsOpenChestList.Add(false);
         }
 
         PlayerObserver.OnHealthChanged += HealthBarChanged;
         PlayerObserver.OnLossHealthChanged += LossHealthBarChanged;
-        //PlayerObserver.OnGameFinished += GameOver;
 
         Instantiate(Resources.Load($"Map/Map_{MapNum}_"));
     }
@@ -86,7 +59,6 @@ public class GameManager : MonoBehaviour
     {
         PlayerObserver.OnHealthChanged -= HealthBarChanged;
         PlayerObserver.OnLossHealthChanged -= LossHealthBarChanged;
-        //PlayerObserver.OnGameFinished -= GameOver;
 
     }
 
@@ -96,6 +68,7 @@ public class GameManager : MonoBehaviour
         time += Time.deltaTime;
 
         if (Input.GetKey(KeyCode.P)) GamePause();
+        if (Input.GetKey(KeyCode.R)) GameRestart();
         if (Input.GetKey(KeyCode.C)) Player.transform.position = new Vector3(30, 0, 0);
         if (Input.GetKey(KeyCode.O))
         {

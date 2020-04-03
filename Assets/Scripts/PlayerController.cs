@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
-            if (gameObject.layer == LayerMask.NameToLayer("Player") && GameManager.Health > 0 && !StoryManager.IsEndingCredit)
+            if (GameManager.Health > 0 && !StoryManager.IsEndingCredit)
             {
                         // Input
 #if UNITY_STANDALONE || UNITY_EDITOR
@@ -121,7 +121,6 @@ public class PlayerController : MonoBehaviour
             if (IsTouchDown && touchDownTime < 0.25f)
             {
                 touchDownTime += Time.deltaTime;
-                Debug.Log($"{touchDownTime}");
             }
 
             // Flip
@@ -130,6 +129,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Mathf.Abs(velocity.x) > 0.1)
                 {
+                    gameObject.GetComponent<SpriteRenderer>().flipX = false;
                     var directionX = 1;
                     if (velocity.x < 0.1) directionX = -1;
 
@@ -140,10 +140,14 @@ public class PlayerController : MonoBehaviour
             if (IsAiming)
             {
                 bool IsLeft = BeganPos.x - Input.mousePosition.x < 0;
-                var directionX = 1;
-                if (IsLeft) directionX = -1;
+                var isFlip = false;
+                if (IsLeft) isFlip = true;
 
-                SetIsFlipToLocalScale(directionX);
+                if (gameObject.transform.localScale.x < 0)
+                {
+                    isFlip = !isFlip;
+                }
+                gameObject.GetComponent<SpriteRenderer>().flipX = isFlip;
             }
 
             // Animator
@@ -198,7 +202,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleTouchingUp(Vector2 touchingPos)
     {
-        if (IsTouchDown && (BeganPos - touchingPos).magnitude > 60f && IsGrounded)
+        if (gameObject.layer == LayerMask.NameToLayer("Player") && IsTouchDown && (BeganPos - touchingPos).magnitude > 60f && IsGrounded)
         {
             AudioManager.EffectAudio.PlayEffectSound("jump_06");
             var velocity = CalculateVelocity(BeganPos, Input.mousePosition);
@@ -311,7 +315,7 @@ public class PlayerController : MonoBehaviour
                 moveStep += gravityAccel;
                 moveStep *= drag;
                 position += moveStep;
-                if (IsGrounded)
+                if (gameObject.layer == LayerMask.NameToLayer("Player") && IsGrounded)
                 {
                     TrajectoryPts[i].transform.position = position;
                     TrajectoryPts[i].SetActive(true);
@@ -347,7 +351,6 @@ public class PlayerController : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.56f);
         gameObject.layer = LayerMask.NameToLayer("PlayerInvincible");
-        IsTouchDown = false;
     }
 
     private IEnumerator ChangePlayerState()

@@ -782,7 +782,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -5093,7 +5093,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 13
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5710,10 +5710,10 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: eaae90861a4e3004ab6cd4b5c54cf441, type: 3}
   - m_RefCount: 5
     m_Data: {fileID: 21300000, guid: ae3e5e1885a918647b203757ebdf8c29, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: f4eff61df534b1c44aa7d017d6d1eb6c, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: f4eff61df534b1c44aa7d017d6d1eb6c, type: 3}
   - m_RefCount: 95
     m_Data: {fileID: 21300000, guid: 7cb71e0ded906504095d63d9ed0afb18, type: 3}
   - m_RefCount: 6
@@ -5864,7 +5864,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:

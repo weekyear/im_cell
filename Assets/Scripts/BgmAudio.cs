@@ -12,7 +12,7 @@ public class BgmAudio : MonoBehaviour
     [SerializeField] private AudioClip GameBgmClip_NormalEnding;
     [SerializeField] private AudioClip GameBgmClip_TrueEnding;
 
-    private int currentBgmClipsNum;
+    private int currentBgmClipsNum = -1;
 
     private AudioSource audioSource;
 
@@ -20,7 +20,6 @@ public class BgmAudio : MonoBehaviour
 
     private void Awake()
     {
-        currentBgmClipsNum = 0;
         audioSource = GetComponent<AudioSource>();
     }
     void Start()

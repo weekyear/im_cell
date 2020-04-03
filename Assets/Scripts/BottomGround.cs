@@ -17,7 +17,11 @@ public class BottomGround : MonoBehaviour
     private void ChangeInvincibleToPlayer(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("PlayerInvincible"))
+        {
+            var rigid2D = collision.collider.GetComponent<Rigidbody2D>();
+            rigid2D.velocity = Vector2.zero;
             StartCoroutine(PlayerObserver.PlayerActivated());
+        }
     }
 }
 

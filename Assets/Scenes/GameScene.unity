@@ -1467,7 +1467,7 @@ SpriteRenderer:
   m_SortingLayerID: -381556259
   m_SortingLayer: -5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 40cadde6d49b75b419ae6b7a9ff55761, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1475,7 +1475,7 @@ SpriteRenderer:
   m_Size: {x: 61.44, y: 15.36}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!60 &781363863
@@ -2278,7 +2278,7 @@ PrefabInstance:
     - target: {fileID: 9036306453913033789, guid: 9d4bcd2c617c46e4fa8d6e7715da409a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.3
+      value: -31.5
       objectReference: {fileID: 0}
     - target: {fileID: 9036306453913033789, guid: 9d4bcd2c617c46e4fa8d6e7715da409a,
         type: 3}
@@ -3051,7 +3051,7 @@ PrefabInstance:
     - target: {fileID: 8237601703766154018, guid: edce0599eebba144db191ce2c6da2980,
         type: 3}
       propertyPath: StartMapNum
-      value: 50
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8237601703766154018, guid: edce0599eebba144db191ce2c6da2980,
         type: 3}
@@ -3165,7 +3165,10 @@ MonoBehaviour:
       \uC99D\uC2DD\uC744 \uD1B5\uD574 \uADF8\uB4E4\uC744 \uB298\uB9B0\uB2E4.\n\uC774
       \uC138\uC0C1\uC774 \uC804\uBD80 \uC0C8\uD558\uC597\uAC8C \uBB3C\uB4E4\uC5B4\uC9C0\uB294
       \uC21C\uAC04 \uC790\uAE30 \uBC29\uC5B4 \uAE30\uB2A5\uB4E4\uC774 \uB3D9\uC791\uD558\uC9C0
-      \uC54A\uB294\uB2E4."
+      \uC54A\uB294\uB2E4.\n\uC774 \uC138\uC0C1\uC5D0 \uD558\uC580 \uAC00\uB8E8\uAC00
+      \uD769\uB0A0\uB9AC\uB294 \uB0A0\uC774 \uC654\uB2E4\uB294 \uAC83\uC740 \uC774
+      \uC138\uC0C1\uC758 \uCD5C\uD6C4\uB3C4 \uBA38\uC9C0 \uC54A\uC558\uB2E4\uB294
+      \uB9D0\uC774\uB2E4."
     Object: {fileID: 0}
   - Language: English
     Text: 
@@ -4041,7 +4044,7 @@ PrefabInstance:
     - target: {fileID: 5018230161743855125, guid: 389880b7600907648b0d82afb36eacc9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.3
+      value: 31.5
       objectReference: {fileID: 0}
     - target: {fileID: 5018230161743855125, guid: 389880b7600907648b0d82afb36eacc9,
         type: 3}
