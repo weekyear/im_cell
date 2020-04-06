@@ -18,7 +18,10 @@ public class MenuScene : MonoBehaviour
 
 	private void Start()
 	{
-		AudioManager.Instance.StartMenuBgm();
+		if (!StoryManager.IsEndedCredit)
+		{
+			AudioManager.Instance?.StartMenuBgm();
+		}
 
 		if (!PlayfabManager.Instance.IsLogin)
 		{

@@ -30,7 +30,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
     private List<string> EmoticonList;
 
     public static bool IsEndingCredit;
-    private bool IsEndedCredit;
+    public static bool IsEndedCredit;
     private void Awake()
     {
         PlayerObserver.OnChestOpened += ChestOpened;
@@ -50,10 +50,12 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
     {
         if (IsEndingCredit)
         {
+            GameEndingWindow.SetActive(true);
+
             var creditSpeed = 1f;
             if (Input.touchCount > 0 || Input.GetMouseButton(0))
             {
-                creditSpeed = 10f;
+                creditSpeed = 100f;
             }
 
             var endingImage = GameEndingWindow.GetComponent<Image>();
@@ -61,10 +63,10 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
             var endingTransform = GameEndingWindow.transform.Find("EndingText");
             endingTransform.position = new Vector3(endingTransform.position.x, endingTransform.position.y + 50f * creditSpeed * Time.deltaTime, endingTransform.position.z);
 
-            if (endingTransform.position.y > 7500)
+            if (endingTransform.position.y > 7200)
             {
                 endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.1f * creditSpeed * Time.deltaTime);
-                if (endingImage.color.a > 0.98f && !IsEndedCredit) StartCoroutine(WaitAndLoadMenuScene());
+                if (endingImage.color.a >= 1.00f && !IsEndedCredit) StartCoroutine(WaitAndLoadMenuScene());
             }
         }
     }
@@ -97,8 +99,6 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
         gameObject.transform.Find("PauseButton").gameObject.SetActive(false);
 
         yield return new WaitForSeconds(1.5f);
-
-        GameEndingWindow.SetActive(true);
 
         IsEndingCredit = true;
         IsEndedCredit = false;
@@ -139,7 +139,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
     {
         IsEndedCredit = true;
         IsEndingCredit = false;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("MenuScene");
         GameManager.ChangeTimeScale(1);
     }
