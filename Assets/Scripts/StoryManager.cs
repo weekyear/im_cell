@@ -45,17 +45,9 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
         CellEmoticon = CellSpeech.transform.Find("CellEmoticon").GetComponent<Text>();
         CellText = CellSpeech.transform.Find("CellText").GetComponent<TextMeshProUGUI>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        // IsEndingCredit
-
         if (IsEndingCredit)
         {
             var creditSpeed = 1f;
@@ -66,10 +58,10 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
 
             var endingImage = GameEndingWindow.GetComponent<Image>();
             if (endingImage.color.a < 0.53f) endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.2f * creditSpeed * Time.deltaTime);
-            var endingTransform = GameEndingWindow.transform;
+            var endingTransform = GameEndingWindow.transform.Find("EndingText");
             endingTransform.position = new Vector3(endingTransform.position.x, endingTransform.position.y + 50f * creditSpeed * Time.deltaTime, endingTransform.position.z);
 
-            if (endingTransform.position.y > 3500f)
+            if (endingTransform.position.y > 6000)
             {
                 endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.1f * creditSpeed * Time.deltaTime);
                 if (endingImage.color.a > 0.98f && !IsEndedCredit) StartCoroutine(WaitAndLoadMenuScene());
@@ -87,7 +79,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
     private void GameTrueEnding()
     {
         GameObject.Find("CM vcam").GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 3.5f;
-        AudioManager.BgmAudio.StartGameBgm_TrueEnding();
+        AudioManager.Instance.StartGameBgm_TrueEnding();
 
         var endingText = GameEndingWindow.transform.Find("EndingText").gameObject;
         var endingTitle = endingText.transform.Find("EndingTitle").GetComponent<Text>();
@@ -123,7 +115,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
     private void ChestOpened(string message)
     {
         MessageWindow.SetActive(true);
-        AudioManager.EffectAudio.PlayEffectSound("booksori");
+        AudioManager.Instance.PlayEffectSound("booksori");
         MessageWindow.transform.Find("Content").GetComponent<Text>().text = message;
         GameManager.ChangeTimeScale(0);
 
@@ -138,7 +130,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
 
     public void CloseMessageWindow()
     {
-        AudioManager.EffectAudio.PlayEffectSound("button_click_02");
+        AudioManager.Instance.PlayEffectSound("button_click_02");
         MessageWindow.SetActive(false);
         GameManager.ChangeTimeScale(1);
     }
@@ -211,7 +203,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
             if (textMeshPro.text.Length != dialog.Length && StoryWindow.activeSelf)
             {
                 textMeshPro.text += d;
-                AudioManager.EffectAudio.PlayEffectSound("typing");
+                AudioManager.Instance.PlayEffectSound("typing");
                 yield return new WaitForSecondsRealtime(0.1f);
             }
         }
@@ -250,12 +242,9 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
 
     private void StoryWindowOpened(List<string> dialogList, List<string> emoticonList)
     {
-        if (GameManager.MapNum > GameManager.PassedMapNum)
-        {
-            StoryWindow.SetActive(true);
-            ShowStory(dialogList, emoticonList);
-        }
-    }
+		StoryWindow.SetActive(true);
+		ShowStory(dialogList, emoticonList);
+	}
 
     public void SkipStory()
     {

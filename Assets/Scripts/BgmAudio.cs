@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BgmAudio : MonoBehaviour
 {
-    [SerializeField] private AudioClip MenuBgmClip;
+	[SerializeField] AudioSource audioSource;
+	[SerializeField] private AudioClip MenuBgmClip;
     [SerializeField] private List<AudioClip> GameBgmClips_Spring;
     [SerializeField] private List<AudioClip> GameBgmClips_Autumn;
     [SerializeField] private List<AudioClip> GameBgmClips_Winter;
@@ -13,21 +14,8 @@ public class BgmAudio : MonoBehaviour
     [SerializeField] private AudioClip GameBgmClip_TrueEnding;
 
     private int currentBgmClipsNum = -1;
-
-    private AudioSource audioSource;
-
     private int currentBgmIndex = 0;
 
-    private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-    void Start()
-    {
-        SetBgmVolume(PlayerPrefs.GetFloat("BgmVolume", 0.5f));
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (!audioSource.isPlaying)
@@ -145,9 +133,9 @@ public class BgmAudio : MonoBehaviour
         PlayBgm(GameBgmClip_TrueEnding);
     }
 
-    public void SetBgmVolume(float value)
+    public void SetVolume()
     {
-        audioSource.volume = value;
+		audioSource.volume = SettingManager.BgmVolume;
     }
 
     private void PlayBgm(AudioClip audioClip)

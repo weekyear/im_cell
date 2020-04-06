@@ -204,7 +204,7 @@ public class PlayerController : MonoBehaviour
     {
         if (gameObject.layer == LayerMask.NameToLayer("Player") && IsTouchDown && (BeganPos - touchingPos).magnitude > 60f && IsGrounded)
         {
-            AudioManager.EffectAudio.PlayEffectSound("jump_06");
+            AudioManager.Instance.PlayEffectSound("jump_06");
             var velocity = CalculateVelocity(BeganPos, Input.mousePosition);
             PlayerObserver.HealthChanged(CalculateDamageByJump(velocity));
 

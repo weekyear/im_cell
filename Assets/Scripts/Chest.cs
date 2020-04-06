@@ -37,7 +37,7 @@ public class Chest : MonoBehaviour
     private IEnumerator OpenChest()
     {
         gameObject.GetComponent<Animator>().SetBool("IsOpen", true);
-        AudioManager.EffectAudio.PlayEffectSound("openchest");
+        AudioManager.Instance.PlayEffectSound("openchest");
         yield return new WaitForSeconds(1.25f);
 
         if (ChestIndex != -1)
@@ -52,7 +52,7 @@ public class Chest : MonoBehaviour
                 "마침내 이 세상을 모두 하얗게 뒤덮는 순간 자신을 위장하던 색을 버리고 이 세상을 물들여버린 흰색으로 그 모습을 물들인다.\n" +
                 "XXX은 암세포다.";
             PlayerObserver.ChestOpened(lastMessage);
-            AudioManager.BgmAudio.StopBgm();
+            AudioManager.Instance.StopBgm();
         }
     }
 }

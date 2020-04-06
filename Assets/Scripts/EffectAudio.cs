@@ -4,24 +4,17 @@ using UnityEngine;
 
 public class EffectAudio : MonoBehaviour
 {
-    public List<AudioClip> EffectClips;
-
-    private AudioSource audioSource;
+	[SerializeField] AudioSource audioSource;
+	[SerializeField] List<AudioClip> EffectClips;
 
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetVolume()
     {
-        SetEffectVolume(PlayerPrefs.GetFloat("EffectVolume", 0.5f));
-    }
-
-    public void SetEffectVolume(float value)
-    {
-        audioSource.volume = value;
+		audioSource.volume = SettingManager.EffectVolume;
     }
 
     public void PlayEffectSound(string fileName)
@@ -31,7 +24,7 @@ public class EffectAudio : MonoBehaviour
             if (clip.name.Contains(fileName))
             {
                 audioSource.PlayOneShot(clip);
-                return;
+                break;
             }
         }
     }

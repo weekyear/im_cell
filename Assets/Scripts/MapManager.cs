@@ -13,29 +13,32 @@ public class MapManager : MonoBehaviour
     public static event Action OnVirusBeKilled;
 
     void Start()
-    {
-        OnVirusBeKilled += RemoveMaceWall;
+	{
+		OnVirusBeKilled += RemoveMaceWall;
 
-        if (GameManager.MapNum > 45)
+		AudioManager.Instance?.StartBgm_GameScene();
+
+		if (GameManager.MapNum > 45)
         {
             GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = new Color(0.5f, 0.75f, 0.75f, 0.56f);
         }
 
-        if (GameManager.MapNum > 50 && !IsShownStoryAlways && PlayerPrefs.GetInt("ShownMapNum", 0) >= GameManager.MapNum) PlayerObserver.GameEndingShowed();
+		if (GameManager.MapNum > 50)
+		{
+			PlayfabManager.Instance.SaveLevel(51);
+			PlayfabManager.Instance.ReportScore(GameManager.time);
+			PlayerObserver.GameEndingShowed();
+		}
 
-        AudioManager.BgmAudio.StartBgm_GameScene();
-
-        if (IsShownStoryAlways || !IsShownStoryAlways && PlayerPrefs.GetInt("ShownMapNum", 0) < GameManager.MapNum)
+		if (SettingManager.IsShownStoryAlways || IsFirstStory)
         {
             var dialog = Lean.Localization.LeanLocalization.GetTranslationText($"Story{GameManager.MapNum}");
             DialogList = dialog.Split('\n').ToList();
-
             StoryShowed();
+		}
 
-            if (GameManager.PassedMapNum < GameManager.MapNum) GameManager.PassedMapNum = GameManager.MapNum;
-            PlayerPrefs.SetInt("ShownMapNum", GameManager.MapNum);
-        }
-    }
+		if (GameManager.PassedMapNum < GameManager.MapNum) GameManager.PassedMapNum = GameManager.MapNum;
+	}
 
     private void OnDestroy()
     {
@@ -63,11 +66,6 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    private bool IsShownStoryAlways
-    {
-        get { return PlayerPrefs.GetInt("IsShownStoryAlways", 0) == 1; }
-    }
-
     private bool IsExistVirus
     {
         get
@@ -80,4 +78,6 @@ public class MapManager : MonoBehaviour
             return false;
         }
     }
+
+	public bool IsFirstStory => GameManager.MapNum > PlayfabManager.Instance.Level && GameManager.MapNum > GameManager.PassedMapNum;
 }

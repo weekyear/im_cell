@@ -26,7 +26,7 @@ public class Virus : MonoBehaviour
 
             PlayerObserver.HealthChanged(5);
 
-            AudioManager.EffectAudio.PlayEffectSound("virus_killed");
+            AudioManager.Instance.PlayEffectSound("virus_killed");
 
             StartCoroutine(ReserveDestroyObject(gameObject));
         }

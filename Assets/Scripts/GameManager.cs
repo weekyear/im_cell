@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,20 +14,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject GameoverWindow;
     [SerializeField] private GameObject PauseWindow;
     [SerializeField] private GameObject GameFinishedWindow;
-
     [SerializeField] private GameObject HealthBar;
     [SerializeField] private GameObject LossHealthBar;
-
     [SerializeField] private GameObject Player;
+	[SerializeField] private int StartMapNum = 1;
+	[SerializeField] private int EndMapNum;
 
-    public static float Health = 100;
+	public static float Health = 100;
     public static float RecentHeal = 0;
     public static int RecentVirus = 0;
 
-    private float time;
+	public static float time;
 
-    [SerializeField] private int StartMapNum = 1;
-    [SerializeField] private int EndMapNum;
     public static int EndedMapNum;
     public static int MapNum;
     public static int PassedMapNum;
@@ -35,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+		time = 0f;
         Health = 100;
         RecentHeal = 0;
         RecentVirus = 0;
@@ -49,20 +49,20 @@ public class GameManager : MonoBehaviour
             Chest.IsOpenChestList.Add(false);
         }
 
-        PlayerObserver.OnHealthChanged += HealthBarChanged;
+		MobileAdManager.OnRewardEarned += OnRewardEarned;
+		PlayerObserver.OnHealthChanged += HealthBarChanged;
         PlayerObserver.OnLossHealthChanged += LossHealthBarChanged;
 
         Instantiate(Resources.Load($"Map/Map_{MapNum}_"));
     }
 
-    private void OnDestroy()
+	private void OnDestroy()
     {
+		MobileAdManager.OnRewardEarned -= OnRewardEarned;
         PlayerObserver.OnHealthChanged -= HealthBarChanged;
         PlayerObserver.OnLossHealthChanged -= LossHealthBarChanged;
-
     }
 
-    // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;
@@ -88,13 +88,13 @@ public class GameManager : MonoBehaviour
         {
             if (PauseWindow.activeSelf)
             {
-                AudioManager.EffectAudio.PlayEffectSound("button_click_02");
+                AudioManager.Instance.PlayEffectSound("button_click_02");
                 PauseWindow.SetActive(false);
                 ChangeTimeScale(1);
             }
             else
             {
-                AudioManager.EffectAudio.PlayEffectSound("button_click_01");
+                AudioManager.Instance.PlayEffectSound("button_click_01");
                 PauseWindow.SetActive(true);
                 ChangeTimeScale(0);
             }
@@ -160,13 +160,13 @@ public class GameManager : MonoBehaviour
     public void ClickRestartBtn()
     {
         SetGameFinishedWindow(true);
-        AudioManager.EffectAudio.PlayEffectSound("button_click_01");
+        AudioManager.Instance.PlayEffectSound("button_click_01");
     }
 
     public void ClickMenuBtn()
     {
         SetGameFinishedWindow(false);
-        AudioManager.EffectAudio.PlayEffectSound("button_click_01");
+        AudioManager.Instance.PlayEffectSound("button_click_01");
     }
 
     private void SetGameFinishedWindow(bool isRestartBtn)
@@ -179,20 +179,31 @@ public class GameManager : MonoBehaviour
         var content = GameFinishedWindow.transform.Find("Content").GetComponent<Text>();
         if (isRestartBtn)
         {
-            confirmBtn.onClick.AddListener(GameRestart);
+            confirmBtn.onClick.AddListener(() => {
+				SaveLevel();
+				GameRestart();
+			});
             content.text = "처음으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n첫 스테이지로 돌아갈까요?";
         }
         else
         {
-            confirmBtn.onClick.AddListener(LoadMenuScene);
+            confirmBtn.onClick.AddListener(() => {
+				SaveLevel();
+				LoadMenuScene();
+			});
             content.text = "홈화면으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n홈 화면으로 돌아갈까요?";
         }
     }
 
-    public void CloseGameFinishedWindow()
+	private void SaveLevel()
+	{
+		PlayfabManager.Instance.SaveLevel(MapNum);
+	}
+
+	public void CloseGameFinishedWindow()
     {
         GameFinishedWindow.SetActive(false);
-        AudioManager.EffectAudio.PlayEffectSound("button_click_02");
+        AudioManager.Instance.PlayEffectSound("button_click_02");
     }
 
     private void GameRestart()
@@ -210,19 +221,31 @@ public class GameManager : MonoBehaviour
     }
 
     public void ShowAd()
-    {
-        HealthBarChanged(200);
+	{
+		AudioManager.Instance.PlayEffectSound("button_click_01");
 
-        RevivalNum += 1;
+#if UNITY_EDITOR || UNITY_STANDALONE
+		Revival();
+		GameoverWindow.SetActive(false);
+#elif UNITY_ANDROID
+		MobileAdManager.Instance.ShowRewardAd();
+#endif
+	}
 
-        AudioManager.EffectAudio.PlayEffectSound("button_click_01");
+	private void Revival()
+	{
+		HealthBarChanged(200);
+		RevivalNum += 1;
+		ChangeTimeScale(1);
+	}
 
-        ChangeTimeScale(1);
+	private void OnRewardEarned()
+	{
+		Revival();
+		GameoverWindow.SetActive(false);
+	}
 
-        GameoverWindow.SetActive(false);
-    }
-
-    private bool IsDead
+	private bool IsDead
     {
         get
         {

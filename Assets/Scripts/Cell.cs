@@ -26,7 +26,7 @@ public class Cell : MonoBehaviour
             PlayerObserver.HealthChanged(50);
 
             GameManager.RecentHeal = IsLastCell ? GameManager.MapNum : GameManager.MapNum - 0.5f;
-            AudioManager.EffectAudio.PlayEffectSound("item");
+            AudioManager.Instance.PlayEffectSound("item");
         }
     }
 
