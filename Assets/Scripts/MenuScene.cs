@@ -16,11 +16,6 @@ public class MenuScene : MonoBehaviour
 		PlayfabManager.OnNewUser += OnNewUser;
 	}
 
-	private void OnNewUser()
-	{
-		createUserWindow.Show();
-	}
-
 	private void Start()
 	{
 		AudioManager.Instance.StartMenuBgm();
@@ -39,7 +34,12 @@ public class MenuScene : MonoBehaviour
 	{
 		PlayfabManager.OnNewUser -= OnNewUser;
 	}
-#endregion
+	#endregion
+
+	private void OnNewUser()
+	{
+		createUserWindow.Show();
+	}
 
 	public void ShowSettingMenu()
 	{

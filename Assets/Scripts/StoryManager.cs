@@ -61,7 +61,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
             var endingTransform = GameEndingWindow.transform.Find("EndingText");
             endingTransform.position = new Vector3(endingTransform.position.x, endingTransform.position.y + 50f * creditSpeed * Time.deltaTime, endingTransform.position.z);
 
-            if (endingTransform.position.y > 6000)
+            if (endingTransform.position.y > 7500)
             {
                 endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.1f * creditSpeed * Time.deltaTime);
                 if (endingImage.color.a > 0.98f && !IsEndedCredit) StartCoroutine(WaitAndLoadMenuScene());
@@ -96,9 +96,9 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
         gameObject.transform.Find("HealthHolder").gameObject.SetActive(false);
         gameObject.transform.Find("PauseButton").gameObject.SetActive(false);
 
-        GameEndingWindow.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
 
-        yield return new WaitForSeconds(2f);
+        GameEndingWindow.SetActive(true);
 
         IsEndingCredit = true;
         IsEndedCredit = false;
