@@ -1,1 +1,0 @@
-This folder contains the ready to use pre-made Prefabs.

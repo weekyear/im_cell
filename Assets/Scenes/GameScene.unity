@@ -1402,7 +1402,7 @@ MonoBehaviour:
       \uB2E4\uB978 \uAC8C \uC6D0\uC778\uC77C \uC218 \uC788\uC9C0 \uC54A\uC744\uAE4C\uC694?\r\n\uBCF8:\uAE00\uC384..\uC9C0\uAE08\uAE4C\uC9C4
       \uBC14\uC774\uB7EC\uC2A4 \uC678\uC5D0\uB294 \uCD94\uC6CC\uC9C0\uAC8C \uB41C
       \uACC4\uAE30\uAC00 \uC5C6\uC5C8\uC5B4\uC11C..\r\n\uBCF8:\uACE0\uB9C8\uC6CC.
-      \r\uD55C \uBC88 \uC54C\uC544\uBD10\uC57C\uACA0\uB2E4. \n\uC140:\uB124\u314E\u314E\r\n\uC140:(\uC9C0\uAE08
+      \uD55C \uBC88 \uC54C\uC544\uBD10\uC57C\uACA0\uB2E4. \n\uC140:\uB124\u314E\u314E\r\n\uC140:(\uC9C0\uAE08
       \uC774\uB7F0 \uAE30\uBD84\uC744 \uB290\uAEF4\uB3C4 \uB420\uC9C0\uB294 \uBAA8\uB974\uACA0\uC9C0\uB9CC
       \uBCF8\uC5D0\uAC8C \uB3C4\uC6C0\uC774 \uB418\uC5C8\uC744\uC9C0\uB3C4 \uBAA8\uB978\uB2E4\uB294
       \uC0AC\uC2E4\uC774 \uAE30\uBEE4\uB2E4.)"
@@ -3639,7 +3639,7 @@ MonoBehaviour:
   entries:
   - Language: Korean
     Text: "\uC140:(\uC5EC\uC804\uD788 \uBC14\uC774\uB7EC\uC2A4\uB098 \uD639\uC740
-      \uB2E4\uB978 \uC6D0\uC778\uB4E4\uC744 \uCC3E\uC544\uB2E4\uB2C8\uACE0 \uC788\uB2E4.\n\uC140:(\uD558\uC9C0\uB9CC
+      \uB2E4\uB978 \uC6D0\uC778\uB4E4\uC744 \uCC3E\uC544\uB2E4\uB2C8\uACE0 \uC788\uB2E4.)\n\uC140:(\uD558\uC9C0\uB9CC
       \uB208\uC5D0 \uC880\uCC98\uB7FC \uB6F0\uC9C0 \uC54A\uB294\uB2E4.)"
     Object: {fileID: 0}
   - Language: English
@@ -4299,9 +4299,9 @@ MonoBehaviour:
     Text: "\uBCF8:\uB0B4 \uBAA9\uC18C\uB9AC\uAC00 \uB4E4\uB9AC\uB2C8?\r\n\uC140:(\uAC11\uC791\uC2A4\uB7F0
       \uBAA9\uC18C\uB9AC\uC5D0 \uB180\uB790\uC9C0\uB9CC \uADF8\uB798\uB3C4 \uCE68\uCC29\uD558\uAC8C
       \uB300\uB2F5\uD588\uB2E4.)\r\n\uC140:\uB204\uAD6C\uC138\uC694?\r\n\uBCF8:\uB09C
-      '\uBCF8 \uB9E4\uB85C'\uB77C\uACE0 \uD55C\uB2E8\uB2E4.\n\uBCF8:\uBCF8\uC774\uB77C\uACE0
+      '\uBCF8 \uB9E4\uB85C'\uB77C\uACE0 \uD55C\uB2E8\uB2E4.\r\n\uBCF8:\uBCF8\uC774\uB77C\uACE0
       \uBD80\uB974\uB834.\r\n\uC140:(\uCC98\uC74C \uBCF4\uB294 \uC874\uC7AC\uC5D0
-      \uB300\uD55C \uB450\uB824\uC6C0\uACFC \uACBD\uACC4\uC2EC\uC774 \uB4E4\uC5C8\uB2E4.\r)\n\uC140:(\uD558\uC9C0\uB9CC
+      \uB300\uD55C \uB450\uB824\uC6C0\uACFC \uACBD\uACC4\uC2EC\uC774 \uB4E4\uC5C8\uB2E4.)\r\n\uC140:(\uD558\uC9C0\uB9CC
       \uB9D0\uD22C\uC5D0\uC11C\uB294 \uBC18\uAC00\uC6C0\uACFC \uD638\uC758\uAC00
       \uB290\uAEF4\uC9C4\uB2E4.)"
     Object: {fileID: 0}
@@ -9667,7 +9667,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -5200}
-  m_SizeDelta: {x: 1500, y: 2413.3333}
+  m_SizeDelta: {x: 1500, y: 1928.8889}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &7948315460469115368
 RectTransform:
@@ -9811,7 +9811,7 @@ RectTransform:
   m_Father: {fileID: 4750813732236341216}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.030000001, y: 0.48}
+  m_AnchorMin: {x: 0.03, y: 0.48}
   m_AnchorMax: {x: 0.97, y: 0.924}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -9896,7 +9896,7 @@ MonoBehaviour:
   HealthBar: {fileID: 6630531015247823431}
   LossHealthBar: {fileID: 950654135512405376}
   Player: {fileID: 648711508}
-  StartMapNum: 50
+  StartMapNum: 1
   EndMapNum: 51
 --- !u!114 &8253748085733452194
 MonoBehaviour:
@@ -10200,7 +10200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.1
-  m_Text: "Beside\n\n\uC774\uC8FC\uC5FD\n\n\uCD5C\uD601\uC9C4\n\n\uC11C\uC815\uADDC\n\n\uBC15\uC900\uD64D\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  m_Text: "Beside\n\n\uC774\uC8FC\uC5FD\n\n\uCD5C\uD601\uC9C4\n\n\uC11C\uC815\uADDC\n\n\uBC15\uC900\uD64D\n\n\n\n\n\n\n\n\n\n\n"
 --- !u!224 &8564437361580232035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10224,7 +10224,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 7613.333}
+  m_SizeDelta: {x: 1920, y: 7128.8887}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &8628425697487204520
 RectTransform:

@@ -55,7 +55,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
             var creditSpeed = 1f;
             if (Input.touchCount > 0 || Input.GetMouseButton(0))
             {
-                creditSpeed = 100f;
+                creditSpeed = 12f;
             }
 
             var endingImage = GameEndingWindow.GetComponent<Image>();
@@ -139,7 +139,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
     {
         IsEndedCredit = true;
         IsEndingCredit = false;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("MenuScene");
         GameManager.ChangeTimeScale(1);
     }

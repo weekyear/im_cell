@@ -29,14 +29,17 @@ public class MapManager : MonoBehaviour
 			PlayfabManager.Instance?.ReportScore(GameManager.time);
         }
 
-		if (SettingManager.IsShownStoryAlways || IsFirstStory)
+		if (SettingManager.IsShownStoryAlways && GameManager.MapNum > GameManager.PassedMapNum || IsFirstStory)
         {
             var dialog = Lean.Localization.LeanLocalization.GetTranslationText($"Story{GameManager.MapNum}");
             DialogList = dialog.Split('\n').ToList();
             StoryShowed();
-		}
+#if UNITY_EDITOR || ASTANDALONE
+            if (GameManager.MapNum > PlayerPrefs.GetInt("ShownStoryNum")) PlayerPrefs.SetInt("ShownStoryNum", GameManager.MapNum);
+#endif
+        }
 
-		if (GameManager.PassedMapNum < GameManager.MapNum) GameManager.PassedMapNum = GameManager.MapNum;
+        if (GameManager.PassedMapNum < GameManager.MapNum) GameManager.PassedMapNum = GameManager.MapNum;
 	}
 
     private void OnDestroy()
@@ -78,5 +81,15 @@ public class MapManager : MonoBehaviour
         }
     }
 
-	public bool IsFirstStory => GameManager.MapNum > PlayfabManager.Instance.Level && GameManager.MapNum > GameManager.PassedMapNum;
+	public bool IsFirstStory
+    {
+        get
+        {
+#if UNITY_EDITOR || ASTANDALONE
+            return GameManager.MapNum > PlayerPrefs.GetInt("ShownStoryNum");
+#elif UNITY_ANDROID 
+            return GameManager.MapNum > PlayfabManager.Instance?.Level;
+#endif 
+        }
+    }
 }

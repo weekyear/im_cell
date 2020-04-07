@@ -25,9 +25,9 @@ public class MenuScene : MonoBehaviour
 
 		if (!PlayfabManager.Instance.IsLogin)
 		{
-#if UNITY_EDITOR || UNITY_STANDALONE
+#if UNITY_EDITOR || ASTANDALONE
 			loginWindow.Show();
-#else
+#elif UNITY_ANDROID 
 		PlayfabManager.Instance.Login();
 #endif
 		}

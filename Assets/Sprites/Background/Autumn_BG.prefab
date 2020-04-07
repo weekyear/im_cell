@@ -19595,7 +19595,7 @@ GameObject:
   - component: {fileID: 7156122155959964649}
   - component: {fileID: 8986340972139529373}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Autumn_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

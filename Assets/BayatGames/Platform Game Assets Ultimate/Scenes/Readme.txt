@@ -1,1 +1,0 @@
-This folder contains the demonstration scenes of assets.
