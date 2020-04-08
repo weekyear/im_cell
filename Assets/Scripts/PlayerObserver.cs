@@ -10,6 +10,7 @@ public class PlayerObserver : MonoBehaviour
     public static event Action<string> OnChestOpened;
     public static event Action OnGameEndingShowed;
     public static event Func<IEnumerator> OnPlayerActivated;
+    public static event Func<IEnumerator> OnGameOver;
 
 
     public static void LossHealthChanged(float amountOfChange)
@@ -40,5 +41,10 @@ public class PlayerObserver : MonoBehaviour
     public static IEnumerator PlayerActivated()
     {
         return OnPlayerActivated?.Invoke();
+    }
+    
+    public static IEnumerator GameOver()
+    {
+        return OnGameOver?.Invoke();
     }
 }

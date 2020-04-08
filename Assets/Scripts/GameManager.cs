@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
     public static int MapNum;
     public static int PassedMapNum;
     private int RevivalNum;
-    private bool IsAnimatingDead;
 
     private void Awake()
     {
@@ -52,6 +51,7 @@ public class GameManager : MonoBehaviour
 		MobileAdManager.OnRewardEarned += OnRewardEarned;
 		PlayerObserver.OnHealthChanged += HealthBarChanged;
         PlayerObserver.OnLossHealthChanged += LossHealthBarChanged;
+        PlayerObserver.OnGameOver += GameOver;
 
         Instantiate(Resources.Load($"Map/Map_{MapNum}_"));
     }
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
 		MobileAdManager.OnRewardEarned -= OnRewardEarned;
         PlayerObserver.OnHealthChanged -= HealthBarChanged;
         PlayerObserver.OnLossHealthChanged -= LossHealthBarChanged;
+        PlayerObserver.OnGameOver -= GameOver;
     }
 
     void Update()
@@ -77,9 +78,6 @@ public class GameManager : MonoBehaviour
                 Chest.IsOpenChestList[i] = true;
             }
         }
-
-        if (IsDead && !IsAnimatingDead) StartCoroutine(GameOver());
-
     }
 
     public void GamePause()
@@ -145,8 +143,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameOver()
     {
-        IsAnimatingDead = true;
-
         yield return new WaitForSeconds(1.75f);
 
         ChangeTimeScale(0);
@@ -154,7 +150,7 @@ public class GameManager : MonoBehaviour
         GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{time.ToString("F")} | {RevivalNum}회 부활";
         GameoverWindow.SetActive(true);
 
-        IsAnimatingDead = false;
+        PlayerController.IsAnimatingDead = false;
     }
 
     public void ClickRestartBtn()
@@ -237,7 +233,8 @@ public class GameManager : MonoBehaviour
 		HealthBarChanged(200);
 		RevivalNum += 1;
 		ChangeTimeScale(1);
-	}
+        Player.GetComponent<Animator>().SetBool("IsDead", false);
+    }
 
 	private void OnRewardEarned()
 	{

@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 BeganPos;
     [SerializeField] private float Speed = 0.03f;
 
+
+    public static bool IsAnimatingDead;
+
+    private float HealthZeroSec;
+
     private void Awake()
     {
         PlayerObserver.OnDamaged += Damaged;
@@ -109,7 +114,8 @@ public class PlayerController : MonoBehaviour
                     var rigid2D = gameObject.GetComponent<Rigidbody2D>();
                     if (rigid2D.velocity.magnitude == 0)
                     {
-                        rigid2D.velocity = gameObject.transform.localScale * Vector2.left * 2;
+                        var directionX = Math.Sign(gameObject.transform.localScale.x) * -1f;
+                        rigid2D.velocity = directionX * Vector2.left * 2;
                     }
                 }
             }
@@ -150,13 +156,28 @@ public class PlayerController : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().flipX = isFlip;
             }
 
+            if (IsHealthZeroAndStopped)
+            {
+                HealthZeroSec += Time.deltaTime;
+            }
+            else
+            {
+                HealthZeroSec = 0f;
+            }
+
             // Animator
             var animator = gameObject.GetComponent<Animator>();
             animator.SetFloat("Speed", Mathf.Abs(velocity.x));
             animator.SetFloat("JumpSpeed", velocity.y);
             animator.SetBool("Grounded", IsGrounded);
-            animator.SetBool("IsDead", IsDead);
             animator.SetBool("IsAiming", IsAiming);
+
+            if (IsDead && !IsAnimatingDead)
+            {
+                IsAnimatingDead = true;
+                animator.SetBool("IsDead", IsDead);
+                StartCoroutine(PlayerObserver.GameOver());
+            }
         }
     }
 
@@ -239,11 +260,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool IsHealthZeroAndStopped
+    {
+        get
+        {
+            return Time.timeScale != 0 && GameManager.Health <= 0 && gameObject.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.0001;
+        }
+    }
+
     private bool IsDead
     {
         get
         {
-            return Time.timeScale != 0 && GameManager.Health <= 0 && gameObject.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01;
+            return IsHealthZeroAndStopped && HealthZeroSec > 0.5f;
         }
     }
 

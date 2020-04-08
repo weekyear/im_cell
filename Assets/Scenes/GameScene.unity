@@ -914,7 +914,7 @@ MonoBehaviour:
     Text: "\uBCF8:\uC798 \uC9C0\uB0B4\uACE0 \uC788\uB2C8 \uC544\uC774\uC57C?\r\n\uBCF8:\uC74C..\r\n\uBCF8:\uB9E4\uBC88
       \uC544\uC774\uB77C\uACE0 \uBD80\uB974\uBA74 \uD5F7\uAC08\uB9B4 \uAC83 \uAC19\uC73C\uB2C8
       \uC774\uB984\uC744 \uBD99\uC774\uB294\uAC8C \uC5B4\uB5A8\uAE4C?\r\n\uC140:\uC774\uB984\uC774\uC694?\r\n\uBCF8:\uADF8\uB798!\r\n\uBCF8:\uBB34\uC2A8
-      \uC774\uB984\uC774 \uC88B\uC744\uAE4C?..\r\n\uBCF8:\uC74C..\n\uBCF8:\uC140!!\r
+      \uC774\uB984\uC774 \uC88B\uC744\uAE4C?..\r\n\uBCF8:\uC74C..\r\n\uBCF8:\uC140!!
       \uC140\uC774 \uC5B4\uB5BB\uB2C8?!\r\n\uC140:\uBD80\uB974\uACE0 \uC2F6\uC740\uB300\uB85C
       \uBD80\uB974\uC138\uC694.\r\n\uBCF8:\uADF8\uB798! \uC140\uC774 \uB9C8\uC74C\uC5D0
       \uB4DC\uB2C8 \uADF8\uB807\uAC8C \uBD80\uB97C\uAC8C!\r\n\uC140:....."
@@ -1823,6 +1823,16 @@ PrefabInstance:
       propertyPath: Point
       value: 
       objectReference: {fileID: 4755724367771296931}
+    - target: {fileID: 1734773222276262957, guid: 1df7b97ecc4d1b7479d27e5649259b61,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141641607869367125, guid: 1df7b97ecc4d1b7479d27e5649259b61,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5382366555344666028, guid: 1df7b97ecc4d1b7479d27e5649259b61,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1888,7 +1898,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6652999453067341588, guid: 1df7b97ecc4d1b7479d27e5649259b61,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4141641607869367125, guid: 1df7b97ecc4d1b7479d27e5649259b61, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1df7b97ecc4d1b7479d27e5649259b61, type: 3}
 --- !u!1 &857734935
 GameObject:
@@ -2824,10 +2840,10 @@ MonoBehaviour:
   entries:
   - Language: Korean
     Text: "\uC774 \uAE00\uC740 \uC6B0\uB9AC\uAC00 \uC774 \uC138\uC0C1\uC744 \uC0B4\uC544\uB0A8\uAE30
-      \uC704\uD55C \uAE00\uC774\uB2E4.\r\n\uC55E\uC73C\uB85C \uB3C4\uC57D\uD558\uAE30
-      \uC704\uD574\uC120 \uC6B0\uB9AC \uC790\uC2E0\uC758 \uBD84\uC5F4\uC774 \uD544\uC694\uD558\uB2E4.
-      \uC870\uAE08 \uB6F0\uBA74 \uC870\uAE08 \uBD84\uC5F4\uD574\uB3C4 \uB420 \uAC83\uC774\uACE0
-      \uBA40\uB9AC \uB6F0\uBA74 \uB9CE\uC774 \uBD84\uC5F4\uD574\uC57C \uD560 \uAC83\uC774\uB2E4.\r\n\uC774
+      \uC704\uD55C \uAE00\uC774\uB2E4.\r\n\uC6B0\uB9AC\uAC00 \uC55E\uC73C\uB85C \uB3C4\uC57D\uD558\uAE30
+      \uC704\uD574\uC120 \uBD84\uC5F4\uC774 \uD544\uC694\uD558\uB2E4. \uC870\uAE08
+      \uB6F0\uBA74 \uC870\uAE08 \uBD84\uC5F4\uD574\uB3C4 \uB418\uACE0 \uBA40\uB9AC
+      \uB6F0\uBA74 \uB9CE\uC774 \uBD84\uC5F4\uD574\uC57C \uD55C\uB2E4.\r\n\uC774
       \uC138\uC0C1\uC774 \uD478\uB974\uACE0 \uAF43\uACFC \uB098\uBB34\uAC00 \uBB34\uC131\uD558\uB2E4\uB294
       \uAC83\uC740 \uC774 \uC138\uC0C1\uC774 \uAC74\uAC15\uD558\uB2E4\uB294 \uC99D\uAC70\uB2E4.\r\n\uC0AC\uC2DC\uC0AC\uCCA0
       \uC544\uB984\uB2F5\uAE30\uB9CC \uD560 \uAC83 \uAC19\uC740 \uC774 \uACF3\uC740
@@ -3071,12 +3087,12 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: Korean
-    Text: "\uC140:\uBCF8, \uD639\uC2DC \uC6D0\uC778\uC744 \uD30C\uC545\uD588\uB098\uC694?\n\uBCF8:...\uC140\uC544
+    Text: "\uC140:\uBCF8, \uD639\uC2DC \uC6D0\uC778\uC744 \uD30C\uC545\uD588\uB098\uC694?\r\n\uBCF8:...\uC140\uC544
       \uD639\uC2DC \uC5EC\uAE30\uC800\uAE30 \uB3CC\uC544\uB2E4\uB2C8\uACE0 \uC788\uB2C8?\r\n\uC140:..\uB124
-      \uC0AC\uC2E4 \uCC3E\uC544\uB2E4\uB2C8\uACE0 \uC788\uC5B4\uC694.\r \uC800\uB294
-      \uC798 \uCC3E\uC9C0 \uBABB \uD558\uACA0..\n\uBCF8:\uC65C! \uC2DC\uD0A4\uC9C0\uB3C4
-      \uC54A\uC740 \uC9D3\uC744 \uD558\uB294\uAC70\uC57C! \n\uBCF8:\uB0B4\uAC00 \uAC00\uB9CC\uD788
-      \uC788\uC73C\uB77C\uACE0 \uD588\uB294\uB370..\r\n\uC140:..!.\n\uC140:(\uCC98\uC74C
+      \uC0AC\uC2E4 \uCC3E\uC544\uB2E4\uB2C8\uACE0 \uC788\uC5B4\uC694. \uC800\uB294
+      \uC798 \uCC3E\uC9C0 \uBABB \uD558\uACA0..\r\n\uBCF8:\uC65C! \uC2DC\uD0A4\uC9C0\uB3C4
+      \uC54A\uC740 \uC9D3\uC744 \uD558\uB294\uAC70\uC57C! \r\n\uBCF8:\uB0B4\uAC00
+      \uAC00\uB9CC\uD788 \uC788\uC73C\uB77C\uACE0 \uD588\uB294\uB370..\r\n\uC140:..!.\r\n\uC140:(\uCC98\uC74C
       \uD654\uB0B4\uB294 \uBCF8\uC758 \uBAA8\uC2B5\uC5D0 \uB108\uBB34 \uB180\uB790\uB2E4.)\r\n\uC140:\uBCF8..\uBBF8\uC548\uD574\uC694.
       \uC804 \uC608\uC804\uCC98\uB7FC \uB3C4\uC6C0\uC774 \uB418\uACE0 \uC2F6\uC5B4\uC11C..\r\n\uC140:(\uB9D0\uC744
       \uAC74\uB0C8\uC9C0\uB9CC \uBCF8\uC740 \uB2F5\uD558\uC9C0 \uC54A\uACE0 \uB3CC\uC544\uAC04
@@ -3380,18 +3396,18 @@ MonoBehaviour:
   entries:
   - Language: Korean
     Text: "\uBCF8:\uC774\uBC88\uC5D0 \uB124\uAC00 \uBC14\uC774\uB7EC\uC2A4\uB97C
-      \uB9CE\uC774 \uC7A1\uACE0 \uB2E4\uB2CC \uBAA8\uC591\uC774\uAD6C\r\uB098.\n\uBCF8:\uACE0\uB9C8\uC6CC.
+      \uB9CE\uC774 \uC7A1\uACE0 \uB2E4\uB2CC \uBAA8\uC591\uC774\uAD6C\uB098.\r\n\uBCF8:\uACE0\uB9C8\uC6CC.
       \uB355\uBD84\uC5D0 \uB2E4\uC2DC \uD478\uB978 \uBE5B\uC744 \uB418\uCC3E\uC558\uC5B4
       \uADF8\uB9AC\uACE0..\r\n\uBCF8:...\uBB34\uC5C7\uBCF4\uB2E4 \uB124\uAC00 \uBB34\uC0AC\uD574\uC11C
       \uC815\uB9D0 \uB2E4\uD589\uC774\uC57C.\r\n\uC140:(\uCC28\uBD84\uD558\uACE0
-      \uAC71\uC815 \uC5B4\uB9B0 \uBD84\uC704\uAE30\uAC00 \uC5B4\uC0C9\uD588\uC9C0\uB9CC)\n\uC140:(\uD3C9\uC18C\uC640
+      \uAC71\uC815 \uC5B4\uB9B0 \uBD84\uC704\uAE30\uAC00 \uC5B4\uC0C9\uD588\uC9C0\uB9CC)\r\n\uC140:(\uD3C9\uC18C\uC640
       \uB2E4\uB978 \uBD84\uC704\uAE30\uC600\uAE30\uC5D0 \uB354 \uD070 \uC9C4\uC2EC\uC774
-      \uB290\uAEF4\uC84C\uB2E4.\r)\n\uC140:\uBCF8\uB3C4 \uBC14\uC060 \uC77C\uC774
+      \uB290\uAEF4\uC84C\uB2E4.)\r\n\uC140:\uBCF8\uB3C4 \uBC14\uC060 \uC77C\uC774
       \uC880 \uC904\uC5B4\uB4E4\uC5B4\uC11C \uB2E4\uD589\uC774\uC5D0\uC694.\r\n\uC140:(\uB098\uB3C4
       \uADF8 \uBD84\uC704\uAE30\uC5D0 \uD729\uC4F8\uB824 \uD3C9\uC18C\uB77C\uBA74
       \uAEBC\uB0B4\uC9C0 \uC54A\uC744 \uC5B4\uC0C9\uD55C \uB9D0\uC744 \uAEBC\uB0B8\uB2E4.)\r\n\uC140:\uBCF8\uC774
-      \uC5C6\uC744 \uB54C, \uB9CE\uC774 \uC4F8\uC4F8\uD558\uB2C8 \uC790\uC8FC \uB9D0\uAC78\uC5B4\uC8FC\uC138\uC694.\r\n\uBCF8:!....\n\uBCF8:\u314E\u314E\u314E\uADF8\uB798!!
-      \uC790\uC8FC \uB300\uD654\uD558\uC790!\n\uC140:(\uBCF8\uACFC\uC758 \uB9C8\uC74C\uC758
+      \uC5C6\uC744 \uB54C, \uB9CE\uC774 \uC4F8\uC4F8\uD558\uB2C8 \uC790\uC8FC \uB9D0\uAC78\uC5B4\uC8FC\uC138\uC694.\r\n\uBCF8:!....\r\n\uBCF8:\u314E\u314E\u314E\uADF8\uB798!!
+      \uC790\uC8FC \uB300\uD654\uD558\uC790!\r\n\uC140:(\uBCF8\uACFC\uC758 \uB9C8\uC74C\uC758
       \uAC70\uB9AC\uAC00 \uD6E8\uC52C \uAC00\uAE4C\uC6CC\uC9C0\uAC8C \uB41C \uAC83
       \uAC19\uB2E4.)"
     Object: {fileID: 0}
@@ -3854,7 +3870,7 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: Korean
-    Text: "\uC140:(\uBCF8\uC774 \uC544\uBB34 \uB9D0\uB3C4 \uC5C6\uB2E4.)"
+    Text: "\uC140:(.....)\r\n\uC140:(\uBCF8\uC774 \uC544\uBB34 \uB9D0\uB3C4 \uC5C6\uB2E4.)"
     Object: {fileID: 0}
   - Language: English
     Text: 
@@ -5263,10 +5279,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1236448809261158721}
+  - component: {fileID: 8237601702668428561}
   - component: {fileID: 1236448809261158720}
   - component: {fileID: 1236448809261158723}
   - component: {fileID: 1236448809261158722}
-  - component: {fileID: 8237601702668428561}
   - component: {fileID: 6693350333527125348}
   - component: {fileID: 8467853946799599837}
   m_Layer: 5
@@ -9896,7 +9912,7 @@ MonoBehaviour:
   HealthBar: {fileID: 6630531015247823431}
   LossHealthBar: {fileID: 950654135512405376}
   Player: {fileID: 648711508}
-  StartMapNum: 1
+  StartMapNum: 30
   EndMapNum: 51
 --- !u!114 &8253748085733452194
 MonoBehaviour:
