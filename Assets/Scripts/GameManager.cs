@@ -176,7 +176,6 @@ public class GameManager : MonoBehaviour
         if (isRestartBtn)
         {
             confirmBtn.onClick.AddListener(() => {
-				SaveLevel();
 				GameRestart();
 			});
             content.text = "처음으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n첫 스테이지로 돌아갈까요?";
@@ -184,7 +183,6 @@ public class GameManager : MonoBehaviour
         else
         {
             confirmBtn.onClick.AddListener(() => {
-				SaveLevel();
 				LoadMenuScene();
 			});
             content.text = "홈화면으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n홈 화면으로 돌아갈까요?";

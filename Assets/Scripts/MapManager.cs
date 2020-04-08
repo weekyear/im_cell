@@ -18,7 +18,9 @@ public class MapManager : MonoBehaviour
 
 		AudioManager.Instance?.StartBgm_GameScene();
 
-		if (GameManager.MapNum > 45)
+        if (GameManager.MapNum > PlayfabManager.Instance?.Level) PlayfabManager.Instance?.SaveLevel(GameManager.MapNum);
+
+        if (GameManager.MapNum > 45)
         {
             GameObject.Find("Main Camera").GetComponent<Camera>().backgroundColor = new Color(0.5f, 0.75f, 0.75f, 0.56f);
         }
@@ -87,8 +89,18 @@ public class MapManager : MonoBehaviour
         {
 #if UNITY_EDITOR || ASTANDALONE
             return GameManager.MapNum > PlayerPrefs.GetInt("ShownStoryNum");
-#elif UNITY_ANDROID 
+#elif UNITY_ANDROID
+            
+            Debug.Log($"{PlayfabManager.Instance?.Level}");
             return GameManager.MapNum > PlayfabManager.Instance?.Level;
+            //try
+            //{
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //    Debug.Log(e.Message);
+            //}
 #endif 
         }
     }
