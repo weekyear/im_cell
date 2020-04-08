@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
                     var rigid2D = gameObject.GetComponent<Rigidbody2D>();
                     if (rigid2D.velocity.magnitude == 0)
                     {
-                        var directionX = Math.Sign(gameObject.transform.localScale.x) * -1f;
+                        var directionX = Math.Sign(gameObject.transform.localScale.x);
                         rigid2D.velocity = directionX * Vector2.left * 2;
                     }
                 }

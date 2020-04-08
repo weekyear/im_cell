@@ -9484,7 +9484,7 @@ PrefabInstance:
     - target: {fileID: 4441048599631725387, guid: a6a3ea6515d1b0c47a948ad870dadcd5,
         type: 3}
       propertyPath: ChestIndex
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5228919592573929531, guid: a6a3ea6515d1b0c47a948ad870dadcd5,
         type: 3}
