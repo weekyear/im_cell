@@ -224,7 +224,14 @@ public class GameManager : MonoBehaviour
 		Revival();
 		GameoverWindow.SetActive(false);
 #elif UNITY_ANDROID
-		MobileAdManager.Instance.ShowRewardAd();
+		if (PlayfabManager.Instance.NoAd)
+		{
+			Revival();
+			GameoverWindow.SetActive(false);
+		} else
+		{
+			MobileAdManager.Instance.ShowRewardAd();
+		}
 #endif
 	}
 

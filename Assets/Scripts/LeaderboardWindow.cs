@@ -8,7 +8,8 @@ public class LeaderboardWindow : MonoBehaviour
 {
 	private readonly string END_PLAYER_ID = "CA0E658C24842CA3";
 	[SerializeField] GameObject RankItemPrefab;
-	[SerializeField] GameObject Content;
+	[SerializeField] Transform MyScore;
+	[SerializeField] Transform Content;
 
 	private List<LeaderboardData> leaderboards = new List<LeaderboardData>();
 	private bool isLeaderboardEnd;
@@ -21,7 +22,9 @@ public class LeaderboardWindow : MonoBehaviour
 			return;
 		}
 
-		foreach (Transform child in Content.transform) Destroy(child.gameObject);
+		UpdateMyScore();
+
+		foreach (Transform child in Content) Destroy(child.gameObject);
 		leaderboards.Clear();
 
 		PlayfabManager.Instance.MoreScores(0, newLeaderboards =>
@@ -29,6 +32,19 @@ public class LeaderboardWindow : MonoBehaviour
 			UpdateMoreScores(newLeaderboards);
 			gameObject.SetActive(true);
 		});
+	}
+
+	private void UpdateMyScore()
+	{
+		if (PlayfabManager.Instance.MyBest == null)
+		{
+			MyScore.Find("Rank").GetComponent<Text>().text = "-";
+			MyScore.Find("Name").GetComponent<Text>().text = PlayfabManager.Instance.UserName;
+			MyScore.Find("Score").GetComponent<Text>().text = $"{PlayfabManager.Instance.Level}레벨";
+		} else
+		{
+			UpdateItem(MyScore, PlayfabManager.Instance.MyBest);
+		}
 	}
 
 	private void UpdateMoreScores(List<LeaderboardData> newLeaderboards)
@@ -40,12 +56,19 @@ public class LeaderboardWindow : MonoBehaviour
 			leaderboards.Add(data);
 
 			var rankItem = Instantiate(RankItemPrefab);
-			rankItem.transform.SetParent(Content.transform, false);
-
-			rankItem.transform.Find("Rank").gameObject.GetComponent<Text>().text = data.Rank.ToString();
-			rankItem.transform.Find("Name").gameObject.GetComponent<Text>().text = data.DisplayName;
-			rankItem.transform.Find("Score").gameObject.GetComponent<Text>().text = data.Score.ToString("0.00");
+			rankItem.transform.SetParent(Content, false);
+			UpdateItem(rankItem.transform, data);
 		}
+	}
+
+	private void UpdateItem(Transform item, LeaderboardData data)
+	{
+		item.Find("Rank").gameObject.GetComponent<Text>().text = data.Rank.ToString();
+		item.Find("Name").gameObject.GetComponent<Text>().text = data.DisplayName;
+
+		float min = Mathf.Floor(data.Score / 60);
+		float seconds = data.Score % 60;
+		item.Find("Score").gameObject.GetComponent<Text>().text = $"{min.ToString("00") }:{seconds.ToString("00.00")}";
 	}
 
 	public void OnScrollChanged(Vector2 scroll)

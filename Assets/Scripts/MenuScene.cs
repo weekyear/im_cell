@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,8 @@ using UnityEngine.UI;
 
 public class MenuScene : MonoBehaviour
 {
+	[SerializeField] GameObject NoAdBtn;
+	[SerializeField] GameObject VIPImage;
 	[SerializeField] GameObject SettingMenu;
 	[SerializeField] LoginWindow loginWindow;
 	[SerializeField] CreateUserWindow createUserWindow;
@@ -14,6 +17,7 @@ public class MenuScene : MonoBehaviour
 	private void Awake()
 	{
 		PlayfabManager.OnNewUser += OnNewUser;
+		PlayfabManager.UserDataUpdated += UserDataUpdated;
 	}
 
 	private void Start()
@@ -31,17 +35,31 @@ public class MenuScene : MonoBehaviour
 		PlayfabManager.Instance.Login();
 #endif
 		}
+
+		UpdateAdButtons();
 	}
 
 	private void OnDestroy()
 	{
 		PlayfabManager.OnNewUser -= OnNewUser;
+		PlayfabManager.UserDataUpdated -= UserDataUpdated;
 	}
 	#endregion
 
 	private void OnNewUser()
 	{
 		createUserWindow.Show();
+	}
+
+	private void UserDataUpdated()
+	{
+		UpdateAdButtons();
+	}
+
+	private void UpdateAdButtons()
+	{
+		NoAdBtn.SetActive(!PlayfabManager.Instance.NoAd);
+		VIPImage.SetActive(PlayfabManager.Instance.NoAd);
 	}
 
 	public void ShowSettingMenu()
@@ -67,6 +85,8 @@ public class MenuScene : MonoBehaviour
 		AudioManager.Instance.PlayEffectSound("button_click_01");
 		SceneManager.LoadScene("GameScene");
 	}
+
+	public void PurchasNoAd() => PlayfabManager.Instance.InAppPurchase("remove_ads");
 
 	public void QuitGame()
 	{

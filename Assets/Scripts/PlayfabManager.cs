@@ -18,7 +18,7 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 
 	public string Id { get; private set; }
 	public string UserName { get; private set; }
-	public Dictionary<string, LeaderboardData> MyBest = new Dictionary<string, LeaderboardData>();
+	public LeaderboardData MyBest;
 	public Dictionary<string, LeaderboardData> Total = new Dictionary<string, LeaderboardData>();
 	private IStoreController storeController;
 	private Dictionary<string, string> UserData;
@@ -27,7 +27,7 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 
 	public static event Action OnNewUser;
 	public static event Action InventoryUpdated;
-	public static event Action MyBestUpdated;
+	public static event Action UserDataUpdated;
 	public static event Action WorldBestUpdated;
 
 	private void Awake()
@@ -147,7 +147,7 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 		PlayFabClientAPI.GetUserData(new GetUserDataRequest { PlayFabId = Id },
 			result => {
 				UserData = result.Data.ToDictionary(v=> v.Key, v => v.Value.Value);
-				MyBestUpdated?.Invoke();
+				UserDataUpdated?.Invoke();
 			},
 			error => ToastManager.Instance.Show("유저 정보를 불러오는데 실패했습니다."));
 
@@ -166,8 +166,8 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 
 				if (entry == null) return;
 
-				MyBest[name] = new LeaderboardData(entry);
-				MyBestUpdated?.Invoke();
+				MyBest = new LeaderboardData(entry);
+				UserDataUpdated?.Invoke();
 			},
 			error =>
 			{
@@ -187,7 +187,7 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 				if (entry == null) return;
 
 				Total[name] = new LeaderboardData(entry);
-				MyBestUpdated?.Invoke();
+				UserDataUpdated?.Invoke();
 				IsLoading = false;
 			},
 			error =>
@@ -259,7 +259,13 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 	{
 		if (level <= Level) return;
 
-		PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest { Data = new Dictionary<string, string> { { "level", level.ToString() } } }, null, null);
+		string stringLevel = level.ToString();
+		PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest { Data = new Dictionary<string, string> { { "level", stringLevel } } },
+			result =>
+			{
+				UserData["level"] = stringLevel;
+				UserDataUpdated?.Invoke();
+			}, null);
 	}
 
 	private bool CheckName(string name) => !string.IsNullOrEmpty(name) && name.Length >= 3;
@@ -346,10 +352,11 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 				case "remove_ads":
 					PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest { Data = new Dictionary<string, string> { { "remove_ads", true.ToString() } } },
 						result2 => {
-							ToastManager.Instance.Show(Lean.Localization.LeanLocalization.GetTranslationText("purchase_success"));
+							ToastManager.Instance.Show("광고 제거를 구매했습니다.");
 							UserData["remove_ads"] = true.ToString();
+							UserDataUpdated?.Invoke();
 						},
-						error => ToastManager.Instance.Show(Lean.Localization.LeanLocalization.GetTranslationText("purchase_error")));
+						error => ToastManager.Instance.Show("구매 도중 오류가 발생했습니다. 반드시 개발자에게 문의해주세요!"));
 					break;
 			}
 		}, error => ToastManager.Instance.Show("비정상적인 구매요청입니다."));
