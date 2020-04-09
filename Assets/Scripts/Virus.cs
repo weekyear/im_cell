@@ -24,7 +24,7 @@ public class Virus : MonoBehaviour
 
             MapManager.VirusBeKilled();
 
-            PlayerObserver.HealthChanged(15);
+            PlayerObserver.HealthChanged(20);
 
             AudioManager.Instance.PlayEffectSound("virus_killed");
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7568245054758344514}
   - component: {fileID: 5212576096115191274}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4598839469757329417}
   - component: {fileID: 7113619284854890045}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3804395224617327519}
   - component: {fileID: 293195625989005965}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3727793972241523923}
   - component: {fileID: 5032146230117645238}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3426095965888713522}
   - component: {fileID: 4980979095154674105}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8500621071044045132}
   - component: {fileID: 7423067353651452404}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 1661861318187261935}
   - component: {fileID: 2984711509996945896}
   - component: {fileID: 8217722011795727329}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5339,7 +5339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5898158680994599948}
   - component: {fileID: 2429869644910127104}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5420,7 +5420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2895318978923469783}
   - component: {fileID: 5381832627693703443}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5501,7 +5501,7 @@ GameObject:
   m_Component:
   - component: {fileID: 809390088096865112}
   - component: {fileID: 8431837247344552366}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5581,7 +5581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8150455674026680652}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5624,7 +5624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 396735607781212149}
   - component: {fileID: 6614336147548469870}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5705,7 +5705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6604552494968357688}
   - component: {fileID: 236911085453834918}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5786,7 +5786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7648154920211539616}
   - component: {fileID: 6665125225162173697}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Virus_Horn (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject MessageWindow;
     [SerializeField] private GameObject GameoverWindow;
     [SerializeField] private GameObject PauseWindow;
-    [SerializeField] private GameObject GameFinishedWindow;
+    [SerializeField] private GameObject ConfirmWindow;
     [SerializeField] private GameObject HealthBar;
     [SerializeField] private GameObject LossHealthBar;
     [SerializeField] private GameObject Player;
@@ -39,8 +39,22 @@ public class GameManager : MonoBehaviour
         RecentVirus = 0;
         RevivalNum = 0;
         EndedMapNum = EndMapNum;
-        MapNum = StartMapNum;
-        PassedMapNum = StartMapNum - 1;
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        MenuScene.IsNewGameStart = true;
+#endif
+
+        if (MenuScene.IsNewGameStart)
+        {
+            MapNum = StartMapNum;
+        }
+        else
+        {
+            MapNum = PlayerPrefs.GetInt("SavedStage", 1);
+        }
+
+        GameObject.Find($"StageText").GetComponent<Text>().text = $"<Stage{MapNum}>";
+        PassedMapNum = MapNum - 1;
 
         Chest.IsOpenChestList.Clear();
         for (int i = 0; i < 11; i++)
@@ -97,7 +111,7 @@ public class GameManager : MonoBehaviour
                 ChangeTimeScale(0);
             }
 
-            PauseWindow.transform.Find("PauseTimerText").GetComponent<Text>().text = $"{time.ToString("F")} | {RevivalNum}회 부활";
+            PauseWindow.transform.Find("PauseTimerText").GetComponent<Text>().text = $"{TimeText} | {RevivalNum}회 부활";
         }
     }
 
@@ -136,7 +150,7 @@ public class GameManager : MonoBehaviour
 
     private void SetPlayerScaleByHealth()
     {
-        var playerScale = (0.8f + 0.002f * Health) * 0.6f;
+        var playerScale = (0.85f + 0.0015f * Health) * 0.55f;
 
         Player.transform.localScale = new Vector3(Mathf.Sign(Player.transform.position.x) * playerScale, playerScale);
     }
@@ -147,7 +161,8 @@ public class GameManager : MonoBehaviour
 
         ChangeTimeScale(0);
 
-        GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{time.ToString("F")} | {RevivalNum}회 부활";
+        GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{TimeText} | {RevivalNum}회 부활";
+        GameoverWindow.transform.Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayerPrefs.GetInt("SavedStage", 1)}";
         GameoverWindow.SetActive(true);
 
         PlayerController.IsAnimatingDead = false;
@@ -155,38 +170,40 @@ public class GameManager : MonoBehaviour
 
     public void ClickRestartBtn()
     {
-        SetGameFinishedWindow(true);
+        SetConfirmWindow("처음으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n첫 스테이지로 돌아갈까요?", new Action(() => GameRestart()));
         AudioManager.Instance.PlayEffectSound("button_click_01");
     }
 
     public void ClickMenuBtn()
     {
-        SetGameFinishedWindow(false);
+        SetConfirmWindow("홈화면으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n홈 화면으로 돌아갈까요?", new Action(() => LoadMenuScene()));
         AudioManager.Instance.PlayEffectSound("button_click_01");
     }
 
-    private void SetGameFinishedWindow(bool isRestartBtn)
+    public void ClickSaveStageBtn()
     {
-        GameFinishedWindow.SetActive(true);
+        SetConfirmWindow("이전에 저장된 스테이지 기록이 지워집니다.\n\n현재 스테이지를 저장할까요?", new Action(() => SaveStage()));
+    }
 
-        var confirmBtn = GameFinishedWindow.transform.Find("Buttons").Find("ConfirmButton").GetComponent<Button>();
+    private void SaveStage()
+    {
+        PlayerPrefs.SetInt("SavedStage", MapNum);
+        GameoverWindow.transform.Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayerPrefs.GetInt("SavedStage", 1)}";
+        ConfirmWindow.SetActive(false);
+        AudioManager.Instance.PlayEffectSound("button_click_01");
+    }
+
+    private void SetConfirmWindow(string _text, Action _action)
+    {
+        ConfirmWindow.SetActive(true);
+
+        var confirmBtn = ConfirmWindow.transform.Find("Buttons").Find("ConfirmButton").GetComponent<Button>();
         confirmBtn.onClick.RemoveAllListeners();
+        confirmBtn.onClick.AddListener(() => {
+            _action();
+        });
 
-        var content = GameFinishedWindow.transform.Find("Content").GetComponent<Text>();
-        if (isRestartBtn)
-        {
-            confirmBtn.onClick.AddListener(() => {
-				GameRestart();
-			});
-            content.text = "처음으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n첫 스테이지로 돌아갈까요?";
-        }
-        else
-        {
-            confirmBtn.onClick.AddListener(() => {
-				LoadMenuScene();
-			});
-            content.text = "홈화면으로 돌아가면 지금 위치에서는 시작하지 못 합니다.\n\n홈 화면으로 돌아갈까요?";
-        }
+        ConfirmWindow.transform.Find("Content").GetComponent<Text>().text = _text;
     }
 
 	private void SaveLevel()
@@ -194,9 +211,9 @@ public class GameManager : MonoBehaviour
 		PlayfabManager.Instance.SaveLevel(MapNum);
 	}
 
-	public void CloseGameFinishedWindow()
+	public void CloseConfirmWindow()
     {
-        GameFinishedWindow.SetActive(false);
+        ConfirmWindow.SetActive(false);
         AudioManager.Instance.PlayEffectSound("button_click_02");
     }
 
@@ -252,6 +269,16 @@ public class GameManager : MonoBehaviour
         get
         {
             return Time.timeScale != 0 && Health <= 0 && Player.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.01;
+        }
+    }
+
+    private string TimeText
+    {
+        get
+        {
+            float min = Mathf.Floor(time / 60);
+            float seconds = time % 60;
+            return $"{min.ToString("00") }:{seconds.ToString("00.00")}";
         }
     }
 }

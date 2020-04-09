@@ -36,7 +36,7 @@ public class LeaderboardWindow : MonoBehaviour
 
 	private void UpdateMyScore()
 	{
-		if (PlayfabManager.Instance.MyBest == null)
+		if (PlayfabManager.Instance.MyBest == null || PlayfabManager.Instance.MyBest.Score == 0f)
 		{
 			MyScore.Find("Rank").GetComponent<Text>().text = "-";
 			MyScore.Find("Name").GetComponent<Text>().text = PlayfabManager.Instance.UserName;

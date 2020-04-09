@@ -61,9 +61,9 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
             var endingImage = GameEndingWindow.GetComponent<Image>();
             if (endingImage.color.a < 0.53f) endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.2f * creditSpeed * Time.deltaTime);
             var endingTransform = GameEndingWindow.transform.Find("EndingText");
-            endingTransform.position = new Vector3(endingTransform.position.x, endingTransform.position.y + 50f * creditSpeed * Time.deltaTime, endingTransform.position.z);
+            endingTransform.position = new Vector2(endingTransform.position.x, endingTransform.position.y + 50f * creditSpeed * Time.deltaTime);
 
-            if (endingTransform.position.y > 7200)
+            if (endingTransform.position.y > endingTransform.GetComponent<RectTransform>().rect.height + 1100f)
             {
                 endingImage.color = new Color(endingImage.color.r, endingImage.color.g, endingImage.color.b, endingImage.color.a + 0.1f * creditSpeed * Time.deltaTime);
                 if (endingImage.color.a >= 1.00f && !IsEndedCredit) StartCoroutine(WaitAndLoadMenuScene());
@@ -88,7 +88,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
         var endingContent = endingText.transform.Find("EndingContent").GetComponent<Text>();
 
         endingTitle.text = "True Ending";
-        endingContent.text = "<잔혹한 새하얀 진실>";
+        endingContent.text = "<잔혹하게 다가온 새하얀 진실>";
         StartCoroutine(ShowEndingCredit());
     }
 

@@ -16,10 +16,6 @@ public class MapLine : MonoBehaviour
                 SwitchMap(collision.gameObject);
             }
         }
-        else
-        {
-            //PlayerObserver.GameFinished();
-        }
     }
 
     private bool IsPlayer(Collider2D collision)

@@ -9,13 +9,18 @@ public class MenuScene : MonoBehaviour
 {
 	[SerializeField] GameObject NoAdBtn;
 	[SerializeField] GameObject VIPImage;
+	[SerializeField] GameObject StartMenu;
 	[SerializeField] GameObject SettingMenu;
 	[SerializeField] LoginWindow loginWindow;
 	[SerializeField] CreateUserWindow createUserWindow;
 
+	public static bool IsNewGameStart;
+
 	#region CALLBACKS
 	private void Awake()
 	{
+		IsNewGameStart = false;
+
 		PlayfabManager.OnNewUser += OnNewUser;
 		PlayfabManager.UserDataUpdated += UserDataUpdated;
 	}
@@ -72,8 +77,40 @@ public class MenuScene : MonoBehaviour
 		AudioManager.Instance.PlayEffectSound("button_click_02");
 		SettingMenu.SetActive(false);
 	}
+	
+	public void ShowStartMenu()
+	{
+		AudioManager.Instance.PlayEffectSound("button_click_01");
+		StartMenu.SetActive(true);
 
-	public void StartGame()
+		var continueBtn = StartMenu.transform.Find("Buttons").Find("ContinueGameButton");
+		continueBtn.Find("BtnTitle_1").GetComponent<Text>().text = $"스테이지 {PlayerPrefs.GetInt("SavedStage", 1)}";
+
+		if (PlayerPrefs.GetInt("SavedStage", 1) == 1)
+		{
+			continueBtn.GetComponent<Button>().interactable = false;
+		}
+	}
+
+	public void CloseStartMenu()
+	{
+		AudioManager.Instance.PlayEffectSound("button_click_02");
+		StartMenu.SetActive(false);
+	}
+
+	public void ClickNewGameBtn()
+	{
+		IsNewGameStart = true;
+		StartGame();
+	}
+
+	public void ClickContinueGameBtn()
+	{
+		IsNewGameStart = false;
+		StartGame();
+	}
+
+	private void StartGame()
 	{
 		if (!PlayfabManager.Instance.IsLogin)
 		{

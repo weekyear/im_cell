@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        IsAnimatingDead = false;
+
         PlayerObserver.OnDamaged += Damaged;
         PlayerObserver.OnPlayerActivated += ChangePlayerState;
     }

@@ -33,8 +33,8 @@ public class MobileAdManager : MonoBehaviour
 	private void CreateAndLoadAd()
 	{
 #if UNITY_ANDROID
-		//string adUnitId = "ca-app-pub-8413101784746060/3517986761";
-		string adUnitId = "ca-app-pub-3940256099942544/5224354917"; // test id
+		string adUnitId = "ca-app-pub-8413101784746060/3517986761";
+		//string adUnitId = "ca-app-pub-3940256099942544/5224354917"; // test id
 #elif UNITY_IPHONE
         string adUnitId = "ca-app-pub-3940256099942544/2934735716";
 #else

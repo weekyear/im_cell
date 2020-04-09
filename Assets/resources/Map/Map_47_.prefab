@@ -9254,7 +9254,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":3.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":8.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: c18fe660b8dc4af4ca1ac9450d47f703,
         type: 3}
@@ -10584,7 +10584,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":3.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":5.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
@@ -11654,7 +11654,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":4.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
@@ -11894,7 +11894,7 @@ PrefabInstance:
     - target: {fileID: 4327787986662373567, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
       propertyPath: _data._json
-      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":3.0,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      value: '{"declarations":{"collection":{"$content":[{"name":"Speed","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"},{"name":"StartPosY","value":{"$content":4.5,"$type":"System.Single"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 4426201282490232548, guid: e8d51dc4c2019bb4ebe83e71a0456450,
         type: 3}
