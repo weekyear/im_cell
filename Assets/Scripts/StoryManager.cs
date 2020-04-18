@@ -31,6 +31,9 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
 
     public static bool IsEndingCredit;
     public static bool IsEndedCredit;
+
+    public static bool IsTrueEnding;
+
     private void Awake()
     {
         PlayerObserver.OnChestOpened += ChestOpened;
@@ -80,6 +83,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
 
     private void GameTrueEnding()
     {
+        IsTrueEnding = true;
         GameObject.Find("CM vcam").GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize = 3.5f;
         AudioManager.Instance.StartGameBgm_TrueEnding();
 
@@ -117,6 +121,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
         MessageWindow.SetActive(true);
         AudioManager.Instance.PlayEffectSound("booksori");
         MessageWindow.transform.Find("Content").GetComponent<Text>().text = message;
+        Player.GetComponent<PlayerController>().InactivateTouchDown();
         GameManager.ChangeTimeScale(0);
 
         if (GameManager.MapNum == 51)

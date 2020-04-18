@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject GameoverWindow;
     [SerializeField] private GameObject PauseWindow;
     [SerializeField] private GameObject ConfirmWindow;
+    [SerializeField] private GameObject SaveConfirmWindow;
     [SerializeField] private GameObject HealthBar;
     [SerializeField] private GameObject LossHealthBar;
     [SerializeField] private GameObject Player;
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
         RecentVirus = 0;
         RevivalNum = 0;
         EndedMapNum = EndMapNum;
+
+        SetShowAdBtn();
 
 #if UNITY_EDITOR || UNITY_STANDALONE
         MenuScene.IsNewGameStart = true;
@@ -68,6 +71,18 @@ public class GameManager : MonoBehaviour
         PlayerObserver.OnGameOver += GameOver;
 
         Instantiate(Resources.Load($"Map/Map_{MapNum}_"));
+    }
+
+    private void SetShowAdBtn()
+    {
+        if (PlayfabManager.Instance != null && PlayfabManager.Instance.NoAd)
+        {
+            RectTransform _rect = GameoverWindow.GetComponent<RectTransform>();
+            _rect.sizeDelta = new Vector2(_rect.rect.width, 600f);
+            GameoverWindow.transform.Find("ShowAdText").gameObject.SetActive(false);
+            GameoverWindow.transform.Find("Buttons").Find("ShowAdButton").Find("Text").GetComponent<Text>().text = "부활";
+            GameoverWindow.transform.Find("Buttons").Find("ShowAdButton").Find("Text").GetComponent<Text>().fontSize = 50;
+        }
     }
 
 	private void OnDestroy()
@@ -162,7 +177,7 @@ public class GameManager : MonoBehaviour
         ChangeTimeScale(0);
 
         GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{TimeText} | {RevivalNum}회 부활";
-        GameoverWindow.transform.Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayerPrefs.GetInt("SavedStage", 1)}";
+        GameoverWindow.transform.Find("SaveStagePanel").Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayerPrefs.GetInt("SavedStage", 1)}";
         GameoverWindow.SetActive(true);
 
         PlayerController.IsAnimatingDead = false;
@@ -180,16 +195,21 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayEffectSound("button_click_01");
     }
 
-    public void ClickSaveStageBtn()
+    public void ShowSaveConfirmWindow()
     {
-        SetConfirmWindow("이전에 저장된 스테이지 기록이 지워집니다.\n\n현재 스테이지를 저장할까요?", new Action(() => SaveStage()));
+        SaveConfirmWindow.SetActive(true);
     }
 
-    private void SaveStage()
+    public void CloseSaveConfirmWindow()
+    {
+        SaveConfirmWindow.SetActive(false);
+    }
+
+    public void SaveStage()
     {
         PlayerPrefs.SetInt("SavedStage", MapNum);
         GameoverWindow.transform.Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayerPrefs.GetInt("SavedStage", 1)}";
-        ConfirmWindow.SetActive(false);
+        SaveConfirmWindow.SetActive(false);
         AudioManager.Instance.PlayEffectSound("button_click_01");
     }
 
@@ -239,18 +259,24 @@ public class GameManager : MonoBehaviour
 		Revival();
 		GameoverWindow.SetActive(false);
 #elif UNITY_ANDROID
+        Debug.Log("1");
 		if (PlayfabManager.Instance.NoAd)
 		{
+            Debug.Log("2");
 			Revival();
+            Debug.Log("3");
 			GameoverWindow.SetActive(false);
+            Debug.Log("4");
 		} else
 		{
-			MobileAdManager.Instance.ShowRewardAd();
+            Debug.Log("5");
+			MobileAdManager.Instance?.ShowRewardAd();
+            Debug.Log("6");
 		}
 #endif
-	}
+    }
 
-	private void Revival()
+    private void Revival()
 	{
 		HealthBarChanged(200);
 		RevivalNum += 1;

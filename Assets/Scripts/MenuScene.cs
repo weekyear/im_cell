@@ -31,6 +31,15 @@ public class MenuScene : MonoBehaviour
 		{
 			AudioManager.Instance?.StartMenuBgm();
 		}
+		else
+		{
+			if (StoryManager.IsTrueEnding)
+			{
+				StoryManager.IsTrueEnding = false;
+				gameObject.transform.Find("Title").gameObject.SetActive(false);
+				gameObject.transform.Find("TrueTitle").gameObject.SetActive(true);
+			}
+		}
 
 		if (!PlayfabManager.Instance.IsLogin)
 		{

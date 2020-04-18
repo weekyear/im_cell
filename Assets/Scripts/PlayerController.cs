@@ -287,7 +287,7 @@ public class PlayerController : MonoBehaviour
 #elif UNITY_ANDROID
             if (Input.touchCount > 0)
             {
-                Console.WriteLine($"IsPointerOverGameObject : {EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId)}");
+                Debug.Log($"IsPointerOverGameObject : {EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId)}");
                 if (EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
                     return true;
             }

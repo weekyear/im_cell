@@ -90,17 +90,8 @@ public class MapManager : MonoBehaviour
 #if UNITY_EDITOR || ASTANDALONE
             return GameManager.MapNum > PlayerPrefs.GetInt("ShownStoryNum");
 #elif UNITY_ANDROID
-            
             Debug.Log($"{PlayfabManager.Instance?.Level}");
             return GameManager.MapNum > PlayfabManager.Instance?.Level;
-            //try
-            //{
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //    Debug.Log(e.Message);
-            //}
 #endif 
         }
     }

@@ -13,6 +13,10 @@ public class RiverGround : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (collision.collider.gameObject.layer != LayerMask.NameToLayer("PlayerInvincible"))
+        {
+            collision.collider.gameObject.layer = LayerMask.NameToLayer("PlayerInvincible");
+        }
         var rigid2D = collision.collider.GetComponent<Rigidbody2D>();
         rigid2D.velocity = new Vector2(-18f, 0);
     }
