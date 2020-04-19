@@ -10,7 +10,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject MessageWindow;
+	public static List<bool> IsOpenChestList;
+
+	[SerializeField] private GameObject MessageWindow;
     [SerializeField] private GameObject GameoverWindow;
     [SerializeField] private GameObject PauseWindow;
     [SerializeField] private GameObject ConfirmWindow;
@@ -59,11 +61,7 @@ public class GameManager : MonoBehaviour
         GameObject.Find($"StageText").GetComponent<Text>().text = $"<Stage{MapNum}>";
         PassedMapNum = MapNum - 1;
 
-        Chest.IsOpenChestList.Clear();
-        for (int i = 0; i < 11; i++)
-        {
-            Chest.IsOpenChestList.Add(false);
-        }
+		IsOpenChestList = PlayfabManager.Instance.ChestList;
 
 		MobileAdManager.OnRewardEarned += OnRewardEarned;
 		PlayerObserver.OnHealthChanged += HealthBarChanged;
@@ -102,11 +100,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.C)) Player.transform.position = new Vector3(30, 0, 0);
         if (Input.GetKey(KeyCode.O))
         {
-            for (int i = 0; i < Chest.IsOpenChestList.Count; i++)
-            {
-                Chest.IsOpenChestList[i] = true;
-            }
-        }
+            for (int i = 0; i < IsOpenChestList.Count; i++) IsOpenChestList[i] = true;
+		}
     }
 
     public void GamePause()
@@ -206,9 +201,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void SaveStage()
-    {
-        PlayerPrefs.SetInt("SavedStage", MapNum);
-        GameoverWindow.transform.Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayerPrefs.GetInt("SavedStage", 1)}";
+	{
+		PlayfabManager.Instance.SaveStage(MapNum);
+        GameoverWindow.transform.Find("SaveStagePanel").Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayfabManager.Instance.Level}";
         SaveConfirmWindow.SetActive(false);
         AudioManager.Instance.PlayEffectSound("button_click_01");
     }
@@ -225,11 +220,6 @@ public class GameManager : MonoBehaviour
 
         ConfirmWindow.transform.Find("Content").GetComponent<Text>().text = _text;
     }
-
-	private void SaveLevel()
-	{
-		PlayfabManager.Instance.SaveLevel(MapNum);
-	}
 
 	public void CloseConfirmWindow()
     {

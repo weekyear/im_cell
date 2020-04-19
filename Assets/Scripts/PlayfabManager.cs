@@ -255,15 +255,17 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 			});
 	}
 
-	public void SaveLevel(int level)
+	public void SaveStage(int level)
 	{
 		if (level <= Level) return;
 
 		string stringLevel = level.ToString();
-		PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest { Data = new Dictionary<string, string> { { "level", stringLevel } } },
+		string chestString = string.Join(", ", GameManager.IsOpenChestList.ToArray());
+		PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest { Data = new Dictionary<string, string> { { "level", stringLevel }, { "chest", chestString } } },
 			result =>
 			{
 				UserData["level"] = stringLevel;
+				UserData["chest"] = chestString;
 				UserDataUpdated?.Invoke();
 			}, null);
 	}
@@ -316,6 +318,16 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 			if (UserData == null || !UserData.ContainsKey("level")) return 1;
 
 			return int.Parse(UserData["level"]);
+		}
+	}
+
+	public List<bool> ChestList
+	{
+		get
+		{
+			if (UserData == null || !UserData.ContainsKey("chest")) return new List<bool>(new bool[11]);
+
+			return UserData["chest"].Split(',').Select(v => bool.Parse(v)).ToList();
 		}
 	}
 

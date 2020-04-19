@@ -18,7 +18,7 @@ public class MapManager : MonoBehaviour
 
 		AudioManager.Instance?.StartBgm_GameScene();
 
-        if (GameManager.MapNum > PlayfabManager.Instance?.Level) PlayfabManager.Instance?.SaveLevel(GameManager.MapNum);
+        if (GameManager.MapNum > PlayfabManager.Instance?.Level) PlayfabManager.Instance?.SaveStage(GameManager.MapNum);
 
         if (GameManager.MapNum > 45)
         {
@@ -27,7 +27,7 @@ public class MapManager : MonoBehaviour
 
 		if (GameManager.MapNum > 50)
 		{
-			PlayfabManager.Instance?.SaveLevel(51);
+			PlayfabManager.Instance?.SaveStage(51);
 			if (MenuScene.IsNewGameStart) PlayfabManager.Instance?.ReportScore(GameManager.time);
         }
 

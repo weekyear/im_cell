@@ -7,15 +7,13 @@ public class Chest : MonoBehaviour
 {
     private static List<string> Contents;
 
-    public static List<bool> IsOpenChestList = new List<bool>();
-
     [SerializeField] private int ChestIndex;
 
-    private void Start()
+	private void Start()
     {
         if (ChestIndex != -1)
         {
-            gameObject.GetComponent<Animator>().SetBool("IsOpen", IsOpenChestList[ChestIndex]);
+            gameObject.GetComponent<Animator>().SetBool("IsOpen", GameManager.IsOpenChestList[ChestIndex]);
             var content = Lean.Localization.LeanLocalization.GetTranslationText($"Chest");
             Contents = content.Split('\n').ToList();
         }
@@ -43,7 +41,7 @@ public class Chest : MonoBehaviour
         if (ChestIndex != -1)
         {
             PlayerObserver.ChestOpened(Contents[ChestIndex]);
-            IsOpenChestList[ChestIndex] = true;
+            GameManager.IsOpenChestList[ChestIndex] = true;
         }
         else
         {

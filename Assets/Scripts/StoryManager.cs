@@ -110,7 +110,7 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
 
     private void GameNormalEnding()
     {
-        if (GameManager.MapNum > 50 && Chest.IsOpenChestList.Contains(false))
+        if (GameManager.MapNum > 50 && GameManager.IsOpenChestList.Contains(false))
         {
             StartCoroutine(ShowEndingCredit());
         }
