@@ -45,23 +45,24 @@ public class GameManager : MonoBehaviour
 
         SetShowAdBtn();
 
-#if UNITY_EDITOR || UNITY_STANDALONE
-        MenuScene.IsNewGameStart = true;
-#endif
-
-        if (MenuScene.IsNewGameStart)
+        if (MenuScene.IsNewGameStart == null)
         {
             MapNum = StartMapNum;
-        }
+			IsOpenChestList = new List<bool>(new bool[11]);
+		}
+		else if (MenuScene.IsNewGameStart == true)
+		{
+			MapNum = 1;
+			IsOpenChestList = new List<bool>(new bool[11]);
+		}
         else
         {
-            MapNum = PlayerPrefs.GetInt("SavedStage", 1);
-        }
+			MapNum = PlayfabManager.Instance.Level;
+			IsOpenChestList = PlayfabManager.Instance.ChestList;
+		}
 
         GameObject.Find($"StageText").GetComponent<Text>().text = $"<Stage{MapNum}>";
         PassedMapNum = MapNum - 1;
-
-		IsOpenChestList = PlayfabManager.Instance.ChestList;
 
 		MobileAdManager.OnRewardEarned += OnRewardEarned;
 		PlayerObserver.OnHealthChanged += HealthBarChanged;
@@ -172,7 +173,7 @@ public class GameManager : MonoBehaviour
         ChangeTimeScale(0);
 
         GameoverWindow.transform.Find("GameoverTimerText").GetComponent<Text>().text = $"{TimeText} | {RevivalNum}회 부활";
-        GameoverWindow.transform.Find("SaveStagePanel").Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayerPrefs.GetInt("SavedStage", 1)}";
+        GameoverWindow.transform.Find("SaveStagePanel").Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayfabManager.Instance.Level}";
         GameoverWindow.SetActive(true);
 
         PlayerController.IsAnimatingDead = false;

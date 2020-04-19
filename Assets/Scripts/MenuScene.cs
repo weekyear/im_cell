@@ -14,7 +14,7 @@ public class MenuScene : MonoBehaviour
 	[SerializeField] LoginWindow loginWindow;
 	[SerializeField] CreateUserWindow createUserWindow;
 
-	public static bool IsNewGameStart;
+	public static bool? IsNewGameStart;
 
 	#region CALLBACKS
 	private void Awake()
@@ -93,9 +93,9 @@ public class MenuScene : MonoBehaviour
 		StartMenu.SetActive(true);
 
 		var continueBtn = StartMenu.transform.Find("Buttons").Find("ContinueGameButton");
-		continueBtn.Find("BtnTitle_1").GetComponent<Text>().text = $"스테이지 {PlayerPrefs.GetInt("SavedStage", 1)}";
+		continueBtn.Find("BtnTitle_1").GetComponent<Text>().text = $"스테이지 {PlayfabManager.Instance.Level}";
 
-		if (PlayerPrefs.GetInt("SavedStage", 1) == 1)
+		if (PlayfabManager.Instance.Level == 1)
 		{
 			continueBtn.GetComponent<Button>().interactable = false;
 		}

@@ -28,7 +28,7 @@ public class MapManager : MonoBehaviour
 		if (GameManager.MapNum > 50)
 		{
 			PlayfabManager.Instance?.SaveStage(51);
-			if (MenuScene.IsNewGameStart) PlayfabManager.Instance?.ReportScore(GameManager.time);
+			if (MenuScene.IsNewGameStart == true) PlayfabManager.Instance?.ReportScore(GameManager.time);
         }
 
 		if (SettingManager.IsShownStoryAlways && GameManager.MapNum > GameManager.PassedMapNum || IsFirstStory)

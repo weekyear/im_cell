@@ -11179,7 +11179,7 @@ MonoBehaviour:
   HealthBar: {fileID: 6630531015247823431}
   LossHealthBar: {fileID: 950654135512405376}
   Player: {fileID: 648711508}
-  StartMapNum: 1
+  StartMapNum: 20
   EndMapNum: 51
 --- !u!114 &8253748085733452194
 MonoBehaviour:
