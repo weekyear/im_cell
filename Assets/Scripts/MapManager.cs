@@ -18,7 +18,10 @@ public class MapManager : MonoBehaviour
 
 		AudioManager.Instance?.StartBgm_GameScene();
 
-        if (GameManager.MapNum > PlayfabManager.Instance?.Level) PlayfabManager.Instance?.SaveStage(GameManager.MapNum);
+        //if (GameManager.MapNum > PlayfabManager.Instance?.Level)
+        //{
+        //    PlayfabManager.Instance?.SaveStage(GameManager.MapNum);
+        //}
 
         if (GameManager.MapNum > 45)
         {
@@ -31,7 +34,7 @@ public class MapManager : MonoBehaviour
 			if (MenuScene.IsNewGameStart == true) PlayfabManager.Instance?.ReportScore(GameManager.time);
         }
 
-		if (SettingManager.IsShownStoryAlways && GameManager.MapNum > GameManager.PassedMapNum || IsFirstStory)
+		if ((SettingManager.IsShownStoryAlways || IsFirstStory) && GameManager.MapNum > GameManager.PassedMapNum)
         {
             var dialog = Lean.Localization.LeanLocalization.GetTranslationText($"Story{GameManager.MapNum}");
             DialogList = dialog.Split('\n').ToList();
@@ -88,9 +91,9 @@ public class MapManager : MonoBehaviour
         get
         {
 #if UNITY_EDITOR || ASTANDALONE
-            return GameManager.MapNum > PlayerPrefs.GetInt("ShownStoryNum");
+            return GameManager.MapNum > PlayfabManager.Instance?.Level;
+            //return GameManager.MapNum > PlayerPrefs.GetInt("ShownStoryNum");
 #elif UNITY_ANDROID
-            Debug.Log($"{PlayfabManager.Instance?.Level}");
             return GameManager.MapNum > PlayfabManager.Instance?.Level;
 #endif 
         }

@@ -99,6 +99,10 @@ public class MenuScene : MonoBehaviour
 		{
 			continueBtn.GetComponent<Button>().interactable = false;
 		}
+		else
+		{
+			continueBtn.GetComponent<Button>().interactable = true;
+		}
 	}
 
 	public void CloseStartMenu()

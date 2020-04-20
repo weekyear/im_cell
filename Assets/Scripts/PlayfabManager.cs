@@ -257,7 +257,7 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 
 	public void SaveStage(int level)
 	{
-		if (level <= Level) return;
+		//if (level <= Level) return;
 
 		string stringLevel = level.ToString();
 		string chestString = string.Join(", ", GameManager.IsOpenChestList.ToArray());

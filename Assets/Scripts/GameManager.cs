@@ -204,7 +204,7 @@ public class GameManager : MonoBehaviour
     public void SaveStage()
 	{
 		PlayfabManager.Instance.SaveStage(MapNum);
-        GameoverWindow.transform.Find("SaveStagePanel").Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{PlayfabManager.Instance.Level}";
+        GameoverWindow.transform.Find("SaveStagePanel").Find("SaveStageDescription").GetComponent<Text>().text = $"저장된 스테이지 : Stage{MapNum}";
         SaveConfirmWindow.SetActive(false);
         AudioManager.Instance.PlayEffectSound("button_click_01");
     }
