@@ -18,10 +18,7 @@ public class MapManager : MonoBehaviour
 
 		AudioManager.Instance?.StartBgm_GameScene();
 
-        //if (GameManager.MapNum > PlayfabManager.Instance?.Level)
-        //{
-        //    PlayfabManager.Instance?.SaveStage(GameManager.MapNum);
-        //}
+        if (PlayerPrefs.GetInt("StoryNum", 0) < GameManager.MapNum) PlayerPrefs.SetInt("StoryNum", GameManager.MapNum);
 
         if (GameManager.MapNum > 45)
         {

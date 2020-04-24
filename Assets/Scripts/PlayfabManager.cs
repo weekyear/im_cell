@@ -257,8 +257,6 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 
 	public void SaveStage(int level)
 	{
-		//if (level <= Level) return;
-
 		string stringLevel = level.ToString();
 		string chestString = string.Join(", ", GameManager.IsOpenChestList.ToArray());
 		PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest { Data = new Dictionary<string, string> { { "level", stringLevel }, { "chest", chestString } } },
@@ -267,6 +265,7 @@ public class PlayfabManager : MonoBehaviour, IStoreListener
 				UserData["level"] = stringLevel;
 				UserData["chest"] = chestString;
 				UserDataUpdated?.Invoke();
+
 			}, null);
 	}
 

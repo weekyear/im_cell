@@ -21,6 +21,13 @@ public class MenuScene : MonoBehaviour
 	{
 		IsNewGameStart = false;
 
+		if (PlayerPrefs.GetInt("StoryNum", 0) == 0)
+		{
+			var playfabLevel = PlayfabManager.Instance.Level;
+			PlayerPrefs.SetInt("StoryNum", playfabLevel);
+			if (playfabLevel == 0) transform.Find("Buttons").Find("StoryBtn").GetComponent<Button>().enabled = false;
+		}
+
 		PlayfabManager.OnNewUser += OnNewUser;
 		PlayfabManager.UserDataUpdated += UserDataUpdated;
 	}

@@ -13,8 +13,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] EffectAudio EffectAudio;
 
     private void Awake()
-    {
-        if (Instance != null)
+	{
+		if (Instance != null)
 		{
 			Destroy(this);
 			return;

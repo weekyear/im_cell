@@ -38,6 +38,7 @@ public class Chest : MonoBehaviour
         AudioManager.Instance.PlayEffectSound("openchest");
         yield return new WaitForSeconds(1.25f);
 
+        PlayerPrefs.SetInt($"Chest{ChestIndex}", 1);
         if (ChestIndex != -1)
         {
             PlayerObserver.ChestOpened(Contents[ChestIndex]);
