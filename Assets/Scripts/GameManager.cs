@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
         {
             for (int i = 0; i < IsOpenChestList.Count; i++) IsOpenChestList[i] = true;
 		}
+
     }
 
     public void GamePause()

@@ -30,10 +30,12 @@ public class ChestWindow : MonoBehaviour
 
         ShowChestText(0);
         gameObject.SetActive(true);
+        AudioManager.Instance.PlayEffectSound("button_click_01");
     }
     public void HideWindow()
     {
         gameObject.SetActive(false);
+        AudioManager.Instance.PlayEffectSound("button_click_02");
     }
 
     private void ShowChestText(int chestIndex)
@@ -60,6 +62,7 @@ public class ChestWindow : MonoBehaviour
         {
             ShowChestText(currentChestIndex + 1);
         }
+        AudioManager.Instance.PlayEffectSound("button_click_01");
     }
 
     public void ShowPreviousChestText()
@@ -68,5 +71,6 @@ public class ChestWindow : MonoBehaviour
         {
             ShowChestText(currentChestIndex - 1);
         }
+        AudioManager.Instance.PlayEffectSound("button_click_01");
     }
 }
