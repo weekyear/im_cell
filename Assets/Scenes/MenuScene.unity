@@ -1776,7 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc943d6d8b1d92d46b5b1ab6d5cb6681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 367435844}
   EffectClips:
   - {fileID: 8300000, guid: 904e6a9211786b74a90324f9fbea8bad, type: 3}
   - {fileID: 8300000, guid: 6b7ff07cbe0da1448a7c81b9c8b6e5fe, type: 3}

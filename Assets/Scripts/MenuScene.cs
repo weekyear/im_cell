@@ -21,6 +21,12 @@ public class MenuScene : MonoBehaviour
 	{
 		IsNewGameStart = false;
 
+		PlayfabManager.OnNewUser += OnNewUser;
+		PlayfabManager.UserDataUpdated += UserDataUpdated;
+	}
+
+	private void Start()
+	{
 		if (PlayerPrefs.GetInt("StoryNum", 0) == 0)
 		{
 			var playfabLevel = PlayfabManager.Instance.Level;
@@ -28,12 +34,15 @@ public class MenuScene : MonoBehaviour
 			if (playfabLevel == 0) transform.Find("Buttons").Find("StoryBtn").GetComponent<Button>().enabled = false;
 		}
 
-		PlayfabManager.OnNewUser += OnNewUser;
-		PlayfabManager.UserDataUpdated += UserDataUpdated;
-	}
+		if (!PlayfabManager.Instance.IsLogin)
+		{
+#if UNITY_EDITOR || ASTANDALONE
+			loginWindow.Show();
+#elif UNITY_ANDROID
+			PlayfabManager.Instance.Login();
+#endif
+		}
 
-	private void Start()
-	{
 		if (!StoryManager.IsEndedCredit)
 		{
 			AudioManager.Instance?.StartMenuBgm();
@@ -46,15 +55,6 @@ public class MenuScene : MonoBehaviour
 				gameObject.transform.Find("Title").gameObject.SetActive(false);
 				gameObject.transform.Find("TrueTitle").gameObject.SetActive(true);
 			}
-		}
-
-		if (!PlayfabManager.Instance.IsLogin)
-		{
-#if UNITY_EDITOR || ASTANDALONE
-			loginWindow.Show();
-#elif UNITY_ANDROID 
-		PlayfabManager.Instance.Login();
-#endif
 		}
 
 		UpdateAdButtons();

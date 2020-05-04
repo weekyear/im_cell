@@ -23,12 +23,9 @@ public class AudioManager : MonoBehaviour
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
-    }
-    
-    void Start()
-	{
+
 		BgmAudio?.SetVolume();
-		EffectAudio.SetVolume();
+		EffectAudio?.SetVolume();
 	}
 
 	public void StartMenuBgm() => BgmAudio.StartMenuBgm();
