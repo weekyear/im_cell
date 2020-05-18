@@ -40,6 +40,10 @@ public class MapManager : MonoBehaviour
             if (GameManager.MapNum > PlayerPrefs.GetInt("ShownStoryNum")) PlayerPrefs.SetInt("ShownStoryNum", GameManager.MapNum);
 #endif
         }
+        else
+        {
+            if (GameManager.MapNum == 1) GameObject.Find("GameHUD").transform.Find("DescriptionPanel").GetComponent<Tutorial>().StartTutorial();
+        }
 
         if (GameManager.PassedMapNum < GameManager.MapNum) GameManager.PassedMapNum = GameManager.MapNum;
 	}

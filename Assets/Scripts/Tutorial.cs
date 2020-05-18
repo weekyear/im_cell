@@ -12,19 +12,6 @@ public class Tutorial : MonoBehaviour
 
     private Vector3 beganPos;
 
-    private void Start()
-    {
-        if (GameManager.MapNum == 1)
-        {
-            DescriptionText.gameObject.SetActive(true);
-            DescriptionText.text = descriptions[0];
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
-    }
-
     private void Update()
     {
         if (Time.timeScale != 0)
@@ -93,6 +80,13 @@ public class Tutorial : MonoBehaviour
         }
     }
 
+    public void StartTutorial()
+    {
+        gameObject.SetActive(true);
+        gameObject.GetComponent<Image>().enabled = true;
+        DescriptionText.text = descriptions[0];
+    }
+
     private List<string> descriptions = new List<string>()
     {
         "화면 아무 곳이나 눌러보세요. 손 떼지마시고!!",
@@ -104,8 +98,6 @@ public class Tutorial : MonoBehaviour
     private IEnumerator InactivateDescriptionText()
     {
         yield return new WaitForSeconds(3f);
-        DescriptionText.gameObject.SetActive(false);
-        transform.parent.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 }

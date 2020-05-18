@@ -262,5 +262,8 @@ public class StoryManager : MonoBehaviour, IPointerClickHandler
         GameManager.ChangeTimeScale(1);
 
         GameNormalEnding();
+
+        // Tutorial
+        if (GameManager.MapNum == 1) GameObject.Find("GameHUD").transform.Find("DescriptionPanel").GetComponent<Tutorial>().StartTutorial();
     }
 }
